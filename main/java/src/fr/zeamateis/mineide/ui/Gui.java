@@ -1,0 +1,44 @@
+package fr.zeamateis.mineide.ui;
+
+import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.main.MineIDE;
+
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class Gui
+{
+    public static int width = 854, height = 480;
+    static MineIDEInfo mineIdeInfo = new MineIDEInfo();
+    public static MineIDE mineIde;
+    
+    public static void init(Stage stage)
+    {
+        stage.getIcons().add(new Image("/img/icon.png"));
+        stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
+        Scene scene = new Scene(new VBox(), width, height);
+        scene.setFill(Color.OLDLACE);
+        
+        GuiActionBar.init(scene);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public static void setToolTip(String toolTipText)
+    {
+        new Tooltip(toolTipText);
+    }
+    
+    public static void setToolTip(Node node, String toolTipText)
+    {
+        Tooltip toolTip = new Tooltip();
+        toolTip.setText(toolTipText);
+        Tooltip.install(node, toolTip);
+    }
+}
