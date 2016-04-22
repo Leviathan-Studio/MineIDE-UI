@@ -1,4 +1,4 @@
-package fr.zeamateis.mineide.json;
+package fr.zeamateis.mineide.reader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Gui
@@ -19,10 +18,12 @@ public class Gui
     
     public static void init(Stage stage)
     {
-        stage.getIcons().add(new Image("/img/icon.png"));
+        stage.getIcons().add(new Image("/files/img/icon.png"));
         stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
-        Scene scene = new Scene(new VBox(), width, height);
-        scene.setFill(Color.OLDLACE);
+        VBox root = new VBox();
+        root.setId("mainFrame");
+        Scene scene = new Scene(root, width, height);
+        scene.getStylesheets().add(MineIDE.class.getResource("/files/css/style.css").toString());
         
         GuiActionBar.init(scene);
         

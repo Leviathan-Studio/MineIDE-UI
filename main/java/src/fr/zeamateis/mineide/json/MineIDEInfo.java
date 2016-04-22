@@ -1,8 +1,10 @@
 package fr.zeamateis.mineide.json;
 
+import fr.zeamateis.mineide.reader.GsonReader;
+
 public class MineIDEInfo
 {
-    private static String appName, appVersion, forgeVersion, description, credits;
+    private static String appName, appVersion, forgeVersion, description;
     
     public MineIDEInfo()
     {
@@ -12,7 +14,6 @@ public class MineIDEInfo
         description = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("description").getAsString();
         appVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("version").getAsString();
         forgeVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeVersion").getAsString();
-        credits = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("credits").getAsString();
     }
     
     public String getAppName()
@@ -28,11 +29,6 @@ public class MineIDEInfo
     public String getForgeVersion()
     {
         return forgeVersion;
-    }
-    
-    public static String getCredits()
-    {
-        return credits;
     }
     
     public static String getDescription()
