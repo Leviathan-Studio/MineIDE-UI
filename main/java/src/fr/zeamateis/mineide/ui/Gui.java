@@ -26,6 +26,7 @@ public class Gui
         scene.getStylesheets().add(MineIDE.class.getResource("/files/css/style.css").toString());
         
         GuiActionBar.init(scene);
+        GuiJavaEditor.init(scene);
         
         stage.setScene(scene);
         stage.show();

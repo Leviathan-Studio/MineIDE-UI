@@ -18,6 +18,7 @@ public class MineIDE extends Application
     public void start(Stage stage)
     {
         primaryStage = stage;
+        new MineIDETrayIcon().initTrayIcon();
         Gui.init(stage);
     }
     
