@@ -56,9 +56,9 @@ public class CodeEditor extends StackPane
     public CodeEditor(String editingCode)
     {
         editorHtml.initReading("/files/html/editor.html");
-        this.editingTemplate = editorHtml.getOutputContent();
         
         this.editingCode = editingCode;
+        this.editingTemplate = editorHtml.getOutputContent();
         
         webview.setPrefSize(Gui.width, Gui.height);
         webview.setMinSize(Gui.width, Gui.height);
