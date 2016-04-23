@@ -70,7 +70,7 @@ public class MineIDETrayIcon
                 {
                     SwingUtilities.invokeLater(() -> trayIcon.displayMessage("MineIDE", "Successfully Launched !", TrayIcon.MessageType.INFO));
                 }
-            }, 2_000, 60_000);
+            }, 2_000);
             
             tray.add(trayIcon);
         }

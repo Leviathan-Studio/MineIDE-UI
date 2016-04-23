@@ -1,15 +1,11 @@
 package fr.zeamateis.mineide.editor;
 
+import fr.zeamateis.mineide.reader.HtmlReader;
 import fr.zeamateis.mineide.ui.Gui;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 
-/**
- * A syntax highlighting code editor for JavaFX created by wrapping a CodeMirror code editor in a WebView.
- *
- * See http://codemirror.net for more information on using the codemirror editor.
- */
 public class CodeEditor extends StackPane
 {
     /** a webview used to encapsulate the CodeMirror JavaScript. */
@@ -21,7 +17,9 @@ public class CodeEditor extends StackPane
     /**
      * a template for editing code - this can be changed to any template derived from the supported modes at http://codemirror.net to allow syntax highlighted editing of a wide variety of languages.
      */
-    private final String editingTemplate = "<!doctype html>" + "<html>" + "<head>" + "  <link rel=\"stylesheet\" href=\"http://codemirror.net/lib/codemirror.css\">" + "  <script src=\"http://codemirror.net/lib/codemirror.js\"></script>" + "  <script src=\"http://codemirror.net/mode/clike/clike.js\"></script>" + "</head>" + "<body>" + "<form><textarea id=\"code\" name=\"code\">\n" + "${code}" + "</textarea></form>" + "<script>" + "  var editor = CodeMirror.fromTextArea(document.getElementById(\"code\"), {" + "    lineNumbers: true," + "    matchBrackets: true," + "    mode: \"text/x-java\"" + "  });" + "</script>" + "</body>" + "</html>";
+    HtmlReader editorHtml = new HtmlReader();
+    
+    private final String editingTemplate;
     
     /** applies the editing template to the editing code to create the html+javascript source for a code editor. */
     private String applyEditingTemplate()
@@ -57,6 +55,9 @@ public class CodeEditor extends StackPane
      */
     public CodeEditor(String editingCode)
     {
+        editorHtml.initReading("/files/html/editor.html");
+        this.editingTemplate = editorHtml.getOutputContent();
+        
         this.editingCode = editingCode;
         
         webview.setPrefSize(Gui.width, Gui.height);

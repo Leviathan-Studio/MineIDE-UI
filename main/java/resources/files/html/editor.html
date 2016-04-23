@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="#CODEMIRRORCSS">
+  <script src="#CODEMIRRORJS"></script>
+  <script src="#CLIKEJS"></script>
+</head>
+<body>
+<form><textarea id="code" name="code">${code}</textarea></form>
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    mode: "text/x-java"
+  });
+</script>
+</body>
+</html>
