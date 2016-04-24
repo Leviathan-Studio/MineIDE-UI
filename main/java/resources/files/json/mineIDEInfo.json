@@ -5,6 +5,7 @@
       "description": "A Minecraft IDE for mods developpment",
       "version": "0.1"
     },
-    "forgeVersion": "1.8.9 - 11.15.1.1722"
+    "forgeVersion": "1.9 - 12.16.0.1865",
+    "forgeDLUrl": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9-12.16.0.1865-1.9/forge-1.9-12.16.0.1865-1.9-mdk.zip"
   }
 }

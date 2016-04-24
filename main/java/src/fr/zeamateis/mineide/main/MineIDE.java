@@ -2,8 +2,10 @@ package fr.zeamateis.mineide.main;
 
 import java.io.IOException;
 
-import fr.zeamateis.mineide.compiler.JavaClassCompiler;
+import fr.zeamateis.mineide.forge.ForgeDownloader;
+import fr.zeamateis.mineide.forge.ForgeHelper;
 import fr.zeamateis.mineide.ui.Gui;
+import fr.zeamateis.mineide.utils.OSHelper;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,13 +26,22 @@ public class MineIDE extends Application
         primaryStage = stage;
         new MineIDETrayIcon().initTrayIcon();
         Gui.init(stage);
-        try
+        
+        if(!OSHelper.getWorkingDirectory().exists())
+            OSHelper.getWorkingDirectory().mkdir();
+            
+        ForgeDownloader.initDownload();
+        
+        if(ForgeDownloader.isDownloadTerminated())
         {
-            JavaClassCompiler.compile("C:/Users/TheAmateis/Desktop");
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
+            try
+            {
+                ForgeHelper.startInstallation();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
     
