@@ -22,10 +22,8 @@ public class GuiJavaEditor
     
     public static void init(Scene scene)
     {
-        // create the editing controls.
         editor = new CodeEditor("");
         
-        // layout the scene.
         final VBox layout = new VBox();
         layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 30;");
         
@@ -41,13 +39,11 @@ public class GuiJavaEditor
         tab.setContent(hbox);
         tabPane.getTabs().add(tab);
         
-        // bind to take available space
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
         
         borderPane.setCenter(tabPane);
         
-        // display the scene.
         ((VBox)scene.getRoot()).getChildren().addAll(borderPane);
         
         MineIDE.primaryStage.setScene(scene);

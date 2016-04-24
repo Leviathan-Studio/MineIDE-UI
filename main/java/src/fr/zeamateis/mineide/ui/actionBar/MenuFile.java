@@ -1,5 +1,7 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
+import fr.zeamateis.mineide.main.MineIDETrayIcon;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -40,7 +42,9 @@ public class MenuFile extends Menu
         exit.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
-            {}
+            {
+                MineIDETrayIcon.killTrayIcon();
+            }
         });
         
         menuFile.getItems().addAll(newProject, saveAll, exit);

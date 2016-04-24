@@ -22,7 +22,8 @@ public class MineIDETrayIcon
 {
     Stage stage = MineIDE.primaryStage;
     
-    private Timer notificationTimer = new Timer();
+    public static Timer notificationTimer = new Timer();
+    public static TrayIcon trayIcon;
     
     public void initTrayIcon()
     {
@@ -47,15 +48,13 @@ public class MineIDETrayIcon
             
             SystemTray tray = SystemTray.getSystemTray();
             Image image = ImageIO.read(MineIDE.class.getResource("/files/img/icon_16.png"));
-            TrayIcon trayIcon = new TrayIcon(image);
+            trayIcon = new TrayIcon(image);
             
             trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
             
             MenuItem exitItem = new MenuItem("Exit");
             exitItem.addActionListener(event -> {
-                notificationTimer.cancel();
-                Platform.exit();
-                tray.remove(trayIcon);
+                killTrayIcon();
             });
             
             final PopupMenu popup = new PopupMenu();
@@ -79,6 +78,13 @@ public class MineIDETrayIcon
             System.out.println("Unable to init system tray");
             e.printStackTrace();
         }
+    }
+    
+    public static void killTrayIcon()
+    {
+        MineIDETrayIcon.notificationTimer.cancel();
+        SystemTray.getSystemTray().remove(MineIDETrayIcon.trayIcon);
+        Platform.exit();
     }
     
     /**
