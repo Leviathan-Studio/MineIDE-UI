@@ -26,7 +26,24 @@ public class MenuFile extends Menu
             public void handle(ActionEvent t)
             {}
         });
-        menuFile.getItems().addAll(newProject);
+        
+        MenuItem saveAll = new MenuItem("Save All");
+        saveAll.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        saveAll.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        
+        MenuItem exit = new MenuItem("Exit");
+        exit.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
+        exit.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        
+        menuFile.getItems().addAll(newProject, saveAll, exit);
     }
     
 }

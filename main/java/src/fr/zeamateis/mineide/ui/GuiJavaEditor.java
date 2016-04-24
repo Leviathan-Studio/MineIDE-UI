@@ -5,7 +5,6 @@ import fr.zeamateis.mineide.main.MineIDE;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
@@ -14,12 +13,17 @@ import javafx.scene.layout.VBox;
 
 public class GuiJavaEditor
 {
+    private static CodeEditor editor;
+    
+    public static CodeEditor getEditor()
+    {
+        return editor;
+    }
     
     public static void init(Scene scene)
     {
         // create the editing controls.
-        final Label labeledCode = new Label("");
-        final CodeEditor editor = new CodeEditor("");
+        editor = new CodeEditor("");
         
         // layout the scene.
         final VBox layout = new VBox();
@@ -32,7 +36,7 @@ public class GuiJavaEditor
         Tab tab = new Tab();
         tab.setText("Tab Test");
         HBox hbox = new HBox();
-        hbox.getChildren().addAll(editor, labeledCode);
+        hbox.getChildren().addAll(editor);
         hbox.setAlignment(Pos.CENTER);
         tab.setContent(hbox);
         tabPane.getTabs().add(tab);

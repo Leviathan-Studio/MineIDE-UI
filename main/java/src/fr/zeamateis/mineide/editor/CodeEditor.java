@@ -9,14 +9,11 @@ import javafx.scene.web.WebView;
 public class CodeEditor extends StackPane
 {
     /** a webview used to encapsulate the CodeMirror JavaScript. */
-    final WebView webview = new WebView();
+    final static WebView webview = new WebView();
     
     /** a snapshot of the code to be edited kept for easy initilization and reversion of editable code. */
     private String editingCode;
     
-    /**
-     * a template for editing code - this can be changed to any template derived from the supported modes at http://codemirror.net to allow syntax highlighted editing of a wide variety of languages.
-     */
     HtmlReader editorHtml = new HtmlReader();
     
     private final String editingTemplate;
@@ -37,8 +34,7 @@ public class CodeEditor extends StackPane
     /** returns the current code in the editor and updates an editing snapshot of the code which can be reverted to. */
     public String getCodeAndSnapshot()
     {
-        this.editingCode = (String)webview.getEngine().executeScript("editor.getValue();");
-        return editingCode;
+        return editingCode = (String)webview.getEngine().executeScript("editor.getValue();");
     }
     
     /** revert edits of the code to the last edit snapshot taken. */

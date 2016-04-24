@@ -1,8 +1,5 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map.Entry;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -40,21 +37,41 @@ public class MenuEdit extends Menu
         });
         
         @SuppressWarnings("unchecked")
-        final Entry<String, KeyCombination>[] keyCombination = new Entry[] {new SimpleEntry<String, KeyCombination>("Block", KeyCombination.keyCombination("Alt+1")), new SimpleEntry<String, KeyCombination>("Item", KeyCombination.keyCombination("Alt+2")), new SimpleEntry<String, KeyCombination>("Entity", KeyCombination.keyCombination("Alt+3")), new SimpleEntry<String, KeyCombination>("TileEntity", KeyCombination.keyCombination("Alt+4")), new SimpleEntry<String, KeyCombination>("Dimension", KeyCombination.keyCombination("Alt+5"))};
+        final String[] specificClass = new String[] {new String("Block"), new String("Item"), new String("Entity"), new String("TileEntity"), new String("Dimension")};
         
-        for(Entry<String, KeyCombination> className : keyCombination)
+        for(String className : specificClass)
         {
-            MenuItem itemEffect = new MenuItem(className.getKey());
-            itemEffect.setUserData(className.getKey());
-            itemEffect.setAccelerator(className.getValue());
-            newSpecifiedClass.getItems().add(itemEffect);
-            itemEffect.setOnAction(new EventHandler<ActionEvent>()
+            Menu classesMenu = new Menu(className.toString());
+            classesMenu.setUserData(className.toString());
+            newSpecifiedClass.getItems().add(classesMenu);
+            classesMenu.setOnAction(new EventHandler<ActionEvent>()
             {
                 public void handle(ActionEvent t)
                 {
-                    System.out.println(itemEffect.getUserData());
+                    System.out.println(classesMenu.getUserData());
                 }
             });
+            
+            switch(className.toString())
+            {
+                case "Block":
+                    classesMenu.getItems().addAll(new MenuItem("Basic Block"), new MenuItem("Ore Block"));
+                    break;
+                case "Item":
+                    classesMenu.getItems().addAll(new MenuItem("Basic Item"), new MenuItem("Armor Item"), new MenuItem("Tool Item"), new MenuItem("Weapon Item"));
+                    break;
+                case "Entity":
+                    classesMenu.getItems().addAll(new MenuItem("Basic Entity"), new MenuItem("Passive Entity"), new MenuItem("Monster Entity"), new MenuItem("Boss Entity"));
+                    break;
+                case "TileEntity":
+                    classesMenu.getItems().addAll(new MenuItem("Basic TileEntity"), new MenuItem("TileEntity with TESR"));
+                    break;
+                case "Dimension":
+                    classesMenu.getItems().addAll(new MenuItem("Overworld Like Dimension"), new MenuItem("Nether Like Dimension"), new MenuItem("End Like Dimension"));
+                    break;
+                default:
+                    break;
+            }
         }
         
         menuEdit.getItems().addAll(newClass, newSpecifiedClass);
