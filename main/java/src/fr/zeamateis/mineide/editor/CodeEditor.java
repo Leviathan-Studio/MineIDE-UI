@@ -2,6 +2,7 @@ package fr.zeamateis.mineide.editor;
 
 import fr.zeamateis.mineide.ui.Gui;
 import fr.zeamateis.mineide.utils.HtmlReader;
+import fr.zeamateis.mineide.utils.Utils;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
@@ -51,7 +52,7 @@ public class CodeEditor extends StackPane
      */
     public CodeEditor(String editingCode)
     {
-        editorHtml.initReading("/files/html/editor.html");
+        editorHtml.initReading(Utils.HTML_DIR + "/editor.html");
         
         this.editingCode = editingCode;
         this.editingTemplate = editorHtml.getOutputContent();

@@ -2,6 +2,8 @@ package fr.zeamateis.mineide.main;
 
 import java.util.Locale;
 
+import fr.zeamateis.mineide.utils.Utils;
+
 import utybo.minkj.locale.MinkJ;
 
 public class Translation
@@ -12,8 +14,8 @@ public class Translation
     {
         try
         {
-            LANG.loadTranslationsFromFile(Locale.FRENCH, Translation.class.getResourceAsStream("/files/lang/fr_FR.lang"));
-            LANG.loadTranslationsFromFile(Locale.ENGLISH, Translation.class.getResourceAsStream("/files/lang/en_US.lang"));
+            LANG.loadTranslationsFromFile(Locale.FRENCH, Translation.class.getResourceAsStream(Utils.LANG_DIR + "fr_FR.lang"));
+            LANG.loadTranslationsFromFile(Locale.ENGLISH, Translation.class.getResourceAsStream(Utils.LANG_DIR + "en_US.lang"));
         }
         catch(Exception ex)
         {

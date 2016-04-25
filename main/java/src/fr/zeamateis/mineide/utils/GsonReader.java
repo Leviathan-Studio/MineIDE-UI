@@ -7,6 +7,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
+import fr.zeamateis.mineide.main.MineIDE;
+
 public class GsonReader
 {
     private JsonReader jsonReader;
@@ -24,7 +26,7 @@ public class GsonReader
     {
         try
         {
-            jsonReader = new JsonReader(new FileReader(GsonReader.class.getClassLoader().getResource(filePath).getFile()));
+            jsonReader = new JsonReader(new FileReader(MineIDE.class.getClassLoader().getResource(filePath).getFile()));
             jsonObject = parser.parse(jsonReader).getAsJsonObject();
         }
         catch(FileNotFoundException e)

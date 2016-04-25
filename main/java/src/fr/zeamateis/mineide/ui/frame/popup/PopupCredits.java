@@ -3,6 +3,7 @@ package fr.zeamateis.mineide.ui.frame.popup;
 import fr.zeamateis.mineide.main.MineIDE;
 import fr.zeamateis.mineide.ui.Gui;
 import fr.zeamateis.mineide.utils.HtmlReader;
+import fr.zeamateis.mineide.utils.Utils;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,7 +22,7 @@ public class PopupCredits extends Gui
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(MineIDE.primaryStage);
-        stage.getIcons().add(new Image("/files/img/icon.png"));
+        stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle("Credits");
         
         StackPane creditsVbox = new StackPane();
@@ -29,7 +30,7 @@ public class PopupCredits extends Gui
         WebView browser = new WebView();
         WebEngine webEngine = browser.getEngine();
         HtmlReader htmlReader = new HtmlReader();
-        htmlReader.initReading("/files/html/credits.html");
+        htmlReader.initReading(Utils.HTML_DIR + "credits.html");
         webEngine.loadContent(htmlReader.getOutputContent());
         
         creditsVbox.getChildren().add(browser);

@@ -2,6 +2,7 @@ package fr.zeamateis.mineide.ui;
 
 import fr.zeamateis.mineide.json.MineIDEConfig;
 import fr.zeamateis.mineide.main.MineIDE;
+import fr.zeamateis.mineide.utils.Utils;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,12 +19,12 @@ public class Gui
     
     public static void init(Stage stage)
     {
-        stage.getIcons().add(new Image("/files/img/icon.png"));
+        stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
         VBox root = new VBox();
         root.setId("mainFrame");
         Scene scene = new Scene(root, width, height);
-        scene.getStylesheets().add(MineIDE.class.getResource("/files/css/style.css").toString());
+        scene.getStylesheets().add(MineIDE.class.getResource(Utils.CSS_DIR + "style.css").toString());
         
         GuiActionBar.init(scene);
         GuiJavaEditor.init(scene);

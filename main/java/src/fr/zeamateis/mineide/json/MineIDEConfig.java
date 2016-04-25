@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import fr.zeamateis.mineide.utils.GsonReader;
+import fr.zeamateis.mineide.utils.Utils;
 
 public class MineIDEConfig
 {
@@ -17,7 +18,7 @@ public class MineIDEConfig
     public MineIDEConfig()
     {
         GsonReader gsonReader = new GsonReader();
-        gsonReader.initReading("files/json/mineIDEConfig.json");
+        gsonReader.initReading(Utils.JSON_DIR + "mineIDEConfig.json");
         // MineIDE Info
         appName = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("name").getAsString();
         description = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("description").getAsString();
