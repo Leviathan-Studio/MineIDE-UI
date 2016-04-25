@@ -32,7 +32,7 @@ public class GuiJavaEditor
         BorderPane borderPane = new BorderPane();
         
         Tab tab = new Tab();
-        tab.setText("Tab Test");
+        tab.setText("Main.java");
         HBox hbox = new HBox();
         hbox.getChildren().addAll(editor);
         hbox.setAlignment(Pos.CENTER);

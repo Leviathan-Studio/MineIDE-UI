@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import fr.zeamateis.mineide.utils.Utils;
 
-class ForgeHelper
+public class ForgeHelper
 {
     private static boolean finishedSetup;
     

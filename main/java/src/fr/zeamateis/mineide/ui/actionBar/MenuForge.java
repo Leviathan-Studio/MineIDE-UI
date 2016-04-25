@@ -1,5 +1,8 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
+import java.io.IOException;
+
+import fr.zeamateis.mineide.forge.ForgeHelper;
 import fr.zeamateis.mineide.forge.ForgeWorkspace;
 import fr.zeamateis.mineide.json.MineIDEInfo;
 
@@ -47,7 +50,16 @@ public class MenuForge extends Menu
         buildMod.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
-            {}
+            {
+                try
+                {
+                    ForgeHelper.compileToJar();
+                }
+                catch(IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
         });
         
         menuForge.getItems().addAll(installForge, forceForgeUpdate, buildMod);
