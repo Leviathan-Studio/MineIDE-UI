@@ -3,6 +3,7 @@ package fr.zeamateis.mineide.main;
 import fr.zeamateis.mineide.ui.Gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class MineIDE extends Application
@@ -11,6 +12,7 @@ public class MineIDE extends Application
     
     public static void main(String[] args)
     {
+        Translation.init();
         // System.setProperty("java.home", "C:\\Program Files\\Java\\jdk1.8.0_65\\");
         launch(args);
     }
@@ -19,8 +21,13 @@ public class MineIDE extends Application
     public void start(Stage stage)
     {
         primaryStage = stage;
-        new MineIDETrayIcon().initTrayIcon();
         Gui.init(stage);
+    }
+    
+    @Override
+    public void stop()
+    {
+        Platform.exit();
     }
     
 }

@@ -1,7 +1,8 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
-import fr.zeamateis.mineide.main.MineIDETrayIcon;
+import static fr.zeamateis.mineide.main.Translation.LANG;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -10,7 +11,7 @@ import javafx.scene.input.KeyCombination;
 
 public class MenuFile extends Menu
 {
-    Menu menuFile;
+    private Menu menuFile;
     
     public Menu getMenuFile()
     {
@@ -19,9 +20,9 @@ public class MenuFile extends Menu
     
     public MenuFile()
     {
-        menuFile = new Menu("File");
+        menuFile = new Menu(LANG.getTranslation("menu.file"));
         
-        MenuItem newProject = new MenuItem("New Project");
+        MenuItem newProject = new MenuItem(LANG.getTranslation("menu.file.item.newProject"));
         newProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+P"));
         newProject.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -29,7 +30,7 @@ public class MenuFile extends Menu
             {}
         });
         
-        MenuItem saveAll = new MenuItem("Save All");
+        MenuItem saveAll = new MenuItem(LANG.getTranslation("menu.file.item.saveAll"));
         saveAll.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         saveAll.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -37,13 +38,13 @@ public class MenuFile extends Menu
             {}
         });
         
-        MenuItem exit = new MenuItem("Exit");
+        MenuItem exit = new MenuItem(LANG.getTranslation("menu.file.item.exit"));
         exit.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
         exit.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
             {
-                MineIDETrayIcon.killTrayIcon();
+                Platform.exit();
             }
         });
         

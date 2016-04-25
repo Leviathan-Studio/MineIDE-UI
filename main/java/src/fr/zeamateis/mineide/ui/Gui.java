@@ -1,6 +1,6 @@
 package fr.zeamateis.mineide.ui;
 
-import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.json.MineIDEConfig;
 import fr.zeamateis.mineide.main.MineIDE;
 
 import javafx.scene.Node;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class Gui
 {
     public static int width = 854, height = 480;
-    static MineIDEInfo mineIdeInfo = new MineIDEInfo();
+    static MineIDEConfig mineIdeInfo = new MineIDEConfig();
     public static MineIDE mineIde;
     
     public static void init(Stage stage)

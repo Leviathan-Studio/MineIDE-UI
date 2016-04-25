@@ -1,10 +1,12 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
+import static fr.zeamateis.mineide.main.Translation.LANG;
+
 import java.io.IOException;
 
 import fr.zeamateis.mineide.forge.ForgeHelper;
 import fr.zeamateis.mineide.forge.ForgeWorkspace;
-import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.json.MineIDEConfig;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,9 +25,9 @@ public class MenuForge extends Menu
     
     public MenuForge()
     {
-        menuForge = new Menu("Forge");
+        menuForge = new Menu(LANG.getTranslation("menu.forge"));
         
-        MenuItem installForge = new MenuItem("Install Forge (" + MineIDEInfo.getForgeVersion() + ")");
+        MenuItem installForge = new MenuItem(LANG.getTranslation("menu.forge.item.install") + " (" + MineIDEConfig.getForgeVersion() + ")");
         installForge.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+F"));
         installForge.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -35,7 +37,7 @@ public class MenuForge extends Menu
             }
         });
         
-        MenuItem forceForgeUpdate = new MenuItem("Force Forge Update");
+        MenuItem forceForgeUpdate = new MenuItem(LANG.getTranslation("menu.forge.item.forceUpdate"));
         forceForgeUpdate.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+U"));
         forceForgeUpdate.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -45,7 +47,7 @@ public class MenuForge extends Menu
             }
         });
         
-        MenuItem buildMod = new MenuItem("Build Mod");
+        MenuItem buildMod = new MenuItem(LANG.getTranslation("menu.forge.item.build"));
         buildMod.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+B"));
         buildMod.setOnAction(new EventHandler<ActionEvent>()
         {

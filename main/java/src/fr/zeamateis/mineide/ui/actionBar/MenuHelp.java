@@ -1,6 +1,8 @@
 package fr.zeamateis.mineide.ui.actionBar;
 
-import fr.zeamateis.mineide.ui.frame.popup.GuiAbout;
+import static fr.zeamateis.mineide.main.Translation.LANG;
+
+import fr.zeamateis.mineide.ui.frame.popup.PopupCredits;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,13 +20,13 @@ public class MenuHelp extends Menu
     
     public MenuHelp()
     {
-        menuHelp = new Menu("Help");
-        MenuItem credits = new MenuItem("About");
+        menuHelp = new Menu(LANG.getTranslation("menu.help"));
+        MenuItem credits = new MenuItem(LANG.getTranslation("menu.help.item.about"));
         credits.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
             {
-                GuiAbout.init();
+                PopupCredits.init();
             }
         });
         menuHelp.getItems().addAll(credits);

@@ -1,8 +1,8 @@
 package fr.zeamateis.mineide.forge;
 
-import fr.zeamateis.mineide.helper.ZipHelper;
-import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.json.MineIDEConfig;
 import fr.zeamateis.mineide.utils.Utils;
+import fr.zeamateis.mineide.utils.ZipHelper;
 
 class ForgeDownloader
 {
@@ -13,7 +13,7 @@ class ForgeDownloader
         try
         {
             ZipHelper.buildDirectory(Utils.FORGE_DIR);
-            ZipHelper.unpackArchive(MineIDEInfo.getForgeDownloadLink(), Utils.FORGE_DIR);
+            ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
             ZipHelper.deleteTempFile();
         }
         catch(Exception e)

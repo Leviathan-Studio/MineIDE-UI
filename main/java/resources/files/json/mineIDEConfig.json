@@ -1,0 +1,16 @@
+{
+  "mineIdeInfo": {
+    "app": {
+      "name": "MineIDE",
+      "description": "A Minecraft IDE for mods developpment",
+      "version": "0.1"
+    },
+    "forgeConfig": {
+      "_comment": "forge command are launch in batch",
+      "forgeInstallCommad": "gradlew -Dorg.gradle.jvmargs=-Xmx2048M setupDecompWorkspace && gradlew eclipse && exit pause",
+      "forgeBuildCommand": "gradlew build && exit pause",
+      "forgeVersion": "1.9 - 12.16.0.1865",
+      "forgeDLUrl": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9-12.16.0.1865-1.9/forge-1.9-12.16.0.1865-1.9-mdk.zip"
+    }
+  }
+}

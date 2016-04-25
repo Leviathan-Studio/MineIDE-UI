@@ -1,4 +1,4 @@
-package fr.zeamateis.mineide.reader;
+package fr.zeamateis.mineide.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

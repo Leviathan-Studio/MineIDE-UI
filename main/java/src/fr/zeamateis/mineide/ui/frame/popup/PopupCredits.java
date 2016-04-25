@@ -1,8 +1,8 @@
 package fr.zeamateis.mineide.ui.frame.popup;
 
 import fr.zeamateis.mineide.main.MineIDE;
-import fr.zeamateis.mineide.reader.HtmlReader;
 import fr.zeamateis.mineide.ui.Gui;
+import fr.zeamateis.mineide.utils.HtmlReader;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,7 +13,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class GuiAbout extends Gui
+public class PopupCredits extends Gui
 {
     
     public static void init()

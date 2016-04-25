@@ -1,0 +1,52 @@
+﻿just.a.debug.line=lel
+
+menu.file=Fichier
+menu.file.item.newProject=Nouveau projet
+menu.file.item.saveAll=Tout sauvegarder
+menu.file.item.exit=Quitter
+
+menu.forge=Forge
+menu.forge.item.install=Installer Forge
+menu.forge.item.forceUpdate=Forcer la mise à jour de Forge
+menu.forge.item.build=Générer le mod
+
+menu.edit=Edition
+menu.edit.item.newClass=Nouvelle classe...
+menu.edit.item.newSpecificClass=Nouvelle classe spécifique...
+
+menu.help=Aide
+menu.help.item.about=Crédits
+
+specificClass.block.block=Bloc
+specificClass.block.basic=Simple
+specificClass.block.ore=Minerais
+
+specificClass.item.item=Item
+specificClass.item.basic=Simple
+specificClass.item.armor=Armure
+specificClass.item.tool=Outil
+specificClass.item.weapon=Arme
+
+specificClass.entity.entity=Entité
+specificClass.entity.basic=Simple
+specificClass.entity.passive=Animal
+specificClass.entity.monster=Monstre
+specificClass.entity.water=Aquatique
+specificClass.entity.mount=Monture
+specificClass.entity.boss=Boss
+
+specificClass.tileEntity.tileEntity=Tile Entity
+specificClass.tileEntity.basic=Simple
+specificClass.tileEntity.tesr=Avec rendu TESR
+
+specificClass.dim.dim=Dimension
+specificClass.dim.overworld=Overworld
+specificClass.dim.nether=Nether
+specificClass.dim.end=End
+
+alert.forge.reinstall.header=Hey ! Vous avez déjà installé Forge 
+alert.forge.reinstall.content.line1=Si vous voulez installer ou ré-installer une version de forge
+alert.forge.reinstall.content.line2=Cliquez sur "Forcer la mise à jour de Forge" dans l'onglet Forge ou pressez le boutton "Forcer la mise à jour"
+
+button.cancel=Annuler
+button.forceUpdate=Forcer la mise à jour

@@ -2,7 +2,7 @@ package fr.zeamateis.mineide.utils;
 
 import java.io.File;
 
-import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.json.MineIDEConfig;
 
 public class OSHelper
 {
@@ -37,19 +37,19 @@ public class OSHelper
         {
             case SOLARIS:
             case LINUX:
-                workingDirectory = new File(userHome, "." + MineIDEInfo.getAppName() + "/");
+                workingDirectory = new File(userHome, "." + MineIDEConfig.getAppName() + "/");
                 break;
             case WINDOWS:
                 final String applicationData = System.getenv("APPDATA");
                 final String folder = applicationData != null ? applicationData : userHome;
                 
-                workingDirectory = new File(folder, "." + MineIDEInfo.getAppName() + "/");
+                workingDirectory = new File(folder, "." + MineIDEConfig.getAppName() + "/");
                 break;
             case MACOS:
-                workingDirectory = new File(userHome, "Library/Application Support/" + MineIDEInfo.getAppName());
+                workingDirectory = new File(userHome, "Library/Application Support/" + MineIDEConfig.getAppName());
                 break;
             default:
-                workingDirectory = new File(userHome, MineIDEInfo.getAppName() + "/");
+                workingDirectory = new File(userHome, MineIDEConfig.getAppName() + "/");
         }
         
         return workingDirectory;

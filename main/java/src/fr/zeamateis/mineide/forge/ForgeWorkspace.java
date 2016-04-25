@@ -2,11 +2,9 @@ package fr.zeamateis.mineide.forge;
 
 import java.io.IOException;
 
-import fr.zeamateis.mineide.json.MineIDEInfo;
+import fr.zeamateis.mineide.ui.frame.popup.PopupForgeInstallation;
+import fr.zeamateis.mineide.utils.BatchHelper;
 import fr.zeamateis.mineide.utils.OSHelper;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class ForgeWorkspace
 {
@@ -24,6 +22,7 @@ public class ForgeWorkspace
         try
         {
             System.out.println("Downloading Forge...");
+            BatchHelper.initBatchFile();
             ForgeDownloader.initDownload();
         }
         catch(Exception e)
@@ -93,11 +92,7 @@ public class ForgeWorkspace
         else
         {
             System.out.println("Already Forge Installed");
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("Hey ! You have already installed Forge " + MineIDEInfo.getForgeVersion());
-            alert.setContentText("If you want to reinstall or change forge version,\nPlease click \"Force Forge Update\" in the Forge Menu");
-            alert.showAndWait();
+            PopupForgeInstallation.showPopup();
         }
     }
 }

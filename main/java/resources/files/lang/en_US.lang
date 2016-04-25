@@ -1,0 +1,52 @@
+﻿just.a.debug.line=lel
+
+menu.file=File
+menu.file.item.newProject=New Project
+menu.file.item.saveAll=Save All
+menu.file.item.exit=Exit
+
+menu.forge=Forge
+menu.forge.item.install=Install Forge
+menu.forge.item.forceUpdate=Force Update Forge
+menu.forge.item.build=Build Mod
+
+menu.edit=Edition
+menu.edit.item.newClass=New Class...
+menu.edit.item.newSpecificClass=New Specific Class...
+
+menu.help=Help
+menu.help.item.about=Credits
+
+specificClass.block.block=Block
+specificClass.block.basic=Basic
+specificClass.block.ore=Ore
+
+specificClass.item.item=Item
+specificClass.item.basic=Basic
+specificClass.item.armor=Armor
+specificClass.item.tool=Tool
+specificClass.item.weapon=Weapon
+
+specificClass.entity.entity=Entity
+specificClass.entity.basic=Basic
+specificClass.entity.passive=Animal
+specificClass.entity.monster=Monster
+specificClass.entity.water=Water
+specificClass.entity.mount=Mount
+specificClass.entity.boss=Boss
+
+specificClass.tileEntity.tileEntity=Tile Entity
+specificClass.tileEntity.basic=Basic
+specificClass.tileEntity.tesr=with TESR render
+
+specificClass.dim.dim=Dimension
+specificClass.dim.overworld=Overworld
+specificClass.dim.nether=Nether
+specificClass.dim.end=End
+
+alert.forge.reinstall.header=Hey ! You have already installed Forge 
+alert.forge.reinstall.content.line1=If you want install or reinstall a forge version
+alert.forge.reinstall.content.line2=Please, click on "Force Update Forge" in Forge tab or press the button "Force Update"
+
+button.cancel=Cancel
+button.forceUpdate=Force Update

@@ -1,4 +1,4 @@
-package fr.zeamateis.mineide.helper;
+package fr.zeamateis.mineide.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,7 +1,7 @@
 package fr.zeamateis.mineide.editor;
 
-import fr.zeamateis.mineide.reader.HtmlReader;
 import fr.zeamateis.mineide.ui.Gui;
+import fr.zeamateis.mineide.utils.HtmlReader;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
