@@ -38,7 +38,7 @@ public class MineIDEInfo
         return appVersion;
     }
     
-    public String getForgeVersion()
+    public static String getForgeVersion()
     {
         return forgeVersion;
     }

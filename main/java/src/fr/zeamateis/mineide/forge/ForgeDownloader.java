@@ -4,7 +4,7 @@ import fr.zeamateis.mineide.helper.ZipHelper;
 import fr.zeamateis.mineide.json.MineIDEInfo;
 import fr.zeamateis.mineide.utils.Utils;
 
-public class ForgeDownloader
+class ForgeDownloader
 {
     static boolean downloadTerminated;
     
