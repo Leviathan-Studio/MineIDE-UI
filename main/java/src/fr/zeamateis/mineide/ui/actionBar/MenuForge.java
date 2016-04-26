@@ -33,7 +33,7 @@ public class MenuForge extends Menu
         {
             public void handle(ActionEvent t)
             {
-                ForgeWorkspace.initialization();
+                ForgeWorkspace.installWorkspace();
             }
         });
         
