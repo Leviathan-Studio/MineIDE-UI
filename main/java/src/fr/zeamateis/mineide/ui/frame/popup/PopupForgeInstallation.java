@@ -29,7 +29,7 @@ public class PopupForgeInstallation
         
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == buttonForceUpdate)
-            ForgeWorkspace.forgeUpdate();
+            ForgeWorkspace.forceUpdate();
         else
         {}
     }

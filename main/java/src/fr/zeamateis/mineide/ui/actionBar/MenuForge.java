@@ -43,7 +43,7 @@ public class MenuForge extends Menu
         {
             public void handle(ActionEvent t)
             {
-                ForgeWorkspace.forgeUpdate();
+                ForgeWorkspace.forceUpdate();
             }
         });
         

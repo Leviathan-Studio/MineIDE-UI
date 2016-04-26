@@ -1,0 +1,37 @@
+package #packageName;
+
+import cpw.mods.fml.common.Mod;
+import #packageProxy;
+
+@Mod(modid = modId, name = "#modName", version = "#modVersion")
+public class #className
+{
+	@SidedProxy(clientSide = "#packageProxy.ClientProxy", serverSide = "#packageProxy.CommonProxy")
+	public static CommonProxy proxy;
+	
+	@Instance("#modId")
+	private static #className instance;
+	public static #className getInstance() {
+		return instance;
+	}
+	
+	private static final String modId = "#modId";
+	public static String getModID() {
+		return modId;
+	}
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+
+	}
+	
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+
+	}
+}

@@ -13,6 +13,7 @@ public class Utils
     public static final String JSON_DIR = ("./mineIDE/json/");
     public static final String HTML_DIR = ("/mineIDE/html/");
     public static final String LANG_DIR = ("/mineIDE/lang/");
+    public static final String TEMPLATE_DIR = ("/minecraft/template/");
     
     public static void writeFile(File filePath, String fileName, String fileContent, String fileExtension)
     {

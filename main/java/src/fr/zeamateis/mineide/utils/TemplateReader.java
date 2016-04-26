@@ -6,22 +6,23 @@ import java.io.IOException;
 
 import fr.zeamateis.mineide.main.MineIDE;
 
-public class HtmlReader
+public class TemplateReader
 {
     private String outputContent;
     
-    public void initReading(String filePath)
+    public void initReading(String templateType, String templateName)
     {
         StringBuilder contentBuilder = new StringBuilder();
         try
         {
-            BufferedReader in = new BufferedReader(new FileReader(MineIDE.class.getResource(filePath).getFile()));
+            FileReader inputFile = new FileReader(MineIDE.class.getResource(Utils.TEMPLATE_DIR + templateType + "/" + templateName + ".mide").getFile());
+            BufferedReader bufferedReader = new BufferedReader(inputFile);
+            
             String str;
-            while((str = in.readLine()) != null)
+            while((str = bufferedReader.readLine()) != null)
             {
-                contentBuilder.append(str);
+                contentBuilder.append(str + System.lineSeparator());
             }
-            in.close();
         }
         catch(IOException e)
         {

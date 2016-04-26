@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "#modId",
+    "name": "#modName",
+    "description": "#modDescription",
+    "version": "#modVersion",
+    "credits": "#modCredits",
+    "logoFile": "#modLogo",
+    "mcversion": "1.9",
+    "url": "#modURL",
+    "updateUrl": "#modUpdateURL",
+    "authors": [
+      "#modAuthor"
+    ],
+    "screenshots": [],
+    "dependencies": []
+  }
+]

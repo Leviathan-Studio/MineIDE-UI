@@ -11,18 +11,17 @@ public class ForgeWorkspace
     
     public static void initialization()
     {
+        BatchHelper.initBatchFile();
         installWorkspace();
     }
     
-    public static void forgeUpdate()
+    public static void forceUpdate()
     {
         if(!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
-            
         try
         {
             System.out.println("Downloading Forge...");
-            BatchHelper.initBatchFile();
             ForgeDownloader.initDownload();
         }
         catch(Exception e)

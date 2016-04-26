@@ -22,6 +22,14 @@ public class MineIDE extends Application
     {
         primaryStage = stage;
         Gui.init(stage);
+        //
+        // TemplateReader tmpltReader = new TemplateReader();
+        // tmpltReader.initReading("java", "main/ModClass");
+        // System.out.println(tmpltReader.getOutputContent());
+        //
+        // JavaClassWriter javaClassWriter = new JavaClassWriter();
+        // javaClassWriter.initWritting("test", tmpltReader.getOutputContent());
+        //
     }
     
     @Override
