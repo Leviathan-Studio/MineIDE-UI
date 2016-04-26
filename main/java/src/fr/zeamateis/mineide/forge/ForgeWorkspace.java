@@ -9,16 +9,13 @@ import fr.zeamateis.mineide.utils.OSHelper;
 public class ForgeWorkspace
 {
     
-    public static void initialization()
-    {
-        BatchHelper.initBatchFile();
-        installWorkspace();
-    }
-    
     public static void forceUpdate()
     {
         if(!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
+            
+        BatchHelper.initBatchFile();
+        
         try
         {
             System.out.println("Downloading Forge...");
@@ -51,10 +48,13 @@ public class ForgeWorkspace
         }
     }
     
-    private static void installWorkspace()
+    public static void installWorkspace()
     {
         if(!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
+            
+        BatchHelper.initBatchFile();
+        
         if(!ForgeHelper.isFinishedSetup())
         {
             try
