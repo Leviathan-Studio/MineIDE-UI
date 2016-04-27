@@ -2,7 +2,10 @@ package com.leviathanstudio.mineide.ui;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -15,7 +18,8 @@ import javafx.scene.layout.Pane;
 public class TabBarManagement
 {
     private final TabPane tabPane;
-    
+    private Tab currentTab;
+
     public TabBarManagement(TabPane tabPane)
     {
         this.tabPane = tabPane;
@@ -45,13 +49,19 @@ public class TabBarManagement
         hbox.setAlignment(Pos.CENTER);
         tab.setContent(hbox);
         tabPane.getTabs().add(tab);
+        if(currentTab == null)
+            currentTab = tab;
     }
     
     private Tab createTabWithContextMenu(String title, String id, MenuItem... items)
     {
         Tab tab = new Tab(title);
         tab.setId(id);
-        
+        tabPane.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> tabList, Tab oldTab, Tab newTab) -> {
+            currentTab = newTab;
+            System.out.println("Tab Selection changed");
+        });
+
         ContextMenu contextMenu = new ContextMenu(items);
         
         for(MenuItem menus : contextMenu.getItems())
@@ -103,5 +113,16 @@ public class TabBarManagement
     public void closeAll()
     {
         tabPane.getTabs().clear();
+    }
+    
+    public void closeTab(Tab tab)
+    {
+        if(tab != null)
+            tabPane.getTabs().remove(tab);
+    }
+    
+    public void closeCurrentTab()
+    {
+        closeTab(this.currentTab);
     }
 }
