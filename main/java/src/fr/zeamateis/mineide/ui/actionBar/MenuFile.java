@@ -2,6 +2,8 @@ package fr.zeamateis.mineide.ui.actionBar;
 
 import static fr.zeamateis.mineide.main.Translation.LANG;
 
+import fr.zeamateis.mineide.ui.GuiJavaEditor;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,7 +39,9 @@ public class MenuFile extends Menu
         openProject.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
-            {}
+            {
+                GuiJavaEditor.tabBar.addTab("Test_"+ (int)(Math.random() *100) + ".java", "Test_"+ (int)(Math.random() *100));
+            }
         });
         
         MenuItem closeProject = new MenuItem(LANG.getTranslation("menu.file.item.closeProject"));

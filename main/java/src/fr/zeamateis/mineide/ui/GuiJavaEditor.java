@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 public class GuiJavaEditor
 {
     private static CodeEditor editor;
+    public static TabBarManagement tabBar;
     
     public static CodeEditor getEditor()
     {
@@ -27,17 +28,26 @@ public class GuiJavaEditor
         final VBox layout = new VBox();
         layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 30;");
         
+        
+        
         TabPane tabPane = new TabPane();
+        
+        tabBar = new TabBarManagement(tabPane);
         
         BorderPane borderPane = new BorderPane();
         
+        
+        tabBar.addTab("Main.java", "main");
+        tabBar.addTab("Test.java", "test");
+
+        /*
         Tab tab = new Tab();
         tab.setText("Main.java");
         HBox hbox = new HBox();
         hbox.getChildren().addAll(editor);
         hbox.setAlignment(Pos.CENTER);
         tab.setContent(hbox);
-        tabPane.getTabs().add(tab);
+        tabPane.getTabs().add(tab);*/
         
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
