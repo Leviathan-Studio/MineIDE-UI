@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+repositories {
+        mavenCentral()
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/releases/'
+        }
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+    }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+compileJava.options.encoding = 'UTF-8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'main/java/src'
+        }
+        resources {
+            srcDirs 'main/java/resources'
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+    compile 'com.google.code.gson:gson:2.7-SNAPSHOT'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
