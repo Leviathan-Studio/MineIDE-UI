@@ -25,6 +25,12 @@ menu.options.item.preferences=Preferences
 menu.help=Help
 menu.help.item.about=Credits
 
+menu.tab.item.close=Close
+menu.tab.item.closeOther=Close Others
+menu.tab.item.closeLeft=Close Tabs to the Left
+menu.tab.item.closeRight=Close Tabs to the Right
+menu.tab.item.closeAll=Close All
+
 specificClass.block.block=Block
 specificClass.block.basic=Basic
 specificClass.block.ore=Ore

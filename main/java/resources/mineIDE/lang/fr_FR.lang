@@ -25,6 +25,12 @@ menu.options.item.preferences=Préférences
 menu.help=Aide
 menu.help.item.about=Crédits
 
+menu.tab.item.close=Fermer
+menu.tab.item.closeOther=Fermer tout sauf ce fichier
+menu.tab.item.closeLeft=Fermer les onglets sur la gauche
+menu.tab.item.closeRight=Fermer les onglets sur la droite
+menu.tab.item.closeAll=Fermer tout
+
 specificClass.block.block=Bloc
 specificClass.block.basic=Simple
 specificClass.block.ore=Minerais
