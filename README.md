@@ -1,5 +1,5 @@
 # MineIDE
-A Minecraft Integrated Development Environment for create good mods !
+A Minecraft Integrated Development Environment written with JavaFX for create good mods !
 
 v0.1 Result:
 
