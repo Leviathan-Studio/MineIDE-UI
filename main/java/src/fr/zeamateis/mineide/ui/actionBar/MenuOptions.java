@@ -22,6 +22,11 @@ public class MenuOptions extends Menu
     {
         menuOptions = new Menu(LANG.getTranslation("menu.options"));
         MenuItem menuPreferences = new MenuItem(LANG.getTranslation("menu.options.item.preferences"));
+        menuPreferences.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
         
         menuOptions.getItems().addAll(menuPreferences);
     }

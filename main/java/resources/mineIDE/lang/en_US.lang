@@ -2,7 +2,12 @@
 
 menu.file=File
 menu.file.item.newProject=New Project
+menu.file.item.openProject=Open Project
+menu.file.item.closeProject=Close Project
+menu.file.item.save=Save
 menu.file.item.saveAll=Save All
+menu.file.item.close=Close
+menu.file.item.closeAll=Close All
 menu.file.item.exit=Exit
 
 menu.forge=Forge

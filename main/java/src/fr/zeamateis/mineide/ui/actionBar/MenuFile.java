@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 
 public class MenuFile extends Menu
@@ -30,9 +32,47 @@ public class MenuFile extends Menu
             {}
         });
         
+        MenuItem openProject = new MenuItem(LANG.getTranslation("menu.file.item.openProject"));
+        openProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+O"));
+        openProject.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        
+        MenuItem closeProject = new MenuItem(LANG.getTranslation("menu.file.item.closeProject"));
+        closeProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+W"));
+        closeProject.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        
+        MenuItem save = new MenuItem(LANG.getTranslation("menu.file.item.save"));
+        save.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        save.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
         MenuItem saveAll = new MenuItem(LANG.getTranslation("menu.file.item.saveAll"));
-        saveAll.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        saveAll.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+S"));
         saveAll.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        
+        MenuItem close = new MenuItem(LANG.getTranslation("menu.file.item.close"));
+        close.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent t)
+            {}
+        });
+        MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.file.item.closeAll"));
+        closeAll.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+W"));
+        closeAll.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent t)
             {}
@@ -48,7 +88,7 @@ public class MenuFile extends Menu
             }
         });
         
-        menuFile.getItems().addAll(newProject, saveAll, exit);
+        menuFile.getItems().addAll(newProject, openProject, closeProject, new SeparatorMenuItem(), save, saveAll,new SeparatorMenuItem(), close, closeAll, new SeparatorMenuItem(), exit);
     }
     
 }

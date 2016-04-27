@@ -16,7 +16,7 @@ public class GuiActionBar
     
     public static void init(Scene scene)
     {
-        menuBar.getMenus().addAll(new MenuFile().getMenuFile(), new MenuForge().getMenuForge(), new MenuEdit().getMenuEdit(), new MenuOptions().getMenuOptions(), new MenuHelp().getMenuHelp());
+        menuBar.getMenus().addAll(new MenuFile().getMenuFile(), new MenuEdit().getMenuEdit(), new MenuForge().getMenuForge(), new MenuOptions().getMenuOptions(), new MenuHelp().getMenuHelp());
         ((VBox)scene.getRoot()).getChildren().addAll(menuBar);
     }
 }
