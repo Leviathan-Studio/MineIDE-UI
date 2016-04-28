@@ -16,6 +16,11 @@ menu.forge.item.forceUpdate=Force Update Forge
 menu.forge.item.build=Build Mod
 
 menu.edit=Edition
+menu.edit.item.undo=Undo
+menu.edit.item.redo=Redo
+menu.edit.item.cut=Cut
+menu.edit.item.copy=Copy
+menu.edit.item.paste=Paste
 menu.edit.item.newClass=New Class...
 menu.edit.item.newSpecificClass=New Specific Class...
 
@@ -23,7 +28,7 @@ menu.options=Options
 menu.options.item.preferences=Preferences
 
 menu.help=Help
-menu.help.item.about=Credits
+menu.help.item.about=About
 
 menu.tab.item.close=Close
 menu.tab.item.closeOther=Close Others

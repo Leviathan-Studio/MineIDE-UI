@@ -3,13 +3,13 @@ package com.leviathanstudio.mineide.ui.actionBar;
 import static com.leviathanstudio.mineide.main.Translation.*;
 
 import com.leviathanstudio.mineide.ui.GuiJavaEditor;
+import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.input.KeyCombination;
 
 public class MenuFile extends Menu
 {
@@ -24,44 +24,28 @@ public class MenuFile extends Menu
     {
         menuFile = new Menu(LANG.getTranslation("menu.file"));
         
-        MenuItem newProject = new MenuItem(LANG.getTranslation("menu.file.item.newProject"));
-        newProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+P"));
-        newProject.setOnAction((ActionEvent t) -> {});
-        
-        MenuItem openProject = new MenuItem(LANG.getTranslation("menu.file.item.openProject"));
-        openProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+O"));
-        openProject.setOnAction((ActionEvent t) -> {
+        MenuItem newProject = new MenuItemTranslate("menu.file.item.newProject", "Ctrl+Alt+P", (ActionEvent t) -> {});
+        MenuItem openProject = new MenuItemTranslate("menu.file.item.openProject", "Ctrl+Alt+O", (ActionEvent t) -> {
             GuiJavaEditor.tabBar.addTab("Test_" + (int)(Math.random() * 100) + ".java", "Test_" + (int)(Math.random() * 100));
         });
+        MenuItem closeProject = new MenuItemTranslate("menu.file.item.closeProject", "Ctrl+Alt+W", (ActionEvent t) -> {});
+
+        MenuItem save = new MenuItemTranslate("menu.file.item.save", "Ctrl+S", (ActionEvent t) -> {});
+        MenuItem saveAll = new MenuItemTranslate("menu.file.item.save", "Ctrl+Shift+S", (ActionEvent t) -> {});
         
-        MenuItem closeProject = new MenuItem(LANG.getTranslation("menu.file.item.closeProject"));
-        closeProject.setAccelerator(KeyCombination.keyCombination("Ctrl+Alt+W"));
-        closeProject.setOnAction((ActionEvent t) -> {});
-        
-        MenuItem save = new MenuItem(LANG.getTranslation("menu.file.item.save"));
-        save.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
-        save.setOnAction((ActionEvent t) -> {});
-        MenuItem saveAll = new MenuItem(LANG.getTranslation("menu.file.item.saveAll"));
-        saveAll.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+S"));
-        saveAll.setOnAction((ActionEvent t) -> {});
-        
-        MenuItem close = new MenuItem(LANG.getTranslation("menu.file.item.close"));
-        close.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
-        close.setOnAction((ActionEvent t) -> {
+        MenuItem close = new MenuItemTranslate("menu.file.item.close", "Ctrl+W", (ActionEvent t) -> {
             GuiJavaEditor.tabBar.closeCurrentTab();
         });
-        MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.file.item.closeAll"));
-        closeAll.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+W"));
-        closeAll.setOnAction((ActionEvent t) -> {
-            // TODO Close all Tab in all windows
+        MenuItem closeAll = new MenuItemTranslate("menu.file.item.closeAll", "Ctrl+Shift+W", (ActionEvent t) -> {
+         // TODO Close all Tab in all windows
             GuiJavaEditor.tabBar.closeAll();
         });
         
-        MenuItem exit = new MenuItem(LANG.getTranslation("menu.file.item.exit"));
-        exit.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
-        exit.setOnAction((ActionEvent t) -> {
+        MenuItem exit = new MenuItemTranslate("menu.file.item.exit", "Ctrl+Q", (ActionEvent t) -> {
             Platform.exit();
+
         });
+
         
         menuFile.getItems().addAll(newProject, openProject, closeProject, new SeparatorMenuItem(), save, saveAll, new SeparatorMenuItem(), close, closeAll, new SeparatorMenuItem(), exit);
     }

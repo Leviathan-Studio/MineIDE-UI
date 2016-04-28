@@ -1,7 +1,5 @@
 package com.leviathanstudio.mineide.ui;
 
-import static com.leviathanstudio.mineide.main.Translation.*;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +7,7 @@ import java.util.Set;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.component.DraggableTab;
+import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -100,11 +99,11 @@ public class TabBarManagement
     
     private List<MenuItem> getConextMenu(TabPane tabPane, Tab tab, int posTab)
     {
-        MenuItem close = new MenuItem(LANG.getTranslation("menu.tab.item.close"));
-        MenuItem closeOther = new MenuItem(LANG.getTranslation("menu.tab.item.closeOther"));
-        MenuItem closeLeft = new MenuItem(LANG.getTranslation("menu.tab.item.closeLeft"));
-        MenuItem closeRight = new MenuItem(LANG.getTranslation("menu.tab.item.closeRight"));
-        MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.tab.item.closeAll"));
+        MenuItem close = new MenuItemTranslate("menu.tab.item.close");
+        MenuItem closeOther = new MenuItemTranslate("menu.tab.item.closeOther");
+        MenuItem closeLeft = new MenuItemTranslate("menu.tab.item.closeLeft");
+        MenuItem closeRight = new MenuItemTranslate("menu.tab.item.closeRight");
+        MenuItem closeAll = new MenuItemTranslate("menu.tab.item.closeAll");
         
         close.setId("close");
         closeOther.setId("close_other");

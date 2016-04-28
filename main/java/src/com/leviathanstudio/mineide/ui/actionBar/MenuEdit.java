@@ -2,11 +2,13 @@ package com.leviathanstudio.mineide.ui.actionBar;
 
 import static com.leviathanstudio.mineide.main.Translation.*;
 
+import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.control.SeparatorMenuItem;
 
 public class MenuEdit extends Menu
 {
@@ -23,10 +25,19 @@ public class MenuEdit extends Menu
         
         menuEdit = new Menu(LANG.getTranslation("menu.edit"));
         
+        MenuItem undo = new MenuItemTranslate("menu.edit.item.undo", "Ctrl+Z", (ActionEvent t) -> {});
+        MenuItem redo = new MenuItemTranslate("menu.edit.item.redo", "Ctrl+Y", (ActionEvent t) -> {});
+
+        MenuItem cut = new MenuItemTranslate("menu.edit.item.cut", "Ctrl+X", (ActionEvent t) -> {});
+        MenuItem copy = new MenuItemTranslate("menu.edit.item.copy", "Ctrl+C", (ActionEvent t) -> {});
+        MenuItem paste = new MenuItemTranslate("menu.edit.item.paste", "Ctrl+V", (ActionEvent t) -> {});
+        MenuItem delete = new MenuItemTranslate("menu.edit.item.delete", "Del", (ActionEvent t) -> {});
+        MenuItem selectAll = new MenuItemTranslate("menu.edit.item.selectAll", "Ctrl+A", (ActionEvent t) -> {});
+
+        
         // -----------
-        MenuItem newClass = new MenuItem(LANG.getTranslation("menu.edit.item.newClass"));
-        newClass.setAccelerator(KeyCombination.keyCombination("Ctrl+J"));
-        newClass.setOnAction((ActionEvent t) -> {});
+        
+        MenuItem newClass = new MenuItemTranslate("menu.edit.item.newClass", "Ctrl+J", (ActionEvent t) -> {});
         
         // -----------
         Menu newSpecifiedClass = new Menu(LANG.getTranslation("menu.edit.item.newSpecificClass"));
@@ -58,7 +69,7 @@ public class MenuEdit extends Menu
             else if(className.toString().equals(SpecificClasses.getDimension()))
                 classesMenu.getItems().addAll(SpecificClasses.getDimOverworld(), SpecificClasses.getDimNether(), SpecificClasses.getDimEnd());
         }
-        menuEdit.getItems().addAll(newClass, newSpecifiedClass);
+        menuEdit.getItems().addAll(undo, redo, new SeparatorMenuItem(), cut, copy, paste, new SeparatorMenuItem(), delete, selectAll,  new SeparatorMenuItem(),  newClass, newSpecifiedClass);
     }
     
     public static class SpecificClasses

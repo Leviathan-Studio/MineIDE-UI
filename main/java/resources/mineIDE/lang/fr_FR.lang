@@ -16,6 +16,11 @@ menu.forge.item.forceUpdate=Forcer la mise à jour de Forge
 menu.forge.item.build=Générer le mod
 
 menu.edit=Edition
+menu.edit.item.undo=Annuler
+menu.edit.item.redo=Rétablir
+menu.edit.item.cut=Couper
+menu.edit.item.copy=Copier
+menu.edit.item.paste=Coller
 menu.edit.item.newClass=Nouvelle classe...
 menu.edit.item.newSpecificClass=Nouvelle classe spécifique...
 
@@ -23,7 +28,7 @@ menu.options=Options
 menu.options.item.preferences=Préférences
 
 menu.help=Aide
-menu.help.item.about=Crédits
+menu.help.item.about=A propos
 
 menu.tab.item.close=Fermer
 menu.tab.item.closeOther=Fermer tout sauf ce fichier
