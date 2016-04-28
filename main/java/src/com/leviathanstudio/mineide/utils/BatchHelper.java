@@ -7,7 +7,8 @@ public class BatchHelper
     
     public static void initBatchFile()
     {
-        Utils.writeFile(Utils.FORGE_DIR, "MineIDEInstall", MineIDEConfig.getForgeInstallCommand(), "bat");
-        Utils.writeFile(Utils.FORGE_DIR, "MineIDEBuild", MineIDEConfig.getForgeBuildCommand(), "bat");
+        // TODO remove
+//        Utils.writeFile(Utils.FORGE_DIR, "MineIDEInstall", MineIDEConfig.getForgeInstallCommand(), "bat");
+//        Utils.writeFile(Utils.FORGE_DIR, "MineIDEBuild", MineIDEConfig.getForgeBuildCommand(), "bat");
     }
 }

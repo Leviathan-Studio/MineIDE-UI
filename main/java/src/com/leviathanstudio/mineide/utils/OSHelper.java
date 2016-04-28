@@ -32,26 +32,26 @@ public class OSHelper
     public static File getWorkingDirectory()
     {
         final String userHome = System.getProperty("user.home", ".");
+        String appName = MineIDEConfig.getAppName() != null ? MineIDEConfig.getAppName() : "MineIDE";
         File workingDirectory;
         switch(getPlatform())
         {
             case SOLARIS:
             case LINUX:
-                workingDirectory = new File(userHome, "." + MineIDEConfig.getAppName() + "/");
+                workingDirectory = new File(userHome, "." + appName + "/");
                 break;
             case WINDOWS:
                 final String applicationData = System.getenv("APPDATA");
                 final String folder = applicationData != null ? applicationData : userHome;
                 
-                workingDirectory = new File(folder, "." + MineIDEConfig.getAppName() + "/");
+                workingDirectory = new File(folder, "." + appName + "/");
                 break;
             case MACOS:
-                workingDirectory = new File(userHome, "Library/Application Support/" + MineIDEConfig.getAppName());
+                workingDirectory = new File(userHome, "Library/Application Support/" + appName);
                 break;
             default:
-                workingDirectory = new File(userHome, MineIDEConfig.getAppName() + "/");
+                workingDirectory = new File(userHome, appName + "/");
         }
-        
         return workingDirectory;
     }
 }

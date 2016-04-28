@@ -1,6 +1,7 @@
 package com.leviathanstudio.mineide.main;
 
 import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,6 +22,9 @@ public class MineIDE extends Application
     public void start(Stage stage)
     {
         primaryStage = stage;
+        Utils.checkDir(Utils.CONFIG);
+        Utils.checkDir(Utils.PROJECT);
+
         Gui.init(stage);
         //
         // TemplateReader tmpltReader = new TemplateReader();

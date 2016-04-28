@@ -6,10 +6,8 @@ import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 

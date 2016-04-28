@@ -13,7 +13,7 @@ public class MineIDEConfig
     
     // Forge
     private static String forgeVersion, forgeInstallCommand, forgeBuildCommand;
-    private static URL forgeDownloadLink;
+    private static URL forgeDownloadLink, forgeVersionLink;
     
     public MineIDEConfig()
     {
@@ -31,6 +31,14 @@ public class MineIDEConfig
         try
         {
             forgeDownloadLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeDLUrl").getAsString());
+        }
+        catch(MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            forgeVersionLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeVersionUrl").getAsString());
         }
         catch(MalformedURLException e)
         {
@@ -61,6 +69,11 @@ public class MineIDEConfig
     public static URL getForgeDownloadLink()
     {
         return forgeDownloadLink;
+    }
+    
+    public static URL getForgeVersionLink()
+    {
+        return forgeVersionLink;
     }
     
     public static String getForgeInstallCommand()

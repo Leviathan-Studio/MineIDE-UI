@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.leviathanstudio.mineide.json.MineIDEConfig;
 import com.leviathanstudio.mineide.utils.Utils;
 
 public class ForgeHelper
@@ -40,13 +41,13 @@ public class ForgeHelper
     
     public static void startInstallation() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & start MineIDEInstall.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeInstallCommand());
         processBuilder.start();
     }
     
     public static void compileToJar() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & start MineIDEBuild.bat");
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeBuildCommand());
         processBuilder.start();
     }
     

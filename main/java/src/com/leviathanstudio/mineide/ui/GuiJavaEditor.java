@@ -3,12 +3,9 @@ package com.leviathanstudio.mineide.ui;
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.main.MineIDE;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class GuiJavaEditor
