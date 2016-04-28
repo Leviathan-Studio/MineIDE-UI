@@ -3,6 +3,7 @@ package com.leviathanstudio.mineide.ui;
 import static com.leviathanstudio.mineide.main.Translation.*;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
+import com.leviathanstudio.mineide.ui.component.DraggableTab;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -49,7 +50,7 @@ public class TabBarManagement
     
     private Tab createTabWithContextMenu(String title, String id, MenuItem... items)
     {
-        Tab tab = new Tab(title);
+        Tab tab = new DraggableTab(title);
         tab.setId(id);
         
         ContextMenu contextMenu = new ContextMenu(items);
