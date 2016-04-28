@@ -12,7 +12,7 @@ public class MineIDEConfig
     private static String appName, appVersion, description;
     
     // Forge
-    private static String forgeVersion, forgeInstallCommand, mappingVersion, forgeBuildCommand;
+    private static String forgeVersion, forgeInstallCommand, forgeBuildCommand;
     private static URL forgeDownloadLink, forgeVersionLink;
     
     public MineIDEConfig()
@@ -28,7 +28,6 @@ public class MineIDEConfig
         forgeInstallCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeInstallCommad").getAsString();
         forgeBuildCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeBuildCommand").getAsString();
         forgeVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeVersion").getAsString();
-        mappingVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("mappingVersion").getAsString();
         try
         {
             forgeDownloadLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeDLUrl").getAsString());
@@ -80,11 +79,6 @@ public class MineIDEConfig
     public static String getForgeInstallCommand()
     {
         return forgeInstallCommand;
-    }
-    
-    public static String getMappingVersion()
-    {
-        return mappingVersion;
     }
     
     public static String getForgeBuildCommand()

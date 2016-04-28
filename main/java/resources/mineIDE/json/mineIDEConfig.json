@@ -10,7 +10,6 @@
       "forgeInstallCommad": "gradlew -Dorg.gradle.jvmargs=-Xmx2048M setupDecompWorkspace --refresh-dependencies && gradlew eclipse && exit pause",
       "forgeBuildCommand": "gradlew build && exit pause",
       "forgeVersion": "1.9 - 12.16.0.1865",
-      "mappingVersion": "snapshot_20160428",
       "forgeVersionUrl": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json",
       "forgeDLUrl": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9-12.16.0.1865-1.9/forge-1.9-12.16.0.1865-1.9-mdk.zip"
     }
