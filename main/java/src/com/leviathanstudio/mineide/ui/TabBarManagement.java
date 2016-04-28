@@ -2,6 +2,11 @@ package com.leviathanstudio.mineide.ui;
 
 import static com.leviathanstudio.mineide.main.Translation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.component.DraggableTab;
 
@@ -17,6 +22,8 @@ import javafx.scene.layout.Pane;
 
 public class TabBarManagement
 {
+    public static final Set<TabPane> tabPanes = new HashSet<>();
+    
     private final TabPane tabPane;
     
     public TabBarManagement(TabPane tabPane)
@@ -26,19 +33,7 @@ public class TabBarManagement
     
     public void addTab(String name, String id)
     {
-        MenuItem close = new MenuItem(LANG.getTranslation("menu.tab.item.close"));
-        MenuItem closeOther = new MenuItem(LANG.getTranslation("menu.tab.item.closeOther"));
-        MenuItem closeLeft = new MenuItem(LANG.getTranslation("menu.tab.item.closeLeft"));
-        MenuItem closeRight = new MenuItem(LANG.getTranslation("menu.tab.item.closeRight"));
-        MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.tab.item.closeAll"));
-        
-        close.setId("close");
-        closeOther.setId("close_other");
-        closeLeft.setId("close_left");
-        closeRight.setId("close_right");
-        closeAll.setId("close_all");
-        
-        Tab tab = createTabWithContextMenu(name, id, close, closeOther, closeLeft, closeRight, new SeparatorMenuItem(), closeAll);
+        Tab tab = createTabWithContextMenu(name, id);
         HBox hbox = new HBox();
         CodeEditor editor = new CodeEditor("");
         
@@ -53,55 +48,41 @@ public class TabBarManagement
         Tab tab = new DraggableTab(title);
         tab.setId(id);
         
-        ContextMenu contextMenu = new ContextMenu(items);
-        
-        for(MenuItem menus : contextMenu.getItems())
-        {
-            menus.setOnAction((ActionEvent e) -> {
-                MenuItem item = (MenuItem)e.getSource();
-                switch(item.getId())
-                {
-                    case "close":
-                        tabPane.getTabs().remove(tab);
-                        break;
-                    case "close_other":
-                        int index = 0;
-                        while(tabPane.getTabs().size() != 1)
-                        {
-                            if(tabPane.getTabs().get(index).getId().equals(tab.getId()))
-                                index = 1;
-                            tabPane.getTabs().remove(index);
-                        }
-                        break;
-                    case "close_left":
-                        while(tabPane.getTabs().indexOf(tab) != 0)
-                        {
-                            tabPane.getTabs().remove(0);
-                        }
-                        break;
-                    case "close_right":
-                        while(tabPane.getTabs().indexOf(tab) != tabPane.getTabs().size() - 1)
-                        {
-                            tabPane.getTabs().remove(tabPane.getTabs().size() - 1);
-                        }
-                        break;
-                    case "close_all":
-                        closeAll();
-                        break;
-                }
-            });
-        }
-        
+        ContextMenu contextMenu = new ContextMenu(new MenuItem());
         tab.setContextMenu(contextMenu);
         
         Pane content = new Pane();
-        content.setOnContextMenuRequested(e -> contextMenu.show(content, e.getScreenX(), e.getScreenY()));
+        
+        // Call just before the menu show, use to set the good item in
+        contextMenu.setOnShowing((WindowEvent) -> {
+            int index = tab.getTabPane().getTabs().indexOf(tab);
+            
+            // list<MenuItem> get
+            List<MenuItem> subItem = getConextMenu(tab.getTabPane(), tab, index);
+            // set MenuItem in contextenu
+            contextMenu.getItems().clear();
+            for(int i = 0; i < subItem.size(); i++)
+                contextMenu.getItems().add(subItem.get(i));
+                
+            // set behavior
+            setSubItemBehavior(contextMenu, tab);
+        });
+        
+        content.setOnContextMenuRequested(e -> {
+            contextMenu.show(content, e.getScreenX(), e.getScreenY());
+        });
         tab.setContent(content);
         
         return tab;
     }
     
     public void closeAll()
+    {
+        TabBarManagement.tabPanes.clear();
+        tabPane.getTabs().clear();
+    }
+    
+    public void closeAllWindows(TabPane tabPane)
     {
         tabPane.getTabs().clear();
     }
@@ -116,4 +97,84 @@ public class TabBarManagement
     {
         closeTab(tabPane.getSelectionModel().getSelectedItem());
     }
+    
+    private List<MenuItem> getConextMenu(TabPane tabPane, Tab tab, int posTab)
+    {
+        MenuItem close = new MenuItem(LANG.getTranslation("menu.tab.item.close"));
+        MenuItem closeOther = new MenuItem(LANG.getTranslation("menu.tab.item.closeOther"));
+        MenuItem closeLeft = new MenuItem(LANG.getTranslation("menu.tab.item.closeLeft"));
+        MenuItem closeRight = new MenuItem(LANG.getTranslation("menu.tab.item.closeRight"));
+        MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.tab.item.closeAll"));
+        
+        close.setId("close");
+        closeOther.setId("close_other");
+        closeLeft.setId("close_left");
+        closeRight.setId("close_right");
+        closeAll.setId("close_all");
+        
+        ArrayList<MenuItem> item = new ArrayList<MenuItem>();
+        
+        item.add(close);
+        
+        if(tabPane.getTabs().size() > 1)
+        {
+            item.add(closeOther);
+            
+            if(posTab != 0)
+            {
+                item.add(closeLeft);
+            }
+            if(posTab != tabPane.getTabs().size() - 1)
+            {
+                item.add(closeRight);
+            }
+            
+            item.add(new SeparatorMenuItem());
+            item.add(closeAll);
+        }
+        
+        return item;
+    }
+    
+    private void setSubItemBehavior(ContextMenu contextMenu, Tab tab)
+    {
+        for(MenuItem menus : contextMenu.getItems())
+        {
+            menus.setOnAction((ActionEvent e) -> {
+                MenuItem item = (MenuItem)e.getSource();
+                switch(item.getId())
+                {
+                    case "close":
+                        tab.getTabPane().getTabs().remove(tab);
+                        break;
+                    case "close_other":
+                        int index = 0;
+                        while(tab.getTabPane().getTabs().size() != 1)
+                        {
+                            if(tab.getTabPane().getTabs().get(index).getId().equals(tab.getId()))
+                                index = 1;
+                            tab.getTabPane().getTabs().remove(index);
+                        }
+                        break;
+                    case "close_left":
+                        while(tab.getTabPane().getTabs().indexOf(tab) != 0)
+                        {
+                            tab.getTabPane().getTabs().remove(0);
+                        }
+                        break;
+                    case "close_right":
+                        while(tab.getTabPane().getTabs().indexOf(tab) != tab.getTabPane().getTabs().size() - 1)
+                        {
+                            tab.getTabPane().getTabs().remove(tab.getTabPane().getTabs().size() - 1);
+                        }
+                        break;
+                    case "close_all":
+                        
+                        closeAllWindows(tab.getTabPane());
+                        break;
+                }
+            });
+        }
+    }
+    
 }

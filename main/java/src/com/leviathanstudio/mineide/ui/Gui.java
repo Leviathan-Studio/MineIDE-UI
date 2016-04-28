@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class Gui
 {
     public static int width = 854, height = 480;
-    static MineIDEConfig mineIdeInfo = new MineIDEConfig();
+    public static MineIDEConfig mineIdeInfo = new MineIDEConfig();
     public static MineIDE mineIde;
     
     public static void init(Stage stage)

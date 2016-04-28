@@ -53,6 +53,7 @@ public class MenuFile extends Menu
         MenuItem closeAll = new MenuItem(LANG.getTranslation("menu.file.item.closeAll"));
         closeAll.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+W"));
         closeAll.setOnAction((ActionEvent t) -> {
+            // TODO Close all Tab in all windows
             GuiJavaEditor.tabBar.closeAll();
         });
         
