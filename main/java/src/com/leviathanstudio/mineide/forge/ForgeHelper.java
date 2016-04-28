@@ -45,6 +45,14 @@ public class ForgeHelper
         processBuilder.start();
     }
     
+    public static void changeMapping() throws IOException
+    {
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR);
+        processBuilder.command("cmd", "/C");
+        processBuilder.command("cmd", "/C", MineIDEConfig.getMappingVersion());
+        processBuilder.start();
+    }
+    
     public static void compileToJar() throws IOException
     {
         ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeBuildCommand());
