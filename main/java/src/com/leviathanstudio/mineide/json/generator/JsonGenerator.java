@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.leviathanstudio.mineide.utils.Utils;
+
 public abstract class JsonGenerator
 {
-    public static final String BASE_LOCATION = "/minecraft/template";
-    
     // key : #key -> value
     private HashMap<String, String> mapPattern = new HashMap<String, String>();
     // name -> final location
@@ -30,7 +30,7 @@ public abstract class JsonGenerator
     {
         String base = "/assets/$modid/blockstates/$name_$type.json";
         String file_location = base.replace("$modid", modid).replace("$type", type).replace("$name", fileName);
-        String pattern_location = BASE_LOCATION + "/blocks/blockstates";
+        String pattern_location = Utils.TEMPLATE_DIR + "/blocks/blockstates";
         fileLocation.put(name, file_location);
         patternLocation.put(name, pattern_location);
     }
@@ -68,5 +68,4 @@ public abstract class JsonGenerator
     public abstract void addPatternKeys();
     
     public abstract void addPatternFiles();
-    
 }
