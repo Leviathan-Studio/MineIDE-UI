@@ -34,10 +34,6 @@ public class GuiJavaEditor
         tabBar.addTab("Main.java", "main");
         tabBar.addTab("Test.java", "test");
         
-        /*
-         * Tab tab = new Tab(); tab.setText("Main.java"); HBox hbox = new HBox(); hbox.getChildren().addAll(editor); hbox.setAlignment(Pos.CENTER); tab.setContent(hbox); tabPane.getTabs().add(tab);
-         */
-        
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
         

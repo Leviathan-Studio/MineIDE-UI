@@ -22,7 +22,7 @@ public class MenuHelp extends Menu
     {
         menuHelp = new Menu(LANG.getTranslation("menu.help"));
         
-        MenuItem credits = new MenuItemTranslate("menu.help.item.about", (ActionEvent t) -> {
+        MenuItem credits = new MenuItemTranslate("menu.help.item.about", "F1", (ActionEvent t) -> {
             PopupCredits.init();
         });
         
