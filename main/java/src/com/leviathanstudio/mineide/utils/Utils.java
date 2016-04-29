@@ -10,7 +10,7 @@ public class Utils
 {
     public static final String IMG_DIR = "/mineIDE/img/";
     public static final String CSS_DIR = "/mineIDE/css/";
-    public static final String JSON_DIR = "./mineIDE/json/";
+    public static final String JSON_DIR = "/mineIDE/json/";
     public static final String HTML_DIR = "/mineIDE/html/";
     public static final String LANG_DIR = "/mineIDE/lang/";
     public static final String TEMPLATE_DIR = "/minecraft/template/";
@@ -61,8 +61,6 @@ public class Utils
                 input += line + '\n';
             
             file.close();
-            
-            System.out.println(input);
             
             Pattern p = Pattern.compile("\\_(.*?)\\\"");
             Matcher m = p.matcher(input);
