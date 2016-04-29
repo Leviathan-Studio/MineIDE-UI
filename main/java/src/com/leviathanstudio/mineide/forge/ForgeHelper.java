@@ -20,16 +20,14 @@ public class ForgeHelper
         File file = new File(Utils.FORGE_DIR + "/installation.txt");
         try
         {
-            if(!file.exists())
+            if(file.exists())
             {
-                file.createNewFile();
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(content);
+                bw.close();
+                setFinishedSetup(true);
             }
-            
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(content);
-            bw.close();
-            setFinishedSetup(true);
         }
         catch(IOException e)
         {

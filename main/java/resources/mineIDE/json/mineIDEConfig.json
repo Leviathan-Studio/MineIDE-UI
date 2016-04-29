@@ -7,7 +7,7 @@
     },
     "forgeConfig": {
       "_comment": "forge command are launch in batch",
-      "forgeInstallCommad": "gradlew -Dorg.gradle.jvmargs=-Xmx2048M setupDecompWorkspace --refresh-dependencies && gradlew eclipse && exit pause",
+      "forgeInstallCommad": "gradlew -Dorg.gradle.jvmargs=-Xmx2048M setupDecompWorkspace --refresh-dependencies && gradlew eclipse && mkdir installation.txt && exit pause",
       "forgeBuildCommand": "gradlew build && exit pause",
       "forgeVersion": "1.9 - 12.16.0.1865",
       "mappingVersion": "snapshot_20160429",

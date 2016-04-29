@@ -45,5 +45,4 @@ public class MenuForge extends Menu
         
         menuForge.getItems().addAll(installForge, forceForgeUpdate, buildMod);
     }
-    
 }
