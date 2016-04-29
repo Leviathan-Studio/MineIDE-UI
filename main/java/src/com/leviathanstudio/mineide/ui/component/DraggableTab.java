@@ -1,8 +1,5 @@
 package com.leviathanstudio.mineide.ui.component;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.TabBarManagement;
 
@@ -32,7 +29,6 @@ public class DraggableTab extends Tab
     private static final Stage markerStage;
     private Stage dragStage;
     private boolean detachable;
-    
     
     static
     {

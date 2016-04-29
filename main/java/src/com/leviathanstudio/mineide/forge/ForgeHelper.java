@@ -10,6 +10,7 @@ import com.leviathanstudio.mineide.utils.Utils;
 
 public class ForgeHelper
 {
+    @SuppressWarnings("unused")
     private static boolean finishedSetup;
     
     public static void finishedSetup()
@@ -24,18 +25,15 @@ public class ForgeHelper
                 file.createNewFile();
             }
             
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(content);
             bw.close();
+            setFinishedSetup(true);
         }
         catch(IOException e)
         {
             e.printStackTrace();
-        }
-        finally
-        {
-            setFinishedSetup(true);
         }
     }
     

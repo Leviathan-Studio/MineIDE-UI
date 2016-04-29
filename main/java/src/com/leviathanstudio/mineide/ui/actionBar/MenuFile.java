@@ -29,7 +29,7 @@ public class MenuFile extends Menu
             GuiJavaEditor.tabBar.addTab("Test_" + (int)(Math.random() * 100) + ".java", "Test_" + (int)(Math.random() * 100));
         });
         MenuItem closeProject = new MenuItemTranslate("menu.file.item.closeProject", "Ctrl+Alt+W", (ActionEvent t) -> {});
-
+        
         MenuItem save = new MenuItemTranslate("menu.file.item.save", "Ctrl+S", (ActionEvent t) -> {});
         MenuItem saveAll = new MenuItemTranslate("menu.file.item.save", "Ctrl+Shift+S", (ActionEvent t) -> {});
         
@@ -37,15 +37,14 @@ public class MenuFile extends Menu
             GuiJavaEditor.tabBar.closeCurrentTab();
         });
         MenuItem closeAll = new MenuItemTranslate("menu.file.item.closeAll", "Ctrl+Shift+W", (ActionEvent t) -> {
-         // TODO Close all Tab in all windows
+            // TODO Close all Tab in all windows
             GuiJavaEditor.tabBar.closeAll();
         });
         
         MenuItem exit = new MenuItemTranslate("menu.file.item.exit", "Ctrl+Q", (ActionEvent t) -> {
             Platform.exit();
-
+            
         });
-
         
         menuFile.getItems().addAll(newProject, openProject, closeProject, new SeparatorMenuItem(), save, saveAll, new SeparatorMenuItem(), close, closeAll, new SeparatorMenuItem(), exit);
     }

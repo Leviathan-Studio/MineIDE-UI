@@ -9,8 +9,8 @@ public abstract class JsonGenerator
 {
     public static final String BASE_LOCATION = "/minecraft/template";
     
-    // key :  #key -> value
-    private HashMap<String,String> mapPattern = new HashMap<String, String>();
+    // key : #key -> value
+    private HashMap<String, String> mapPattern = new HashMap<String, String>();
     // name -> final location
     // ex : blockstate -> /assets/$modid/blockstates/$file_name
     private HashMap<String, String> fileLocation = new HashMap<String, String>();
@@ -48,7 +48,7 @@ public abstract class JsonGenerator
     public void process()
     {
         Set<Entry<String, String>> entries = fileLocation.entrySet();
-
+        
         for(Entry<String, String> entry : entries)
         {
             // get Infos
@@ -68,5 +68,5 @@ public abstract class JsonGenerator
     public abstract void addPatternKeys();
     
     public abstract void addPatternFiles();
-
+    
 }

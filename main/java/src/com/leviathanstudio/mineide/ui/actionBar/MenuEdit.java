@@ -27,13 +27,12 @@ public class MenuEdit extends Menu
         
         MenuItem undo = new MenuItemTranslate("menu.edit.item.undo", "Ctrl+Z", (ActionEvent t) -> {});
         MenuItem redo = new MenuItemTranslate("menu.edit.item.redo", "Ctrl+Y", (ActionEvent t) -> {});
-
+        
         MenuItem cut = new MenuItemTranslate("menu.edit.item.cut", "Ctrl+X", (ActionEvent t) -> {});
         MenuItem copy = new MenuItemTranslate("menu.edit.item.copy", "Ctrl+C", (ActionEvent t) -> {});
         MenuItem paste = new MenuItemTranslate("menu.edit.item.paste", "Ctrl+V", (ActionEvent t) -> {});
         MenuItem delete = new MenuItemTranslate("menu.edit.item.delete", "Del", (ActionEvent t) -> {});
         MenuItem selectAll = new MenuItemTranslate("menu.edit.item.selectAll", "Ctrl+A", (ActionEvent t) -> {});
-
         
         // -----------
         
@@ -69,7 +68,7 @@ public class MenuEdit extends Menu
             else if(className.toString().equals(SpecificClasses.getDimension()))
                 classesMenu.getItems().addAll(SpecificClasses.getDimOverworld(), SpecificClasses.getDimNether(), SpecificClasses.getDimEnd());
         }
-        menuEdit.getItems().addAll(undo, redo, new SeparatorMenuItem(), cut, copy, paste, new SeparatorMenuItem(), delete, selectAll,  new SeparatorMenuItem(),  newClass, newSpecifiedClass);
+        menuEdit.getItems().addAll(undo, redo, new SeparatorMenuItem(), cut, copy, paste, new SeparatorMenuItem(), delete, selectAll, new SeparatorMenuItem(), newClass, newSpecifiedClass);
     }
     
     public static class SpecificClasses

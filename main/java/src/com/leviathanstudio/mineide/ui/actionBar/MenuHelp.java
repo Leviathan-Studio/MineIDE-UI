@@ -25,7 +25,7 @@ public class MenuHelp extends Menu
         MenuItem credits = new MenuItemTranslate("menu.help.item.about", (ActionEvent t) -> {
             PopupCredits.init();
         });
-                
+        
         menuHelp.getItems().addAll(credits);
     }
     

@@ -15,14 +15,11 @@ class ForgeDownloader
             ZipHelper.buildDirectory(Utils.FORGE_DIR);
             ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
             ZipHelper.deleteTempFile();
+            setDownloadTerminated(true);
         }
         catch(Exception e)
         {
             e.printStackTrace();
-        }
-        finally
-        {
-            setDownloadTerminated(true);
         }
     }
     

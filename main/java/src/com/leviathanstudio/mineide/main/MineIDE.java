@@ -1,8 +1,5 @@
 package com.leviathanstudio.mineide.main;
 
-import java.io.IOException;
-
-import com.leviathanstudio.mineide.forge.ForgeHelper;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -29,22 +26,12 @@ public class MineIDE extends Application
         Utils.checkDir(Utils.PROJECT);
         
         Gui.init(stage);
-        //
         // TemplateReader tmpltReader = new TemplateReader();
         // tmpltReader.initReading("java", "main/ModClass");
         // System.out.println(tmpltReader.getOutputContent());
         //
         // JavaClassWriter javaClassWriter = new JavaClassWriter();
         // javaClassWriter.initWritting("test", tmpltReader.getOutputContent());
-        //
-        try
-        {
-            ForgeHelper.changeMapping();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
     }
     
     @Override
@@ -52,5 +39,4 @@ public class MineIDE extends Application
     {
         Platform.exit();
     }
-    
 }
