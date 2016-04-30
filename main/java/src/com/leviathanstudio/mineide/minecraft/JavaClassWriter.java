@@ -9,47 +9,49 @@ import com.leviathanstudio.mineide.utils.Utils;
 
 public class JavaClassWriter
 {
+    static BufferedWriter bufferedWriter;
+    static FileWriter fileWriter;
+    static File file;
+    static String fileTemplateContent;
+    static JavaClassWriter writerInstance;
     
-    public void initWritting(String className, String fileTemplateContent)
+    public static void setClassName(String className) throws IOException
     {
-        BufferedWriter bw = null;
+        file = new File(Utils.FORGE_DIR + "/" + className + ".java");
+        do
+        {
+            file.delete();
+        }
+        while(file.exists());
+        do
+        {
+            file.createNewFile();
+        }
+        while(!file.exists());
+        fileWriter = new FileWriter(file.getAbsoluteFile(), true);
+        bufferedWriter = new BufferedWriter(fileWriter);
+    }
+    
+    public static void write(String[][] templateWordsToReplace) throws IOException
+    {
         try
         {
-            File file = new File(Utils.FORGE_DIR + "/" + className + ".java");
-            
-            do
-            {
-                file.delete();
-            }
-            while(file.exists());
-            do
-            {
-                file.createNewFile();
-            }
-            while(!file.exists());
-            
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            
-            String test[][] = {{"#packageName", "#modId", "#packageProxy", "#className"}, {"PACKAGE", "MODID", "PROXY", "CLASSNAME"}};
-            int i = 0, j = 0;
-            
-            for(i = 0; i < 2; i++)
-            {
-                for(j = 0; j < 4; j++)
-                {
-                    System.out.println("TEST: " + test[i][j].replaceAll(test[0][0], test[1][1]));
-                }
-                System.out.println("");
-            }
-            
-            bw.write(fileTemplateContent.replaceAll(test[0][0], test[1][1]));
-            
-            bw.close();
+            bufferedWriter.write(getFileTemplateContent().replaceAll(templateWordsToReplace[0][0], templateWordsToReplace[1][0]).replaceAll(templateWordsToReplace[0][1], templateWordsToReplace[1][1]).replaceAll(templateWordsToReplace[0][2], templateWordsToReplace[1][2]).replaceAll(templateWordsToReplace[0][3], templateWordsToReplace[1][3]).replaceAll(templateWordsToReplace[0][4], templateWordsToReplace[1][4]).replaceAll(templateWordsToReplace[0][5], templateWordsToReplace[1][5]));
+            bufferedWriter.close();
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
+    }
+    
+    private static String getFileTemplateContent()
+    {
+        return fileTemplateContent;
+    }
+    
+    public static void setFileTemplate(String content)
+    {
+        fileTemplateContent = content;
     }
 }
