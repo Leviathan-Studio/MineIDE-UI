@@ -2,6 +2,7 @@ package com.leviathanstudio.mineide.ui.component;
 
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.TabBarManagement;
+import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
@@ -13,6 +14,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -63,7 +65,7 @@ public class DraggableTab extends Tab
         
         nameLabel.setOnMouseDragged((MouseEvent t) -> {
             dragStage.setWidth(nameLabel.getWidth() + 10);
-            dragStage.setHeight(nameLabel.getHeight() + 10);
+            dragStage.setHeight(nameLabel.getHeight() + 23);
             dragStage.setX(t.getScreenX());
             dragStage.setY(t.getScreenY());
             dragStage.show();
@@ -78,6 +80,7 @@ public class DraggableTab extends Tab
             {
                 int index = data.getIndex();
                 boolean end = false;
+                double x;
                 if(index == data.getInsertPane().getTabs().size())
                 {
                     end = true;
@@ -86,13 +89,24 @@ public class DraggableTab extends Tab
                 Rectangle2D rect = getAbsoluteRect(data.getInsertPane().getTabs().get(index));
                 if(end)
                 {
+                    x = rect.getMaxX() + 13;
                     markerStage.setX(rect.getMaxX() + 13);
                 }
                 else
                 {
-                    markerStage.setX(rect.getMinX());
+                    x = rect.getMinX();
                 }
-                markerStage.setY(rect.getMaxY() + 10);
+                if(data.getInsertPane().getTabs().get(index).isSelected())
+                {
+                    // after
+                    x += 13;
+                    
+                    // befor
+                    
+                    
+                }
+                markerStage.setX(x);
+                markerStage.setY(rect.getMaxY() + 23);
                 markerStage.show();
             }
         });
@@ -157,6 +171,7 @@ public class DraggableTab extends Tab
                     }
                 });
                 newStage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge " + Gui.mineIdeInfo.getForgeVersion());
+                newStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
                 newStage.setScene(new Scene(pane));
                 newStage.initStyle(StageStyle.UTILITY);
                 newStage.setX(t.getScreenX());
