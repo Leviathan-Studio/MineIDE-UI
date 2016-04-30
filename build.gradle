@@ -12,6 +12,9 @@ repositories {
             url = 'https://oss.sonatype.org/content/repositories/releases/'
         }
         maven {
+            url "http://files.minecraftforgefrance.fr/maven/"
+        }
+        maven {
             url = 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
     }
@@ -39,6 +42,7 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
     compile 'com.google.code.gson:gson:2.7-SNAPSHOT'
+    compile 'utybo:minkj:1.0'
 }
 
 task wrapper(type: Wrapper) {
