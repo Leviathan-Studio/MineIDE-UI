@@ -11,6 +11,7 @@ import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,13 +27,12 @@ public class TabBarManagement
         this.tabPane = tabPane;
     }
     
-    public void addTab(String name, String id)
+    public void addTab(String name, String id, Node content)
     {
         Tab tab = createTabWithContextMenu(name, id);
         HBox hbox = new HBox();
-        CodeEditor editor = new CodeEditor("");
         
-        hbox.getChildren().add(editor);
+        hbox.getChildren().add(content);
         hbox.setAlignment(Pos.CENTER);
         tab.setContent(hbox);
         tabPane.getTabs().add(tab);

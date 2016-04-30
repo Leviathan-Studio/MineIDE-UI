@@ -31,8 +31,8 @@ public class GuiJavaEditor
         
         BorderPane borderPane = new BorderPane();
         
-        tabBar.addTab("Main.java", "main");
-        tabBar.addTab("Test.java", "test");
+        tabBar.addTab("Main.java", "main", new CodeEditor(""));
+        tabBar.addTab("Test.java", "test", new CodeEditor(""));
         
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());

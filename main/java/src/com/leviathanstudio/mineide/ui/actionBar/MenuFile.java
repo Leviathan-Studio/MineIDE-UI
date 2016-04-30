@@ -2,6 +2,7 @@ package com.leviathanstudio.mineide.ui.actionBar;
 
 import static com.leviathanstudio.mineide.main.Translation.*;
 
+import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
@@ -26,7 +27,7 @@ public class MenuFile extends Menu
         
         MenuItem newProject = new MenuItemTranslate("menu.file.item.newProject", "Ctrl+Alt+P", (ActionEvent t) -> {});
         MenuItem openProject = new MenuItemTranslate("menu.file.item.openProject", "Ctrl+Alt+O", (ActionEvent t) -> {
-            GuiJavaEditor.tabBar.addTab("Test_" + (int)(Math.random() * 100) + ".java", "Test_" + (int)(Math.random() * 100));
+            GuiJavaEditor.tabBar.addTab("Test_" + (int)(Math.random() * 100) + ".java", "Test_" + (int)(Math.random() * 100), new CodeEditor(""));
         });
         MenuItem closeProject = new MenuItemTranslate("menu.file.item.closeProject", "Ctrl+Alt+W", (ActionEvent t) -> {});
         
