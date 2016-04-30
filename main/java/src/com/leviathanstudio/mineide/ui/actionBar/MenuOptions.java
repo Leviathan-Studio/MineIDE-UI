@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.actionBar;
 
-import static com.leviathanstudio.mineide.main.Translation.LANG;
+import static com.leviathanstudio.mineide.main.Translation.*;
 
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
@@ -25,5 +25,4 @@ public class MenuOptions extends Menu
         
         menuOptions.getItems().addAll(menuPreferences);
     }
-    
 }

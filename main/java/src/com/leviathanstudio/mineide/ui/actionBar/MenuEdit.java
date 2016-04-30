@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.actionBar;
 
-import static com.leviathanstudio.mineide.main.Translation.LANG;
+import static com.leviathanstudio.mineide.main.Translation.*;
 
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 import com.leviathanstudio.mineide.ui.component.SpecificClasses;

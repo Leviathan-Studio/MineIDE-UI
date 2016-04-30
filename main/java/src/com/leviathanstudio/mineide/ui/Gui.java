@@ -27,6 +27,7 @@ public class Gui
         
         GuiActionBar.init(scene);
         GuiJavaEditor.init(scene);
+        GuiConsole.init(scene);
         
         stage.setScene(scene);
         stage.show();

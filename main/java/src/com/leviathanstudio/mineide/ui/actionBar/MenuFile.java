@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.actionBar;
 
-import static com.leviathanstudio.mineide.main.Translation.LANG;
+import static com.leviathanstudio.mineide.main.Translation.*;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.GuiJavaEditor;
@@ -49,5 +49,4 @@ public class MenuFile extends Menu
         
         menuFile.getItems().addAll(newProject, openProject, closeProject, new SeparatorMenuItem(), save, saveAll, new SeparatorMenuItem(), close, closeAll, new SeparatorMenuItem(), exit);
     }
-    
 }
