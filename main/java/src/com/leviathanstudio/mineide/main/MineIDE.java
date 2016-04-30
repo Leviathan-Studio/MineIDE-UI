@@ -70,6 +70,9 @@ public class MineIDE extends Application
     @Override
     public void start(final Stage initStage) throws Exception
     {
+        // init translation
+        Translation.init();
+        
         ObservableList<String> finishedPhaseTask = FXCollections.<String>observableArrayList();
         ObservableList<String> availablePhaseTask = FXCollections.observableArrayList("Pre-Initialization", "Initialization", "Post Initializtion", "Ending Initilization");
         ObservableList<String> finishedItemTask = FXCollections.<String>observableArrayList();
