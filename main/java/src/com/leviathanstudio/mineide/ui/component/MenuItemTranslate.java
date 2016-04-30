@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.component;
 
-import static com.leviathanstudio.mineide.main.Translation.*;
+import static com.leviathanstudio.mineide.main.Translation.LANG;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

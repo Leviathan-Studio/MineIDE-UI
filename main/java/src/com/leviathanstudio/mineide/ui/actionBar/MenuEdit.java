@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.actionBar;
 
-import static com.leviathanstudio.mineide.main.Translation.*;
+import static com.leviathanstudio.mineide.main.Translation.LANG;
 
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
@@ -51,6 +51,7 @@ public class MenuEdit extends Menu
             newSpecifiedClass.getItems().add(classesMenu);
             classesMenu.setOnAction(new EventHandler<ActionEvent>()
             {
+                @Override
                 public void handle(ActionEvent t)
                 {
                     System.out.println(classesMenu.getUserData());

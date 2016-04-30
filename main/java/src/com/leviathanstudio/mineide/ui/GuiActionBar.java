@@ -1,6 +1,10 @@
 package com.leviathanstudio.mineide.ui;
 
-import com.leviathanstudio.mineide.ui.actionBar.*;
+import com.leviathanstudio.mineide.ui.actionBar.MenuEdit;
+import com.leviathanstudio.mineide.ui.actionBar.MenuFile;
+import com.leviathanstudio.mineide.ui.actionBar.MenuForge;
+import com.leviathanstudio.mineide.ui.actionBar.MenuHelp;
+import com.leviathanstudio.mineide.ui.actionBar.MenuOptions;
 
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;

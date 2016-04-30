@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.actionBar;
 
-import static com.leviathanstudio.mineide.main.Translation.*;
+import static com.leviathanstudio.mineide.main.Translation.LANG;
 
 import java.io.IOException;
 

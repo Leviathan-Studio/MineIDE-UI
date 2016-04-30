@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.frame.popup;
 
-import static com.leviathanstudio.mineide.main.Translation.*;
+import static com.leviathanstudio.mineide.main.Translation.LANG;
 
 import java.util.Optional;
 

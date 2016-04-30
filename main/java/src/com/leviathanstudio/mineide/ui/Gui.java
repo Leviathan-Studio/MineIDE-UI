@@ -20,7 +20,7 @@ public class Gui
     public static void init(Stage stage)
     {
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
-        stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
+        stage.setTitle(MineIDEConfig.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + MineIDEConfig.getForgeVersion());
         VBox root = new VBox();
         root.setId("mainFrame");
         Scene scene = new Scene(root, width, height);
