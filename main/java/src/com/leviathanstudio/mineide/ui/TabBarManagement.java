@@ -2,22 +2,30 @@ package com.leviathanstudio.mineide.ui;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.leviathanstudio.mineide.editor.CodeEditor;
+import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.component.DraggableTab;
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class TabBarManagement
 {
-    public static final Set<TabPane> tabPanes = new HashSet<>();
+    public static final List<TabPane> tabPanes = new ArrayList<>();
     
     private final TabPane tabPane;
     
@@ -57,7 +65,7 @@ public class TabBarManagement
             contextMenu.getItems().clear();
             for(int i = 0; i < subItem.size(); i++)
                 contextMenu.getItems().add(subItem.get(i));
-            
+                
             // set behavior
             setSubItemBehavior(contextMenu, tab);
         });
@@ -72,7 +80,27 @@ public class TabBarManagement
     
     public void closeAll()
     {
-        TabBarManagement.tabPanes.clear();
+        int i = 0;
+        while(i < TabBarManagement.tabPanes.size())
+        {
+            TabPane pane = TabBarManagement.tabPanes.get(i);
+            int j = 0;
+            while(j < pane.getTabs().size())
+            {
+                Tab tab = pane.getTabs().get(j);
+                if(tab.getContent() instanceof CodeEditor)
+                {
+                    pane.getTabs().remove(j);
+                }
+                else
+                    j++;
+            }
+            if(pane.getTabs().size() > 0) {
+                TabBarManagement.tabPanes.remove(i);
+            }
+            else
+                i++;
+        }
         tabPane.getTabs().clear();
     }
     
@@ -84,7 +112,7 @@ public class TabBarManagement
     public void closeTab(Tab tab)
     {
         if(tab != null)
-            tabPane.getTabs().remove(tab);
+            tab.getTabPane().getTabs().remove(tab);
     }
     
     public void closeCurrentTab()
@@ -163,7 +191,6 @@ public class TabBarManagement
                         }
                         break;
                     case "close_all":
-                        
                         closeAllWindows(tab.getTabPane());
                         break;
                 }
