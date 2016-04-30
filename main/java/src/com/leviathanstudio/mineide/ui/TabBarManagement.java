@@ -11,11 +11,7 @@ import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -56,8 +52,8 @@ public class TabBarManagement
             int index = tab.getTabPane().getTabs().indexOf(tab);
             
             // list<MenuItem> get
-            List<MenuItem> subItem = getConextMenu(tab.getTabPane(), tab, index);
-            // set MenuItem in contextenu
+            List<MenuItem> subItem = getContextMenu(tab, index);
+            // set MenuItem in contextMenu
             contextMenu.getItems().clear();
             for(int i = 0; i < subItem.size(); i++)
                 contextMenu.getItems().add(subItem.get(i));
@@ -96,7 +92,7 @@ public class TabBarManagement
         closeTab(tabPane.getSelectionModel().getSelectedItem());
     }
     
-    private List<MenuItem> getConextMenu(TabPane tabPane, Tab tab, int posTab)
+    private List<MenuItem> getContextMenu(Tab tab, int posTab)
     {
         MenuItem close = new MenuItemTranslate("menu.tab.item.close");
         MenuItem closeOther = new MenuItemTranslate("menu.tab.item.closeOther");
@@ -114,7 +110,7 @@ public class TabBarManagement
         
         item.add(close);
         
-        if(tabPane.getTabs().size() > 1)
+        if(tab.getTabPane().getTabs().size() > 1)
         {
             item.add(closeOther);
             
@@ -122,7 +118,7 @@ public class TabBarManagement
             {
                 item.add(closeLeft);
             }
-            if(posTab != tabPane.getTabs().size() - 1)
+            if(posTab != tab.getTabPane().getTabs().size() - 1)
             {
                 item.add(closeRight);
             }

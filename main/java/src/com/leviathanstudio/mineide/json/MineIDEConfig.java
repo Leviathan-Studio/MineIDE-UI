@@ -47,7 +47,7 @@ public class MineIDEConfig
         }
     }
     
-    public static String getAppName()
+    public String getAppName()
     {
         return appName;
     }
@@ -57,7 +57,7 @@ public class MineIDEConfig
         return appVersion;
     }
     
-    public static String getForgeVersion()
+    public String getForgeVersion()
     {
         return forgeVersion;
     }

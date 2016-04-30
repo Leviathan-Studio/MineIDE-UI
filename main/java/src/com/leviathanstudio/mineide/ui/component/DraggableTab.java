@@ -1,6 +1,5 @@
 package com.leviathanstudio.mineide.ui.component;
 
-import com.leviathanstudio.mineide.json.MineIDEConfig;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.TabBarManagement;
 import com.leviathanstudio.mineide.utils.Utils;
@@ -104,7 +103,6 @@ public class DraggableTab extends Tab
                     
                     // befor
                     
-                    
                 }
                 markerStage.setX(x);
                 markerStage.setY(rect.getMaxY() + 23);
@@ -171,7 +169,7 @@ public class DraggableTab extends Tab
                         }
                     }
                 });
-                newStage.setTitle(MineIDEConfig.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge " + MineIDEConfig.getForgeVersion());
+                newStage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge " + Gui.mineIdeInfo.getForgeVersion());
                 newStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
                 newStage.setScene(new Scene(pane));
                 newStage.initStyle(StageStyle.UTILITY);

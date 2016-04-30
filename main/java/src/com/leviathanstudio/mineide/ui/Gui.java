@@ -15,12 +15,11 @@ public class Gui
 {
     public static int width = 854, height = 480;
     public static MineIDEConfig mineIdeInfo = new MineIDEConfig();
-    public static MineIDE mineIde;
     
     public static void init(Stage stage)
     {
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
-        stage.setTitle(MineIDEConfig.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + MineIDEConfig.getForgeVersion());
+        stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
         VBox root = new VBox();
         root.setId("mainFrame");
         Scene scene = new Scene(root, width, height);

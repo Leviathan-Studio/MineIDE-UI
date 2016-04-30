@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.utils;
 
 import java.io.File;
 
-import com.leviathanstudio.mineide.json.MineIDEConfig;
+import com.leviathanstudio.mineide.ui.Gui;
 
 public class OSHelper
 {
@@ -32,7 +32,7 @@ public class OSHelper
     public static File getWorkingDirectory()
     {
         final String userHome = System.getProperty("user.home", ".");
-        String appName = MineIDEConfig.getAppName() != null ? MineIDEConfig.getAppName() : "MineIDE";
+        String appName = Gui.mineIdeInfo.getAppName() != null ? Gui.mineIdeInfo.getAppName() : "MineIDE";
         File workingDirectory;
         switch(getPlatform())
         {
