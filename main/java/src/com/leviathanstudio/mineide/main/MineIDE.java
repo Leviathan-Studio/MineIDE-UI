@@ -1,8 +1,6 @@
 package com.leviathanstudio.mineide.main;
 
-import com.leviathanstudio.mineide.minecraft.JavaClassWriter;
 import com.leviathanstudio.mineide.ui.Gui;
-import com.leviathanstudio.mineide.utils.TemplateReader;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -43,18 +41,18 @@ public class MineIDE extends Application
     
     public static void main(String[] args) throws Exception
     {
-        TemplateReader tmpltReader = new TemplateReader();
-        tmpltReader.initReading("java", "main/ModClass");
+        // TemplateReader tmpltReader = new TemplateReader();
+        // tmpltReader.initReading("java", "main/ModClass");
+        //
+        // JavaClassWriter.setClassName("test");
+        // JavaClassWriter.setFileTemplate(tmpltReader.getOutputContent());
+        // JavaClassWriter.write(new String[][] {{"#packageName", "#modId", "#packageProxy", "#className", "#modName", "#modVersion"}, {"PACKAGE", "MODID", "PROXY", "CLASSNAME", "MOD_NAME", "MOD_VERSION"}});
+        //
+        // JavaClassWriter.setClassName("test2");
+        // JavaClassWriter.setFileTemplate(tmpltReader.getOutputContent());
+        // JavaClassWriter.write(new String[][] {{"#packageName", "#modId", "#packageProxy", "#className", "#modName", "#modVersion"}, {"PACKAGE_2", "MODID_2", "PROXY_2", "CLASSNAME_2", "MOD_NAME_2", "MOD_VERSION_2"}});
         
-        JavaClassWriter.setClassName("test");
-        JavaClassWriter.setFileTemplate(tmpltReader.getOutputContent());
-        JavaClassWriter.write(new String[][] {{"#packageName", "#modId", "#packageProxy", "#className", "#modName", "#modVersion"}, {"PACKAGE", "MODID", "PROXY", "CLASSNAME", "MOD_NAME", "MOD_VERSION"}});
-        
-        JavaClassWriter.setClassName("test2");
-        JavaClassWriter.setFileTemplate(tmpltReader.getOutputContent());
-        JavaClassWriter.write(new String[][] {{"#packageName", "#modId", "#packageProxy", "#className", "#modName", "#modVersion"}, {"PACKAGE_2", "MODID_2", "PROXY_2", "CLASSNAME_2", "MOD_NAME_2", "MOD_VERSION_2"}});
-        
-        // launch(args);
+        launch(args);
     }
     
     @Override
