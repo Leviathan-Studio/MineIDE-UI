@@ -131,6 +131,7 @@ public class MineIDE extends Application
     {
         primaryStage = new Stage(StageStyle.DECORATED);
         Gui.init(primaryStage);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
     

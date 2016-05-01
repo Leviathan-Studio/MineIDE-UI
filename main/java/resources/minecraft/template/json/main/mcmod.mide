@@ -1,0 +1,22 @@
+[
+  {
+    "modid": "#modid",
+    "name": "#name",
+    "description": "#description",
+    "version": "#version",
+    "credits": "#credits",
+    "logoFile": "#logoFile",
+    "mcversion": "#mcversion",
+    "url": "#url",
+    "updateUrl": "#updateUrl",
+    "authors": [
+      "#authors"
+    ],
+    "screenshots": [
+      "#screenshots"
+    ],
+    "dependencies": [
+      "#dependencies"
+    ]
+  }
+]

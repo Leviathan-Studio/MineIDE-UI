@@ -23,6 +23,8 @@ public class Utils
     public static final File CONFIG = new File(ROOT, "config");
     public static final File PROJECT = new File(ROOT, "project");
     public static final File FORGE_DIR = new File(ROOT + "/workspace/forge");
+    public static final File FORGE_SRC_JAVA_DIR = new File(ROOT + "/workspace/forge/src/main/java");
+    public static final File FORGE_SRC_RESOURCE_DIR = new File(ROOT + "/workspace/forge/src/main/resources");
     
     public static void writeFile(File filePath, String fileName, String fileContent, String fileExtension)
     {
@@ -32,7 +34,7 @@ public class Utils
             
             if(!file.exists())
                 file.createNewFile();
-            
+                
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(fileContent);
@@ -63,7 +65,7 @@ public class Utils
             
             while((line = file.readLine()) != null)
                 input += line + '\n';
-            
+                
             file.close();
             
             Pattern p = Pattern.compile("\\_(.*?)\\\"");
