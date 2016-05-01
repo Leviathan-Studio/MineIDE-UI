@@ -47,7 +47,7 @@ public class MineIDE extends Application
     @Override
     public void init()
     {
-        ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "baniere.png"));
+        ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
         
         loadProgressPhase = new ProgressBar();
         loadProgressPhase.setPrefWidth(SPLASH_WIDTH - 20);
