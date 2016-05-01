@@ -1,9 +1,11 @@
 package com.leviathanstudio.mineide.main;
 
 import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,14 +32,12 @@ import javafx.util.Duration;
  */
 public class MineIDE extends Application
 {
-    public static final String SPLASH_IMAGE = "http://image.noelshack.com/fichiers/2012/18/1336334998-minecraft_logo.png";
-    
     private Pane splashLayout;
     private ProgressBar loadProgressPhase, loadProgressItem;
     private Label progressTextPhase, progressTextItem;
     public static Stage primaryStage;
-    private static final int SPLASH_WIDTH = 477;
-    private static final int SPLASH_HEIGHT = 102;
+    private static final int SPLASH_WIDTH = 704;
+    private static final int SPLASH_HEIGHT = 294;
     
     public static void main(String[] args) throws Exception
     {
@@ -47,7 +47,7 @@ public class MineIDE extends Application
     @Override
     public void init()
     {
-        ImageView splash = new ImageView(new Image(SPLASH_IMAGE));
+        ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "baniere.png"));
         
         loadProgressPhase = new ProgressBar();
         loadProgressPhase.setPrefWidth(SPLASH_WIDTH - 20);
@@ -70,6 +70,8 @@ public class MineIDE extends Application
     @Override
     public void start(final Stage initStage) throws Exception
     {
+        initStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        
         // init translation
         Translation.init();
         
@@ -114,6 +116,7 @@ public class MineIDE extends Application
                 }
                 Thread.sleep(400);
                 updateMessage("Launching MineIDE");
+                Thread.sleep(1000);
                 
                 return finishedItemTask;
             }
@@ -175,5 +178,11 @@ public class MineIDE extends Application
     public interface InitCompletionHandler
     {
         void complete();
+    }
+    
+    @Override
+    public void stop()
+    {
+        Platform.exit();
     }
 }
