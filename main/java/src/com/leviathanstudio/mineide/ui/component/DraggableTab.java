@@ -144,7 +144,7 @@ public class DraggableTab extends Tab
                     return;
                 }
                 final Stage newStage = new Stage();
-                final TabPane pane = new TabPane();
+                final CloseableTabPane pane = new CloseableTabPane(newStage);
                 TabBarManagement.tabPanes.add(pane);
                 newStage.setOnHiding(new EventHandler<WindowEvent>()
                 {

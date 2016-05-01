@@ -1,20 +1,16 @@
 package com.leviathanstudio.mineide.ui;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
-import com.leviathanstudio.mineide.main.MineIDE;
+import com.leviathanstudio.mineide.ui.component.CloseableTabPane;
 import com.leviathanstudio.mineide.ui.component.DraggableTab;
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
@@ -90,12 +86,16 @@ public class TabBarManagement
                 Tab tab = pane.getTabs().get(j);
                 if(tab.getContent() instanceof CodeEditor)
                 {
+                    tab.setClosable(true);
                     pane.getTabs().remove(j);
                 }
                 else
                     j++;
             }
-            if(pane.getTabs().size() > 0) {
+            if(pane.getTabs().size() > 0)
+            {
+                if(pane instanceof CloseableTabPane)
+                    ((CloseableTabPane)pane).hide();
                 TabBarManagement.tabPanes.remove(i);
             }
             else
