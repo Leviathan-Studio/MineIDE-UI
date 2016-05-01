@@ -50,9 +50,9 @@ public class MineIDE extends Application
         ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
         
         loadProgressPhase = new ProgressBar();
-        loadProgressPhase.setPrefWidth(SPLASH_WIDTH - 20);
+        loadProgressPhase.setPrefWidth(SPLASH_WIDTH);
         loadProgressItem = new ProgressBar();
-        loadProgressItem.setPrefWidth(SPLASH_WIDTH - 20);
+        loadProgressItem.setPrefWidth(SPLASH_WIDTH);
         
         progressTextPhase = new Label();
         progressTextItem = new Label();
