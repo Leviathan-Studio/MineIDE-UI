@@ -86,23 +86,30 @@ public class DraggableTab extends Tab
                     end = true;
                     index--;
                 }
-                Rectangle2D rect = getAbsoluteRect(data.getInsertPane().getTabs().get(index));
+                Tab tab = data.getInsertPane().getTabs().get(index);
+                
+                Rectangle2D rect = getAbsoluteRect(tab);
                 if(end)
                 {
                     x = rect.getMaxX() + 13;
-                    markerStage.setX(rect.getMaxX() + 13);
+                    // markerStage.setX(rect.getMaxX() + 13);
                 }
                 else
                 {
                     x = rect.getMinX();
                 }
-                if(data.getInsertPane().getTabs().get(index).isSelected())
+                if(tab.isSelected())
                 {
-                    // after
-                    x += 13;
+                    Rectangle2D rectS = getAbsoluteRect(tab);
+                    double middle = (rectS.getMinX() + rectS.getMaxX()) / 2;
                     
-                    // befor
-                    
+                    if(middle < x)
+                        // after
+                        x += 13;
+                    else
+                        // before
+                        x += 0;
+                        
                 }
                 markerStage.setX(x);
                 markerStage.setY(rect.getMaxY() + 23);
