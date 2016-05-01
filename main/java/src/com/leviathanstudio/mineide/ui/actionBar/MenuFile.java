@@ -5,6 +5,7 @@ import static com.leviathanstudio.mineide.main.Translation.*;
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
+import com.leviathanstudio.mineide.ui.frame.minecraft.PopupCreateProject;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,7 +26,9 @@ public class MenuFile extends Menu
     {
         menuFile = new Menu(LANG.getTranslation("menu.file"));
         
-        MenuItem newProject = new MenuItemTranslate("menu.file.item.newProject", "Ctrl+Alt+P", (ActionEvent t) -> {});
+        MenuItem newProject = new MenuItemTranslate("menu.file.item.newProject", "Ctrl+Alt+P", (ActionEvent t) -> {
+            PopupCreateProject.init();
+        });
         MenuItem openProject = new MenuItemTranslate("menu.file.item.openProject", "Ctrl+Alt+O", (ActionEvent t) -> {
             GuiJavaEditor.tabBar.addTab("Test_" + (int)(Math.random() * 100) + ".java", "Test_" + (int)(Math.random() * 100), new CodeEditor(""));
         });

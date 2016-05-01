@@ -17,7 +17,7 @@ public class JavaClassWriter
     
     public static void setClassName(String className) throws IOException
     {
-        file = new File(Utils.FORGE_DIR + "/" + className + ".java");
+        file = new File(Utils.FORGE_DIR + "/" + className);
         do
         {
             file.delete();
@@ -36,10 +36,10 @@ public class JavaClassWriter
     {
         try
         {
-            bufferedWriter.write(getFileTemplateContent().replaceAll(templateWordsToReplace[0][0], templateWordsToReplace[1][0]).replaceAll(templateWordsToReplace[0][1], templateWordsToReplace[1][1]).replaceAll(templateWordsToReplace[0][2], templateWordsToReplace[1][2]).replaceAll(templateWordsToReplace[0][3], templateWordsToReplace[1][3]).replaceAll(templateWordsToReplace[0][4], templateWordsToReplace[1][4]).replaceAll(templateWordsToReplace[0][5], templateWordsToReplace[1][5]));
-            bufferedWriter.close();
+            // bufferedWriter.write(getFileTemplateContent().replace(templateWordsToReplace[0][j], templateWordsToReplace[1][j]));
+            // bufferedWriter.close();
         }
-        catch(IOException e)
+        catch(Exception e)
         {
             e.printStackTrace();
         }
