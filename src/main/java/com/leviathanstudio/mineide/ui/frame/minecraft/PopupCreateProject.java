@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.google.gson.stream.JsonWriter;
+import com.jfoenix.controls.JFXButton;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.Utils;
@@ -141,7 +142,10 @@ public class PopupCreateProject extends Gui
         grid.add(projectDescription, 1, 5);
         grid.add(projectDescTextField, 2, 5);
         
-        Button nextButton = new Button("Next");
+        JFXButton nextButton = new JFXButton("Next");
+        nextButton.setPrefSize(80, 30);
+        nextButton.setStyle(
+                "-fx-button-type: RAISED;-fx-background-color: #4CAF50;-fx-text-fill: WHITE;-fx-font-size: 18px;");
         nextButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
