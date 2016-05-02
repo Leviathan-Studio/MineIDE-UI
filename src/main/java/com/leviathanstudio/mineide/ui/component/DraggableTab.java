@@ -39,7 +39,7 @@ public class DraggableTab extends Tab
     {
         markerStage = new Stage();
         markerStage.initStyle(StageStyle.UNDECORATED);
-        Rectangle dummy = new Rectangle(3, 10, Color.web("#555555"));
+        Rectangle dummy = new Rectangle(3, 22, Color.web("#555555"));
         StackPane markerStack = new StackPane();
         markerStack.getChildren().add(dummy);
         markerStage.setScene(new Scene(markerStack));
@@ -116,7 +116,7 @@ public class DraggableTab extends Tab
                         x += 13;                        
                 }
                 markerStage.setX(x);
-                markerStage.setY(rect.getMaxY() + 23);
+                markerStage.setY(rect.getMaxY() + 12);
                 markerStage.show();
             }
         });
