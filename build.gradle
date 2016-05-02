@@ -7,17 +7,21 @@ buildscript {
 }
 
 repositories {
-        mavenCentral()
-        maven {
-            url = 'https://oss.sonatype.org/content/repositories/releases/'
-        }
-        maven {
-            url "http://files.minecraftforgefrance.fr/maven/"
-        }
-        maven {
-            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
-        }
+    mavenCentral()
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/releases/'
     }
+    maven {
+        url "http://files.minecraftforgefrance.fr/maven/"
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        name = "leviathan"
+        url = "http://maven.ferenyr.info/artifactory/Leviathan/"
+    }
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -41,6 +45,7 @@ sourceSets {
 dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.5'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+    compile group: 'com.leviathanstudio.mineide', name: 'MineIDE-Compiler', version: '0.0.1'
     compile 'com.google.code.gson:gson:2.7-SNAPSHOT'
     compile 'utybo:minkj:1.0'
 	compile 'com.squareup:javapoet:1.7.0'
