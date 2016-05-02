@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.lang.model.element.Modifier;
 
+import com.leviathanstudio.mineide.utils.Utils;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.FieldSpec;
@@ -17,25 +18,26 @@ public class MainClassGenerator
     
     public static void generateMainClass() throws IOException
     {
+        String commonPackageForge = "net.minecraftforge.fml.common";
         ClassName classMain = ClassName.get(getMainClassPackage(), getMainClassName());
         
         ClassName loggerClass = ClassName.get("org.apache.logging.log4j", "Logger");
         
-        ClassName eventHandlerClass = ClassName.get("net.minecraftforge.fml.common.Mod", "EventHandler");
-        ClassName preInitEventClass = ClassName.get("net.minecraftforge.fml.common.event", "FMLPreInitializationEvent");
-        ClassName initEventClass = ClassName.get("net.minecraftforge.fml.common.event", "FMLInitializationEvent");
+        ClassName eventHandlerClass = ClassName.get(commonPackageForge + ".Mod", "EventHandler");
+        ClassName preInitEventClass = ClassName.get(commonPackageForge + ".event", "FMLPreInitializationEvent");
+        ClassName initEventClass = ClassName.get(commonPackageForge + ".event", "FMLInitializationEvent");
         
         ClassName clientProxyClass = ClassName.get("com.example.mineide.proxy", "ClientProxy");
         ClassName commonProxyClass = ClassName.get("com.example.mineide.proxy", "CommonProxy");
         ClassName serverProxyClass = ClassName.get("com.example.mineide.proxy", "ServerProxy");
         
-        ClassName instanceClass = ClassName.get("net.minecraftforge.fml.common.Mod", "Instance");
+        ClassName instanceClass = ClassName.get(commonPackageForge + ".Mod", "Instance");
         AnnotationSpec instanceAnnotation = AnnotationSpec.builder(instanceClass).addMember("value", "$S", "MODID_TEST").build();
         
-        ClassName modClass = ClassName.get("cpw.mods.fml.common", "Mod");
+        ClassName modClass = ClassName.get(commonPackageForge, "Mod");
         AnnotationSpec modAnnotation = AnnotationSpec.builder(modClass).addMember("modid", "$S", "MODID_TEST").addMember("name", "$S", "NAME_TEST").addMember("version", "$S", "VERSION_TEST").build();
         
-        ClassName sidedProxyClass = ClassName.get("net.minecraftforge.fml.common", "SidedProxy");
+        ClassName sidedProxyClass = ClassName.get(commonPackageForge, "SidedProxy");
         AnnotationSpec sidedProxyAnnotation = AnnotationSpec.builder(sidedProxyClass).addMember("clientSide", "$S", clientProxyClass).addMember("serverSide", "$S", serverProxyClass).build();
         
         FieldSpec instanceField = FieldSpec.builder(classMain, "instance", Modifier.PUBLIC, Modifier.STATIC).addAnnotation(instanceAnnotation).build();
@@ -51,7 +53,7 @@ public class MainClassGenerator
         
         JavaFile javaFile = JavaFile.builder(classMain.packageName(), mainClass).build();
         
-        // javaFile.writeTo(Utils.FORGE_SRC_JAVA_DIR);
+        javaFile.writeTo(Utils.FORGE_SRC_JAVA_DIR);
         javaFile.writeTo(System.out);
     }
     
