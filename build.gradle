@@ -30,10 +30,10 @@ targetCompatibility = 1.8
 sourceSets {
     main {
         java {
-            srcDirs 'main/java/src'
+            srcDirs 'src/main/java'
         }
         resources {
-            srcDirs 'main/java/resources'
+            srcDirs 'src/main//resources'
         }
     }
 }
