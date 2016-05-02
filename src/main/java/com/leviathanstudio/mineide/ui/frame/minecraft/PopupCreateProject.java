@@ -8,10 +8,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.Utils;
 
+import de.jensd.fx.glyphs.GlyphsBuilder;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -62,24 +65,35 @@ public class PopupCreateProject extends Gui
         Label projectAuthors = new Label("Auteur(s): ");
 
         JFXTextField projectNameTextField = new JFXTextField();
-        projectNameTextField.setTooltip(new Tooltip("Write the name of your future mod !"));
-        JFXTextField projectVerTextField = new JFXTextField();
-        projectVerTextField.setTooltip(new Tooltip("Write the version of your mod, like 0.1 by example"));
+        projectNameTextField.setPromptText("The name of your future mod !");
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Input Required");
+        validator.setIcon(GlyphsBuilder.create(FontAwesomeIconView.class).glyph(FontAwesomeIcon.WARNING).size("1em")
+                .styleClass("error").build());
+        projectNameTextField.getValidators().add(validator);
+        projectNameTextField.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+                projectNameTextField.validate();
+        });
+        JFXTextField projectVerTextField = new JFXTextField("0.0.1");
+        projectVerTextField.setPromptText("The version of your mod, like 0.0.1");
+        projectVerTextField.getValidators().add(validator);
+        projectVerTextField.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+                projectVerTextField.validate();
+        });
         JFXListView<JFXTextField> list;
 
         list = new JFXListView<>();
-        list.getItems().add(new JFXTextField("Author Name"));
+        JFXTextField authorEmpty = new JFXTextField();
+        authorEmpty.setPromptText("Author Name");
+        list.getItems().add(authorEmpty);
         list.setPrefHeight(200);
         list.setEditable(true);
 
         list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        list.setOnMouseClicked(e ->
-        {
-            if (list.getSelectionModel().getSelectedItem() != null
-                    && list.getSelectionModel().getSelectedItem().getText() != null
-                    && list.getSelectionModel().getSelectedItem().getText().equals("Author Name"))
-                list.getSelectionModel().getSelectedItem().setText(null);
-        });
         list.setOnEditCommit(new EventHandler<ListView.EditEvent<JFXTextField>>()
         {
             @Override
@@ -100,7 +114,9 @@ public class PopupCreateProject extends Gui
             @Override
             public void handle(ActionEvent event)
             {
-                list.getItems().add(new JFXTextField("Author Name"));
+                JFXTextField authorEmpty = new JFXTextField();
+                authorEmpty.setPromptText("Author Name");
+                list.getItems().add(authorEmpty);
             }
         });
 
@@ -128,7 +144,7 @@ public class PopupCreateProject extends Gui
         vboxRemoveButton.getChildren().add(removeAuthorButton);
 
         JFXTextArea projectDescTextField = new JFXTextArea();
-        projectDescTextField.setTooltip(new Tooltip("Write a description for your mod !"));
+        projectDescTextField.setPromptText("The description for your mod !");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
