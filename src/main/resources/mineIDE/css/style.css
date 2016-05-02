@@ -5,11 +5,10 @@
     -fx-background-position: center center;
 }
 
-.button-raised{
-    -fx-padding: 0.7em 0.57em;
-    -fx-font-size: 14px;
-    -fx-button-type: RAISED;
-    -fx-background-color: rgb(77,102,204);
-    -fx-pref-width: 200;
-    -fx-text-fill: RED;
+.jfx-list-view {
+    -fx-background-insets: 0.0;
+    -fx-cell-horizontal-margin: 0.0;
+    -fx-cell-vertical-margin: 5.0;
+    -fx-vertical-gap : 10.0;
+    -fx-expanded : false;
 }
