@@ -150,6 +150,7 @@ public class PopupCreateProject extends Gui
                 JsonWriter writer;
                 try
                 {
+                    Utils.FORGE_DIR.mkdirs();
                     writer = new JsonWriter(new FileWriter(Utils.FORGE_DIR + "/info_mod.json"));
                     
                     writer.beginObject();
