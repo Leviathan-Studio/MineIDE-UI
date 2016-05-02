@@ -1,7 +1,7 @@
 package com.leviathanstudio.mineide.ui.component;
 
 import com.leviathanstudio.mineide.ui.Gui;
-import com.leviathanstudio.mineide.ui.TabBarManagement;
+import com.leviathanstudio.mineide.ui.TabManagement;
 import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.collections.ListChangeListener;
@@ -54,6 +54,7 @@ public class DraggableTab extends Tab
      */
     public DraggableTab(String text, String iconPath)
     {
+        // container for the icon and the text
         HBox hBox = new HBox();
 
         icon = new ImageView(DraggableTab.class.getResource(iconPath).toString());
@@ -73,14 +74,16 @@ public class DraggableTab extends Tab
         dragStage.setScene(new Scene(dragStagePane));
         
         hBox.setOnMouseDragged((MouseEvent t) -> {
+            // the moving tab
             dragStage.setWidth(nameLabel.getWidth() + 10);
             dragStage.setHeight(nameLabel.getHeight() + 23);
             dragStage.setX(t.getScreenX());
             dragStage.setY(t.getScreenY());
             dragStage.show();
             Point2D screenPoint = new Point2D(t.getScreenX(), t.getScreenY());
-            TabBarManagement.tabPanes.add(getTabPane());
+            TabManagement.tabPanes.add(getTabPane());
             InsertData data = getInsertData(screenPoint);
+            // Not ready to insert into a tab pane, hide the marker
             if(data == null || data.getInsertPane().getTabs().isEmpty())
             {
                 markerStage.hide();
@@ -90,6 +93,7 @@ public class DraggableTab extends Tab
                 int index = data.getIndex();
                 boolean end = false;
                 double x;
+                // Insert at the end of the tab pane
                 if(index == data.getInsertPane().getTabs().size())
                 {
                     end = true;
@@ -98,29 +102,34 @@ public class DraggableTab extends Tab
                 Tab tab = data.getInsertPane().getTabs().get(index);
                 
                 Rectangle2D rect = getAbsoluteRect(tab);
+                // Position the marker after the tab
                 if(end)
                 {
                     x = rect.getMaxX() + 13;
                 }
+                // Position the marker before the tab
                 else
                 {
                     x = rect.getMinX() - 16;
                 }
+                // Move the marker if the tab is selected
                 if(tab.isSelected())
                 {
                     Rectangle2D rectS = getAbsoluteRect(tab);
                     double middle = (rectS.getMinX() + rectS.getMaxX()) / 2;
                     
-                    // add some space if after
                     if(middle < x)
                         x += 13;                        
                 }
+                // Set position of the marker and show it
                 markerStage.setX(x);
                 markerStage.setY(rect.getMaxY() + 12);
                 markerStage.show();
             }
         });
+        // Put the tab into the selected tab pane
         hBox.setOnMouseReleased((MouseEvent t) -> {
+            // hide moving elements
             markerStage.hide();
             dragStage.hide();
             if(!t.isStillSincePress())
@@ -128,7 +137,7 @@ public class DraggableTab extends Tab
                 Point2D screenPoint = new Point2D(t.getScreenX(), t.getScreenY());
                 TabPane oldTabPane = getTabPane();
                 int oldIndex = oldTabPane.getTabs().indexOf(DraggableTab.this);
-                TabBarManagement.tabPanes.add(oldTabPane);
+                TabManagement.tabPanes.add(oldTabPane);
                 InsertData insertData = getInsertData(screenPoint);
                 if(insertData != null)
                 {
@@ -156,21 +165,26 @@ public class DraggableTab extends Tab
                 }
                 final Stage newStage = new Stage();
                 final CloseableTabPane pane = new CloseableTabPane(newStage);
-                TabBarManagement.tabPanes.add(pane);
+                TabManagement.tabPanes.add(pane);
+                
+                // remove tab pane from tab management when hide
                 newStage.setOnHiding(new EventHandler<WindowEvent>()
                 {
-                    
                     @Override
                     public void handle(WindowEvent t)
                     {
-                        TabBarManagement.tabPanes.remove(pane);
+                        TabManagement.tabPanes.remove(pane);
                     }
                 });
+                
+                // remove tab from old tab pane
                 getTabPane().getTabs().remove(DraggableTab.this);
+                // add tab to the new tab pane
                 pane.getTabs().add(DraggableTab.this);
+                
+                // hide the panel when tab pane is empty
                 pane.getTabs().addListener(new ListChangeListener<Tab>()
                 {
-                    
                     @Override
                     public void onChanged(ListChangeListener.Change<? extends Tab> change)
                     {
@@ -180,6 +194,7 @@ public class DraggableTab extends Tab
                         }
                     }
                 });
+                // Initialize the new windows
                 newStage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge " + Gui.mineIdeInfo.getForgeVersion());
                 newStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
                 newStage.setScene(new Scene(pane));
@@ -187,6 +202,8 @@ public class DraggableTab extends Tab
                 newStage.setX(t.getScreenX());
                 newStage.setY(t.getScreenY());
                 newStage.show();
+                
+                // Focus on the new tab
                 pane.requestLayout();
                 pane.requestFocus();
                 
@@ -222,7 +239,7 @@ public class DraggableTab extends Tab
     
     private InsertData getInsertData(Point2D screenPoint)
     {
-        for(TabPane tabPane : TabBarManagement.tabPanes)
+        for(TabPane tabPane : TabManagement.tabPanes)
         {
             Rectangle2D tabAbsolute = getAbsoluteRect(tabPane);
             if(tabAbsolute.contains(screenPoint))

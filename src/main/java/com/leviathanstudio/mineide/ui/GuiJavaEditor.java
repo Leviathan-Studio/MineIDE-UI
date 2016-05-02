@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class GuiJavaEditor
 {
     private static CodeEditor editor;
-    public static TabBarManagement tabBar;
+    public static TabManagement tabBar;
     
     public static CodeEditor getEditor()
     {
@@ -27,7 +27,7 @@ public class GuiJavaEditor
         
         TabPane tabPane = new TabPane();
         
-        tabBar = new TabBarManagement(tabPane);
+        tabBar = new TabManagement(tabPane);
         
         BorderPane borderPane = new BorderPane();
         

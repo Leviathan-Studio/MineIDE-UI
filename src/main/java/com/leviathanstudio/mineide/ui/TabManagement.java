@@ -19,13 +19,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-public class TabBarManagement
+public class TabManagement
 {
     public static final List<TabPane> tabPanes = new ArrayList<>();
     
     private final TabPane tabPane;
     
-    public TabBarManagement(TabPane tabPane)
+    public TabManagement(TabPane tabPane)
     {
         this.tabPane = tabPane;
     }
@@ -77,9 +77,9 @@ public class TabBarManagement
     public void closeAll()
     {
         int i = 0;
-        while(i < TabBarManagement.tabPanes.size())
+        while(i < TabManagement.tabPanes.size())
         {
-            TabPane pane = TabBarManagement.tabPanes.get(i);
+            TabPane pane = TabManagement.tabPanes.get(i);
             int j = 0;
             while(j < pane.getTabs().size())
             {
@@ -96,7 +96,7 @@ public class TabBarManagement
             {
                 if(pane instanceof CloseableTabPane)
                     ((CloseableTabPane)pane).hide();
-                TabBarManagement.tabPanes.remove(i);
+                TabManagement.tabPanes.remove(i);
             }
             else
                 i++;
