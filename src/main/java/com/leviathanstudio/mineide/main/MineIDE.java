@@ -1,6 +1,5 @@
 package com.leviathanstudio.mineide.main;
 
-import com.leviathanstudio.mineide.java.generator.MainClassGenerator;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -42,9 +41,6 @@ public class MineIDE extends Application
     
     public static void main(String[] args) throws Exception
     {
-        MainClassGenerator.setMainClassPackage("fr.zeamateis.test");
-        MainClassGenerator.setMainClassName("testMainClass");
-        MainClassGenerator.generateMainClass();
         launch(args);
     }
     
