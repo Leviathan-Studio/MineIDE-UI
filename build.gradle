@@ -27,6 +27,9 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
+group = "com.leviathanstudio.mineide"
+archivesBaseName = 'MineIDE-UI'
+version = '0.0.1'
 compileJava.options.encoding = 'UTF-8'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -37,7 +40,7 @@ sourceSets {
             srcDirs 'src/main/java'
         }
         resources {
-            srcDirs 'src/main//resources'
+            srcDirs 'src/main/resources'
         }
     }
 }
