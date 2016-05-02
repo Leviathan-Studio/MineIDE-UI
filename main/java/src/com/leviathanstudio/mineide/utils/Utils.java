@@ -1,10 +1,6 @@
 package com.leviathanstudio.mineide.utils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +18,7 @@ public class Utils
     public static final File ROOT = OSHelper.getWorkingDirectory();
     public static final File CONFIG = new File(ROOT, "config");
     public static final File PROJECT = new File(ROOT, "project");
+    public static final File LOG = new File(ROOT, "log");
     public static final File FORGE_DIR = new File(ROOT + "/workspace/forge");
     public static final File FORGE_SRC_JAVA_DIR = new File(ROOT + "/workspace/forge/src/main/java");
     public static final File FORGE_SRC_RESOURCE_DIR = new File(ROOT + "/workspace/forge/src/main/resources");
