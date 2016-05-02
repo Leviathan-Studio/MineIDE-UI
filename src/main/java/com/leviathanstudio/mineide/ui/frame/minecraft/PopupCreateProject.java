@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.google.gson.stream.JsonWriter;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
@@ -16,12 +17,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -63,9 +61,9 @@ public class PopupCreateProject extends Gui
         Label projectDescription = new Label("Description: ");
         Label projectAuthors = new Label("Auteur(s): ");
 
-        TextField projectNameTextField = new TextField();
+        JFXTextField projectNameTextField = new JFXTextField();
         projectNameTextField.setTooltip(new Tooltip("Write the name of your future mod !"));
-        TextField projectVerTextField = new TextField();
+        JFXTextField projectVerTextField = new JFXTextField();
         projectVerTextField.setTooltip(new Tooltip("Write the version of your mod, like 0.1 by example"));
         JFXListView<JFXTextField> list;
 
@@ -77,7 +75,8 @@ public class PopupCreateProject extends Gui
         list.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         list.setOnMouseClicked(e ->
         {
-            if (list.getSelectionModel().getSelectedItem().getText() != null
+            if (list.getSelectionModel().getSelectedItem() != null
+                    && list.getSelectionModel().getSelectedItem().getText() != null
                     && list.getSelectionModel().getSelectedItem().getText().equals("Author Name"))
                 list.getSelectionModel().getSelectedItem().setText(null);
         });
@@ -94,7 +93,7 @@ public class PopupCreateProject extends Gui
         Image addButtonIcon = new Image(Utils.IMG_DIR + "/addIcon.png");
         Image removeButtonIcon = new Image(Utils.IMG_DIR + "/trashBinIcon.png");
 
-        Button addAuthorButton = new Button();
+        JFXButton addAuthorButton = new JFXButton();
         addAuthorButton.setGraphic(new ImageView(addButtonIcon));
         addAuthorButton.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -105,7 +104,7 @@ public class PopupCreateProject extends Gui
             }
         });
 
-        Button removeAuthorButton = new Button();
+        JFXButton removeAuthorButton = new JFXButton();
         removeAuthorButton.setGraphic(new ImageView(removeButtonIcon));
         removeAuthorButton.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -128,7 +127,7 @@ public class PopupCreateProject extends Gui
         vboxRemoveButton.setAlignment(Pos.BOTTOM_RIGHT);
         vboxRemoveButton.getChildren().add(removeAuthorButton);
 
-        TextArea projectDescTextField = new TextArea();
+        JFXTextArea projectDescTextField = new JFXTextArea();
         projectDescTextField.setTooltip(new Tooltip("Write a description for your mod !"));
 
         GridPane grid = new GridPane();

@@ -1,5 +1,6 @@
 package com.leviathanstudio.mineide.main;
 
+import com.jfoenix.controls.JFXProgressBar;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -15,7 +16,6 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,7 +33,7 @@ import javafx.util.Duration;
 public class MineIDE extends Application
 {
     private Pane splashLayout;
-    private ProgressBar loadProgressPhase, loadProgressItem;
+    private JFXProgressBar   loadProgressPhase, loadProgressItem;
     private Label progressTextPhase, progressTextItem;
     public static Stage primaryStage;
     private static final int SPLASH_WIDTH = 704;
@@ -49,9 +49,9 @@ public class MineIDE extends Application
     {
         ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
         
-        loadProgressPhase = new ProgressBar();
+        loadProgressPhase = new JFXProgressBar();
         loadProgressPhase.setPrefWidth(SPLASH_WIDTH);
-        loadProgressItem = new ProgressBar();
+        loadProgressItem = new JFXProgressBar();
         loadProgressItem.setPrefWidth(SPLASH_WIDTH);
         
         progressTextPhase = new Label();
