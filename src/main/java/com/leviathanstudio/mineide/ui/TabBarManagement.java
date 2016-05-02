@@ -43,7 +43,7 @@ public class TabBarManagement
     
     private Tab createTabWithContextMenu(String title, String id, MenuItem... items)
     {
-        Tab tab = new DraggableTab(title);
+        Tab tab = new DraggableTab(title, "/mineIDE/img/addIcon.png");
         tab.setId(id);
         
         ContextMenu contextMenu = new ContextMenu(new MenuItem());

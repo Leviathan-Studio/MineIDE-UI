@@ -9,15 +9,19 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,6 +31,7 @@ import javafx.stage.WindowEvent;
 public class DraggableTab extends Tab
 {
     private Label nameLabel;
+    private ImageView icon;
     private Text dragText;
     private static final Stage markerStage;
     private Stage dragStage;
@@ -49,10 +54,16 @@ public class DraggableTab extends Tab
      * @param text
      *            the text to appear on the tag label.
      */
-    public DraggableTab(String text)
+    public DraggableTab(String text, String iconPath)
     {
+        HBox hBox = new HBox();
+
+        icon = new ImageView(DraggableTab.class.getResource(iconPath).toString());
         nameLabel = new Label(text);
-        setGraphic(nameLabel);
+        hBox.getChildren().addAll( icon, nameLabel);
+
+        this.setGraphic(hBox);
+        
         detachable = true;
         dragStage = new Stage();
         dragStage.initStyle(StageStyle.UNDECORATED);
@@ -63,7 +74,7 @@ public class DraggableTab extends Tab
         dragStagePane.getChildren().add(dragText);
         dragStage.setScene(new Scene(dragStagePane));
         
-        nameLabel.setOnMouseDragged((MouseEvent t) -> {
+        hBox.setOnMouseDragged((MouseEvent t) -> {
             dragStage.setWidth(nameLabel.getWidth() + 10);
             dragStage.setHeight(nameLabel.getHeight() + 23);
             dragStage.setX(t.getScreenX());
@@ -92,7 +103,6 @@ public class DraggableTab extends Tab
                 if(end)
                 {
                     x = rect.getMaxX() + 13;
-                    // markerStage.setX(rect.getMaxX() + 13);
                 }
                 else
                 {
@@ -103,20 +113,16 @@ public class DraggableTab extends Tab
                     Rectangle2D rectS = getAbsoluteRect(tab);
                     double middle = (rectS.getMinX() + rectS.getMaxX()) / 2;
                     
+                    // add some space if after
                     if(middle < x)
-                        // after
-                        x += 13;
-                    else
-                        // before
-                        x += 0;
-                        
+                        x += 13;                        
                 }
                 markerStage.setX(x);
                 markerStage.setY(rect.getMaxY() + 23);
                 markerStage.show();
             }
         });
-        nameLabel.setOnMouseReleased((MouseEvent t) -> {
+        hBox.setOnMouseReleased((MouseEvent t) -> {
             markerStage.hide();
             dragStage.hide();
             if(!t.isStillSincePress())
