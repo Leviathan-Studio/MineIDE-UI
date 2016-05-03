@@ -96,3 +96,7 @@
 .jfx-text-area .viewport{
     -fx-background-color: WHITE;
 }
+
+.wizard-heading {
+    -fx-background-color: #2196F3;
+}
