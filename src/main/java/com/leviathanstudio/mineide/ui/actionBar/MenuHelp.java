@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui.actionBar;
 
 import static com.leviathanstudio.mineide.main.Translation.*;
 
-import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
+import com.leviathanstudio.mineide.ui.controls.MenuItemIcon;
 import com.leviathanstudio.mineide.ui.frame.popup.PopupCredits;
 
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ public class MenuHelp extends Menu
     {
         menuHelp = new Menu(LANG.getTranslation("menu.help"));
         
-        MenuItem credits = new MenuItemTranslate("menu.help.item.about", "F1", (ActionEvent t) -> {
+        MenuItem credits = new MenuItemIcon("menu.help.item.about", "", "F1", (ActionEvent t) -> {
             PopupCredits.init();
         });
         

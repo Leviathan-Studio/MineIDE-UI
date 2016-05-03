@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui.component;
+package com.leviathanstudio.mineide.ui.controls;
 
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.TabManagement;
@@ -58,13 +58,13 @@ public class DraggableTab extends Tab
     {
         // container for the icon and the text
         HBox hBox = new HBox();
-
+        
         icon = new ImageView(DraggableTab.class.getResource(iconPath).toString());
         icon.setFitWidth(ICON_SIZE);
         icon.setFitHeight(ICON_SIZE);
         nameLabel = new Label(text);
-        hBox.getChildren().addAll( icon, nameLabel);
-
+        hBox.getChildren().addAll(icon, nameLabel);
+        
         this.setGraphic(hBox);
         
         detachable = true;
@@ -123,7 +123,7 @@ public class DraggableTab extends Tab
                     double middle = (rectS.getMinX() + rectS.getMaxX()) / 2;
                     
                     if(middle < x)
-                        x += 13;                        
+                        x += 13;
                 }
                 // Set position of the marker and show it
                 markerStage.setX(x);

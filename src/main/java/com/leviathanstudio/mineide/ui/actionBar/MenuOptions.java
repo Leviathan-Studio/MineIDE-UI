@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui.actionBar;
 
 import static com.leviathanstudio.mineide.main.Translation.*;
 
-import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
+import com.leviathanstudio.mineide.ui.controls.MenuItemIcon;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
@@ -21,7 +21,7 @@ public class MenuOptions extends Menu
     {
         menuOptions = new Menu(LANG.getTranslation("menu.options"));
         
-        MenuItem menuPreferences = new MenuItemTranslate("menu.options.item.preferences", (ActionEvent t) -> {});
+        MenuItem menuPreferences = new MenuItemIcon("menu.options.item.preferences", "", (ActionEvent t) -> {});
         
         menuOptions.getItems().addAll(menuPreferences);
     }

@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui.component;
+package com.leviathanstudio.mineide.ui.controls;
 
 import static com.leviathanstudio.mineide.main.Translation.LANG;
 

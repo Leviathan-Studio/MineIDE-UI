@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
-import com.leviathanstudio.mineide.ui.component.CloseableTabPane;
-import com.leviathanstudio.mineide.ui.component.DraggableTab;
-import com.leviathanstudio.mineide.ui.component.MenuItemTranslate;
+import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
+import com.leviathanstudio.mineide.ui.controls.DraggableTab;
+import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;

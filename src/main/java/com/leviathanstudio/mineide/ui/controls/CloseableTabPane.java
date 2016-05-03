@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui.component;
+package com.leviathanstudio.mineide.ui.controls;
 
 import java.util.ArrayList;
 import java.util.List;
