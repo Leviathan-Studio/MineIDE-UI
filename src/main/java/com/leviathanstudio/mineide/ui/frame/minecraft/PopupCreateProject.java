@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.ui.controls.MDRoundButton;
 import com.leviathanstudio.mineide.utils.Utils;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;
@@ -107,7 +108,7 @@ public class PopupCreateProject extends Gui
         Image addButtonIcon = new Image(Utils.IMG_DIR + "/addIcon.png");
         Image removeButtonIcon = new Image(Utils.IMG_DIR + "/trashBinIcon.png");
 
-        JFXButton addAuthorButton = new JFXButton();
+        MDRoundButton addAuthorButton = new MDRoundButton();
         addAuthorButton.setGraphic(new ImageView(addButtonIcon));
         addAuthorButton.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -120,7 +121,7 @@ public class PopupCreateProject extends Gui
             }
         });
 
-        JFXButton removeAuthorButton = new JFXButton();
+        MDRoundButton removeAuthorButton = new MDRoundButton();
         removeAuthorButton.setGraphic(new ImageView(removeButtonIcon));
         removeAuthorButton.setOnAction(new EventHandler<ActionEvent>()
         {
