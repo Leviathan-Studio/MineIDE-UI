@@ -18,7 +18,7 @@ public class GuiJavaEditor
         return editor;
     }
     
-    public static void init(Scene scene)
+    public static void init(Scene scene, VBox vbox)
     {
         editor = new CodeEditor("");
         
@@ -39,7 +39,7 @@ public class GuiJavaEditor
         
         borderPane.setCenter(tabPane);
         
-        ((VBox)scene.getRoot()).getChildren().addAll(borderPane);
+        vbox.getChildren().addAll(borderPane);
         
         MineIDE.primaryStage.setScene(scene);
         MineIDE.primaryStage.show();
