@@ -35,6 +35,8 @@ public class DraggableTab extends Tab
     private Stage dragStage;
     private boolean detachable;
     
+    private final int ICON_SIZE = 16;
+    
     static
     {
         markerStage = new Stage();
@@ -58,6 +60,8 @@ public class DraggableTab extends Tab
         HBox hBox = new HBox();
 
         icon = new ImageView(DraggableTab.class.getResource(iconPath).toString());
+        icon.setFitWidth(ICON_SIZE);
+        icon.setFitHeight(ICON_SIZE);
         nameLabel = new Label(text);
         hBox.getChildren().addAll( icon, nameLabel);
 
@@ -110,7 +114,7 @@ public class DraggableTab extends Tab
                 // Position the marker before the tab
                 else
                 {
-                    x = rect.getMinX() - 16;
+                    x = rect.getMinX() - ICON_SIZE; // width of the icon
                 }
                 // Move the marker if the tab is selected
                 if(tab.isSelected())
