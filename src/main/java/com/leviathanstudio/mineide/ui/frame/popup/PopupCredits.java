@@ -2,6 +2,7 @@ package com.leviathanstudio.mineide.ui.frame.popup;
 
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.ui.frame.video.TutorialTestFrame;
 import com.leviathanstudio.mineide.utils.HtmlReader;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -19,6 +20,7 @@ public class PopupCredits extends Gui
     
     public static void init()
     {
+        
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(MineIDE.primaryStage);
@@ -41,5 +43,8 @@ public class PopupCredits extends Gui
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        
+        new TutorialTestFrame(stage);
+        
     }
 }

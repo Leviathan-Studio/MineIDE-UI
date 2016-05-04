@@ -54,6 +54,7 @@ dependencies {
     compile 'com.jfoenix:jfoenix:0.0.0-SNAPSHOT'
     compile 'utybo:minkj:1.0'
 	compile 'com.squareup:javapoet:1.7.0'
+	compile 'uk.co.caprica:vlcj:3.7.0'
 }
 
 task wrapper(type: Wrapper) {
