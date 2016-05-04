@@ -26,7 +26,7 @@ public class WizardStep extends GridPane
         this.data = Maps.newHashMap();
         this.setHgap(10);
         this.setVgap(10);
-        this.setPadding(new Insets(5, 24, 24, 24));
+        this.setPadding(new Insets(20, 24, 24, 24));
         this.setAlignment(Pos.CENTER);
     }
 
