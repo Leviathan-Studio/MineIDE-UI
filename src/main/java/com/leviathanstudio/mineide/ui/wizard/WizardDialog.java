@@ -6,7 +6,11 @@ import com.google.common.collect.Lists;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
+import com.leviathanstudio.mineide.ui.wizard.events.WizardEvent;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -78,25 +82,56 @@ public class WizardDialog
         this.footer = new BorderPane();
 
         cancelButton = new JFXButton("CANCEL");
-        cancelButton.setOnAction(e -> dialog.close());
-        cancelButton.setStyle(
-                "-fx-text-fill: #EF5350;-fx-font-size: 18px;");
+        cancelButton.setOnAction(e ->
+        {
+            onWizardCancelledProperty.get()
+                    .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.CANCELLED));
+            dialog.close();
+        });
+        cancelButton.setStyle("-fx-text-fill: #EF5350;-fx-font-size: 18px;");
         nextButton = new JFXButton("NEXT");
         nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px");
 
         nextButton.setAlignment(Pos.CENTER_LEFT);
+
+        nextButton.setOnAction(e ->
+        {
+            if ((this.currentStep + 1) == this.steps.size())
+            {
+                onWizardCompletedProperty.get()
+                    .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.COMPLETED));
+                this.currentStep = 0;
+                this.dialog.close();
+            }
+            else
+            {
+                onWizardStepChangeBeforeProperty.get()
+                        .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.STEP_CHANGE_BEFORE));
+                switchStep(this.currentStep + 1);
+                onWizardStepChangeAfterProperty.get()
+                        .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.STEP_CHANGE_AFTER));
+            }
+        });
         this.footer.setPadding(new Insets(12));
         this.footer.setLeft(cancelButton);
         this.footer.setRight(nextButton);
     }
 
+    public void switchStep(int newStep)
+    {
+        if (this.content.getChildren().contains(this.steps.get(currentStep)))
+            this.content.getChildren().remove(this.steps.get(currentStep));
+        this.currentStep = newStep;
+        this.content.getChildren().add(this.steps.get(currentStep));
+        this.nextButton.setText(this.steps.size() == (this.currentStep + 1) ? "FINISH" : "NEXT");
+    }
+
     public void showWizard()
     {
         this.content.getChildren().add(this.header);
-        this.content.getChildren().add(this.steps.get(currentStep));
+        switchStep(this.currentStep);
         this.region.setTop(this.content);
         this.region.setBottom(this.footer);
-        nextButton.setText(this.steps.size() == 1 ? "FINISH" : "NEXT");
         cancelButton.setDisable(!this.isCancellable);
         dialog.show();
     }
@@ -134,5 +169,67 @@ public class WizardDialog
     public BorderPane getRegion()
     {
         return region;
+    }
+
+    // EVENTS
+
+    private ObjectProperty<EventHandler<? super WizardEvent>> onWizardCompletedProperty = new SimpleObjectProperty<>(
+            (completed) ->
+            {
+            });
+
+    public void setOnWizardCompleted(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardCompletedProperty.set(handler);
+    }
+
+    public void getOnWizardCompleted(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardCompletedProperty.get();
+    }
+
+    private ObjectProperty<EventHandler<? super WizardEvent>> onWizardCancelledProperty = new SimpleObjectProperty<>(
+            (cancelled) ->
+            {
+            });
+
+    public void setOnWizardCancelled(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardCancelledProperty.set(handler);
+    }
+
+    public void getOnWizardCancelled(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardCancelledProperty.get();
+    }
+
+    private ObjectProperty<EventHandler<? super WizardEvent>> onWizardStepChangeBeforeProperty = new SimpleObjectProperty<>(
+            (stepchange) ->
+            {
+            });
+
+    public void setOnWizardStepChangeBefore(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardStepChangeBeforeProperty.set(handler);
+    }
+
+    public void getOnWizardStepChangeBefore(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardStepChangeBeforeProperty.get();
+    }
+
+    private ObjectProperty<EventHandler<? super WizardEvent>> onWizardStepChangeAfterProperty = new SimpleObjectProperty<>(
+            (stepchange) ->
+            {
+            });
+
+    public void setOnWizardStepChangeAfter(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardStepChangeAfterProperty.set(handler);
+    }
+
+    public void getOnWizardStepChangeAfter(EventHandler<? super WizardEvent> handler)
+    {
+        onWizardStepChangeAfterProperty.get();
     }
 }

@@ -15,9 +15,9 @@ public class WizardStepBuilder
 {
     private WizardStep step;
 
-    public WizardStepBuilder()
+    public WizardStepBuilder(String stepName)
     {
-        step = new WizardStep();
+        step = new WizardStep(stepName);
     }
 
     @SuppressWarnings("unchecked")

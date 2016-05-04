@@ -9,8 +9,10 @@ public class PopupCreateProject
     public static void init()
     {
         WizardDialog wizard = new WizardDialog("Project Creation", Gui.root);
-        wizard.addStep(new WizardStepBuilder().addString("test", "default value", "je suis un prompt")
+        wizard.addStep(new WizardStepBuilder("First").addString("test", "default value", "je suis un prompt")
                 .addString("test2", "", "je suis un prompt").build());
+        wizard.addStep(
+                new WizardStepBuilder("Second step").addString("test", "default value", "je suis un prompt").build());
         wizard.showWizard();
     }
 }

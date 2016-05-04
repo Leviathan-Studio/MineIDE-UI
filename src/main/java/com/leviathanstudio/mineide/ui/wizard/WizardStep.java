@@ -19,10 +19,12 @@ import javafx.scene.layout.GridPane;
  */
 public class WizardStep extends GridPane
 {
+    private String                stepName;
     private Map<String, Property> data;
 
-    public WizardStep()
+    public WizardStep(String stepName)
     {
+        this.stepName = stepName;
         this.data = Maps.newHashMap();
         this.setHgap(10);
         this.setVgap(10);
