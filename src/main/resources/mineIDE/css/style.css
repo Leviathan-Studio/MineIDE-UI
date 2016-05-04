@@ -100,3 +100,7 @@
 .wizard-heading {
     -fx-background-color: #2196F3;
 }
+
+.wizard-valid {
+     -fx-fill: WHITE;
+}

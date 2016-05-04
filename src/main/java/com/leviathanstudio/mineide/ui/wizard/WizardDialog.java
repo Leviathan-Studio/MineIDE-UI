@@ -39,6 +39,7 @@ public class WizardDialog
     private JFXButton        cancelButton;
     private JFXButton        previousButton;
     private List<WizardStep> steps;
+    private final WizardStepper stepper;
     private final JFXDialog  dialog;
     private final BorderPane region;
 
@@ -51,6 +52,7 @@ public class WizardDialog
      */
     public WizardDialog(String name, StackPane root)
     {
+        stepper = new WizardStepper(this);
         steps = Lists.newArrayList();
         region = new BorderPane();
         dialog = new JFXDialog(root, region, DialogTransition.CENTER);
@@ -69,6 +71,8 @@ public class WizardDialog
         // Content
         this.content = new VBox();
         this.region.setMinSize(500, 400);
+        this.region.setPrefWidth(500);
+        this.region.setMaxWidth(500);
 
         // Header
         this.header = new StackPane();
@@ -157,11 +161,15 @@ public class WizardDialog
             this.previousButton.setDisable(true);
         else
             this.previousButton.setDisable(false);
+        if (this.stepper != null)
+            this.stepper.updateStepper();
     }
 
     public void showWizard()
     {
         this.content.getChildren().add(this.header);
+        if (this.getSteps().size() > 1)
+            this.content.getChildren().add(this.stepper);
         switchStep(this.currentStep);
         this.region.setTop(this.content);
         this.region.setBottom(this.footer);
@@ -202,6 +210,26 @@ public class WizardDialog
     public BorderPane getRegion()
     {
         return region;
+    }
+
+    public List<WizardStep> getSteps()
+    {
+        return steps;
+    }
+
+    public void setSteps(List<WizardStep> steps)
+    {
+        this.steps = steps;
+    }
+
+    public int getCurrentStep()
+    {
+        return currentStep;
+    }
+
+    public void setCurrentStep(int currentStep)
+    {
+        this.currentStep = currentStep;
     }
 
     // EVENTS
