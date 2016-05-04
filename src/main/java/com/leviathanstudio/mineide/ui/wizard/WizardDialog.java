@@ -15,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -36,6 +37,7 @@ public class WizardDialog
     private VBox             content;
     private JFXButton        nextButton;
     private JFXButton        cancelButton;
+    private JFXButton        previousButton;
     private List<WizardStep> steps;
     private final JFXDialog  dialog;
     private final BorderPane region;
@@ -88,18 +90,18 @@ public class WizardDialog
                     .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.CANCELLED));
             dialog.close();
         });
-        cancelButton.setStyle("-fx-text-fill: #EF5350;-fx-font-size: 18px;");
+        cancelButton.setStyle("-fx-text-fill: BLACK;-fx-font-size: 18px;-fx-opacity: 0.7;");
+
         nextButton = new JFXButton("NEXT");
-        nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px");
-
-        nextButton.setAlignment(Pos.CENTER_LEFT);
-
+        nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         nextButton.setOnAction(e ->
         {
+            if (!this.steps.get(this.currentStep).isValidated())
+                return;
             if ((this.currentStep + 1) == this.steps.size())
             {
                 onWizardCompletedProperty.get()
-                    .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.COMPLETED));
+                        .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.COMPLETED));
                 this.currentStep = 0;
                 this.dialog.close();
             }
@@ -112,9 +114,26 @@ public class WizardDialog
                         .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.STEP_CHANGE_AFTER));
             }
         });
+
+        previousButton = new JFXButton("BACK");
+        previousButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
+        previousButton.setOnAction(e ->
+        {
+            onWizardStepChangeBeforeProperty.get()
+                    .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.STEP_CHANGE_BEFORE));
+            switchStep(this.currentStep - 1);
+            onWizardStepChangeAfterProperty.get()
+                    .handle(new WizardEvent(this.currentStep, this.steps, WizardEvent.STEP_CHANGE_AFTER));
+        });
+
+        HBox rightFooter = new HBox();
+        rightFooter.setAlignment(Pos.CENTER_RIGHT);
+        rightFooter.getChildren().add(cancelButton);
+        rightFooter.getChildren().add(nextButton);
+
         this.footer.setPadding(new Insets(12));
-        this.footer.setLeft(cancelButton);
-        this.footer.setRight(nextButton);
+        this.footer.setLeft(previousButton);
+        this.footer.setRight(rightFooter);
     }
 
     public void switchStep(int newStep)
@@ -123,7 +142,21 @@ public class WizardDialog
             this.content.getChildren().remove(this.steps.get(currentStep));
         this.currentStep = newStep;
         this.content.getChildren().add(this.steps.get(currentStep));
-        this.nextButton.setText(this.steps.size() == (this.currentStep + 1) ? "FINISH" : "NEXT");
+        if (this.steps.size() == (this.currentStep + 1))
+        {
+            this.nextButton.setText("FINISH");
+            this.nextButton.setStyle(
+                    "-fx-button-type: RAISED;-fx-background-color: #1E88E5;-fx-text-fill: WHITE;-fx-font-size: 18px;");
+        }
+        else
+        {
+            this.nextButton.setText("NEXT");
+            this.nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
+        }
+        if (this.currentStep == 0)
+            this.previousButton.setDisable(true);
+        else
+            this.previousButton.setDisable(false);
     }
 
     public void showWizard()

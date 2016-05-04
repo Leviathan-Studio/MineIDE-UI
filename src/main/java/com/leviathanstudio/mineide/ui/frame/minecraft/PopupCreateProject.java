@@ -12,7 +12,11 @@ public class PopupCreateProject
         wizard.addStep(new WizardStepBuilder("First").addString("test", "default value", "je suis un prompt")
                 .addString("test2", "", "je suis un prompt").build());
         wizard.addStep(
-                new WizardStepBuilder("Second step").addString("test", "default value", "je suis un prompt").build());
+                new WizardStepBuilder("Second step").addNumber("Age", 1, "Write your age").build());
+        wizard.setOnWizardCompleted(e ->
+        {
+            System.out.println("Test: " + e.getSteps().get(0).getData().get("test").getValue());
+        });
         wizard.showWizard();
     }
 }
