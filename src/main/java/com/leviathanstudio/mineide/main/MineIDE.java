@@ -1,7 +1,7 @@
 package com.leviathanstudio.mineide.main;
 
 import com.jfoenix.controls.JFXProgressBar;
-import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.ui.GuiMain;
 import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.animation.FadeTransition;
@@ -130,7 +130,7 @@ public class MineIDE extends Application
     private void showMainStage(ReadOnlyObjectProperty<ObservableList<String>> friends)
     {
         primaryStage = new Stage(StageStyle.DECORATED);
-        Gui.init(primaryStage);
+        GuiMain.init(primaryStage);
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
