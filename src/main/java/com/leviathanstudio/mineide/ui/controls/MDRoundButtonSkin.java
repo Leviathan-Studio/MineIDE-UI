@@ -39,123 +39,115 @@ public class MDRoundButtonSkin extends ButtonSkin
     {
         super(button);
 
-        buttonRippler = new JFXRippler(new StackPane(), RipplerMask.CIRCLE, RipplerPos.FRONT)
+        this.buttonRippler = new JFXRippler(new StackPane(), RipplerMask.CIRCLE, RipplerPos.FRONT)
         {
             @Override
             protected void initListeners()
             {
-                ripplerPane.setOnMousePressed((event) ->
+                this.ripplerPane.setOnMousePressed((event) ->
                 {
-                    createRipple(event.getX(), event.getY());
+                    this.createRipple(event.getX(), event.getY());
                 });
             }
         };
-        buttonContainer.getChildren().add(buttonRippler);
+        this.buttonContainer.getChildren().add(this.buttonRippler);
 
-        button.buttonTypeProperty().addListener((o, oldVal, newVal) -> updateButtonType(newVal));
+        button.buttonTypeProperty().addListener((o, oldVal, newVal) -> this.updateButtonType(newVal));
         button.setOnMousePressed((e) ->
         {
-            if (clickedAnimation != null)
+            if (this.clickedAnimation != null)
             {
-                clickedAnimation.setRate(1);
-                clickedAnimation.play();
+                this.clickedAnimation.setRate(1);
+                this.clickedAnimation.play();
             }
         });
         button.setOnMouseReleased((e) ->
         {
-            if (clickedAnimation != null)
+            if (this.clickedAnimation != null)
             {
-                clickedAnimation.setRate(-1);
-                clickedAnimation.play();
+                this.clickedAnimation.setRate(-1);
+                this.clickedAnimation.play();
             }
         });
 
         button.setPickOnBounds(false);
-        buttonContainer.setPickOnBounds(false);
+        this.buttonContainer.setPickOnBounds(false);
 
-        buttonContainer.borderProperty().bind(getSkinnable().borderProperty());
-        buttonContainer.backgroundProperty().bind(Bindings.createObjectBinding(() ->
+        this.buttonContainer.borderProperty().bind(this.getSkinnable().borderProperty());
+        this.buttonContainer.backgroundProperty().bind(Bindings.createObjectBinding(() ->
         {
-            if (button.getBackground() == null || isJavaDefaultBackground(button.getBackground())
-                    || isJavaDefaultClickedBackground(button.getBackground()))
-                button.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, defaultRadii, null)));
+            if (button.getBackground() == null || this.isJavaDefaultBackground(button.getBackground())
+                    || this.isJavaDefaultClickedBackground(button.getBackground()))
+                button.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, this.defaultRadii, null)));
 
-            if (getSkinnable().getBackground() != null && getSkinnable().getBackground().getFills().get(0).getInsets()
-                    .equals(new Insets(-0.2, -0.2, -0.2, -0.2)))
-            {
+            if (this.getSkinnable().getBackground() != null && this.getSkinnable().getBackground().getFills().get(0)
+                    .getInsets().equals(new Insets(-0.2, -0.2, -0.2, -0.2)))
                 return new Background(new BackgroundFill(
-                        getSkinnable().getBackground() != null
-                                ? getSkinnable().getBackground().getFills().get(0).getFill() : Color.TRANSPARENT,
-                        getSkinnable().backgroundProperty().get() != null
-                                ? getSkinnable().getBackground().getFills().get(0).getRadii() : defaultRadii,
+                        this.getSkinnable().getBackground() != null
+                                ? this.getSkinnable().getBackground().getFills().get(0).getFill() : Color.TRANSPARENT,
+                        this.getSkinnable().backgroundProperty().get() != null
+                                ? this.getSkinnable().getBackground().getFills().get(0).getRadii() : this.defaultRadii,
                         Insets.EMPTY));
-            }
             else
-            {
                 return new Background(new BackgroundFill(
-                        getSkinnable().getBackground() != null
-                                ? getSkinnable().getBackground().getFills().get(0).getFill() : Color.TRANSPARENT,
-                        getSkinnable().getBackground() != null
-                                ? getSkinnable().getBackground().getFills().get(0).getRadii() : defaultRadii,
+                        this.getSkinnable().getBackground() != null
+                                ? this.getSkinnable().getBackground().getFills().get(0).getFill() : Color.TRANSPARENT,
+                        this.getSkinnable().getBackground() != null
+                                ? this.getSkinnable().getBackground().getFills().get(0).getRadii() : this.defaultRadii,
                         Insets.EMPTY));
-            }
-        }, getSkinnable().backgroundProperty()));
+        } , this.getSkinnable().backgroundProperty()));
 
-        button.ripplerFillProperty().addListener((o, oldVal, newVal) -> buttonRippler.setRipplerFill(newVal));
+        button.ripplerFillProperty().addListener((o, oldVal, newVal) -> this.buttonRippler.setRipplerFill(newVal));
 
-        if (button.getBackground() == null || isJavaDefaultBackground(button.getBackground()))
-            button.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, defaultRadii, null)));
+        if (button.getBackground() == null || this.isJavaDefaultBackground(button.getBackground()))
+            button.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, this.defaultRadii, null)));
 
-        updateButtonType(button.getButtonType());
-        updateChildren();
+        this.updateButtonType(button.getButtonType());
+        this.updateChildren();
     }
 
     @Override
     protected void updateChildren()
     {
         super.updateChildren();
-        if (buttonContainer != null)
-            getChildren().add(0, buttonContainer);
-        for (int i = 1; i < getChildren().size(); i++)
-            getChildren().get(i).setMouseTransparent(true);
+        if (this.buttonContainer != null)
+            this.getChildren().add(0, this.buttonContainer);
+        for (int i = 1; i < this.getChildren().size(); i++)
+            this.getChildren().get(i).setMouseTransparent(true);
     }
 
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        if (invalid)
+        if (this.invalid)
         {
-            if (((JFXButton) getSkinnable()).getRipplerFill() == null)
+            if (((JFXButton) this.getSkinnable()).getRipplerFill() == null)
             {
-                for (int i = getChildren().size() - 1; i >= 1; i--)
-                {
-                    if (getChildren().get(i) instanceof LabeledText)
+                for (int i = this.getChildren().size() - 1; i >= 1; i--)
+                    if (this.getChildren().get(i) instanceof LabeledText)
                     {
-                        buttonRippler.setRipplerFill(((LabeledText) getChildren().get(i)).getFill());
-                        ((LabeledText) getChildren().get(i)).fillProperty()
-                                .addListener((o, oldVal, newVal) -> buttonRippler.setRipplerFill(newVal));
+                        this.buttonRippler.setRipplerFill(((LabeledText) this.getChildren().get(i)).getFill());
+                        ((LabeledText) this.getChildren().get(i)).fillProperty()
+                                .addListener((o, oldVal, newVal) -> this.buttonRippler.setRipplerFill(newVal));
                         break;
                     }
-                    else if (getChildren().get(i) instanceof Label)
+                    else if (this.getChildren().get(i) instanceof Label)
                     {
-                        buttonRippler.setRipplerFill(((Label) getChildren().get(i)).getTextFill());
-                        ((Label) getChildren().get(i)).textFillProperty()
-                                .addListener((o, oldVal, newVal) -> buttonRippler.setRipplerFill(newVal));
+                        this.buttonRippler.setRipplerFill(((Label) this.getChildren().get(i)).getTextFill());
+                        ((Label) this.getChildren().get(i)).textFillProperty()
+                                .addListener((o, oldVal, newVal) -> this.buttonRippler.setRipplerFill(newVal));
                         break;
                     }
-                }
             }
             else
-            {
-                buttonRippler.setRipplerFill(((JFXButton) getSkinnable()).getRipplerFill());
-            }
-            invalid = false;
+                this.buttonRippler.setRipplerFill(((JFXButton) this.getSkinnable()).getRipplerFill());
+            this.invalid = false;
         }
         double shift = 1;
-        buttonContainer.resizeRelocate(getSkinnable().getLayoutBounds().getMinX() - shift,
-                getSkinnable().getLayoutBounds().getMinY() - shift, getSkinnable().getWidth() + (2 * shift),
-                getSkinnable().getHeight() + (2 * shift));
-        layoutLabelInArea(x, y, w, h);
+        this.buttonContainer.resizeRelocate(this.getSkinnable().getLayoutBounds().getMinX() - shift,
+                this.getSkinnable().getLayoutBounds().getMinY() - shift, this.getSkinnable().getWidth() + 2 * shift,
+                this.getSkinnable().getHeight() + 2 * shift);
+        this.layoutLabelInArea(x, y, w, h);
     }
 
     private boolean isJavaDefaultBackground(Background background)
@@ -173,11 +165,11 @@ public class MDRoundButtonSkin extends ButtonSkin
         switch (type)
         {
             case RAISED:
-                JFXDepthManager.setDepth(buttonContainer, 2);
-                clickedAnimation = new ButtonClickTransition();
+                JFXDepthManager.setDepth(this.buttonContainer, 2);
+                this.clickedAnimation = new ButtonClickTransition();
                 break;
             default:
-                buttonContainer.setEffect(null);
+                this.buttonContainer.setEffect(null);
                 break;
         }
     }
@@ -187,40 +179,31 @@ public class MDRoundButtonSkin extends ButtonSkin
 
         public ButtonClickTransition()
         {
-            super(buttonContainer,
-                    new Timeline(
-                            new KeyFrame(Duration.ZERO, new KeyValue(
-                                    ((DropShadow) buttonContainer.getEffect()).radiusProperty(),
-                                    JFXDepthManager.getShadowAt(2).radiusProperty().get(), Interpolator.EASE_BOTH),
-                                    new KeyValue(((DropShadow) buttonContainer.getEffect()).spreadProperty(),
-                                            JFXDepthManager.getShadowAt(2).spreadProperty().get(),
-                                            Interpolator.EASE_BOTH),
-                                    new KeyValue(
-                                            ((DropShadow) buttonContainer.getEffect()).offsetXProperty(),
-                                            JFXDepthManager.getShadowAt(2).offsetXProperty().get(),
-                                            Interpolator.EASE_BOTH),
-                                    new KeyValue(
-                                            ((DropShadow) buttonContainer.getEffect()).offsetYProperty(),
-                                            JFXDepthManager.getShadowAt(2).offsetYProperty().get(),
-                                            Interpolator.EASE_BOTH)),
-                            new KeyFrame(
-                                    Duration.millis(1000),
-                                    new KeyValue(
-                                            ((DropShadow) buttonContainer.getEffect()).radiusProperty(),
-                                            JFXDepthManager.getShadowAt(5).radiusProperty().get(),
-                                            Interpolator.EASE_BOTH),
-                                    new KeyValue(
-                                            ((DropShadow) buttonContainer.getEffect()).spreadProperty(),
-                                            JFXDepthManager.getShadowAt(5).spreadProperty().get(),
-                                            Interpolator.EASE_BOTH),
-                                    new KeyValue(((DropShadow) buttonContainer.getEffect()).offsetXProperty(),
-                                            JFXDepthManager.getShadowAt(5).offsetXProperty().get(),
-                                            Interpolator.EASE_BOTH),
-                                    new KeyValue(((DropShadow) buttonContainer.getEffect()).offsetYProperty(),
-                                            JFXDepthManager.getShadowAt(5).offsetYProperty().get(),
-                                            Interpolator.EASE_BOTH))));
-            setCycleDuration(Duration.seconds(0.2));
-            setDelay(Duration.seconds(0));
+            super(MDRoundButtonSkin.this.buttonContainer, new Timeline(new KeyFrame(Duration.ZERO,
+                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).radiusProperty(),
+                            JFXDepthManager.getShadowAt(2).radiusProperty().get(), Interpolator.EASE_BOTH),
+                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).spreadProperty(),
+                            JFXDepthManager.getShadowAt(2).spreadProperty().get(), Interpolator.EASE_BOTH),
+                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetXProperty(),
+                            JFXDepthManager.getShadowAt(2).offsetXProperty().get(),
+                            Interpolator.EASE_BOTH),
+                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetYProperty(),
+                            JFXDepthManager.getShadowAt(2).offsetYProperty().get(), Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.millis(1000),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).radiusProperty(),
+                                    JFXDepthManager.getShadowAt(5).radiusProperty().get(), Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).spreadProperty(),
+                                    JFXDepthManager.getShadowAt(5).spreadProperty().get(), Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetXProperty(),
+                                    JFXDepthManager.getShadowAt(5).offsetXProperty().get(), Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetYProperty(),
+                                    JFXDepthManager.getShadowAt(5).offsetYProperty().get(), Interpolator.EASE_BOTH))));
+            this.setCycleDuration(Duration.seconds(0.2));
+            this.setDelay(Duration.seconds(0));
         }
     }
 }

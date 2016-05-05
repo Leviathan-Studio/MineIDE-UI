@@ -10,85 +10,92 @@ public class MineIDEConfig
 {
     // MineIDEInfo
     private static String appName, appVersion, description;
-    
+
     // Forge
     private static String forgeVersion, mappingVersion, forgeInstallCommand, forgeBuildCommand;
-    private static URL forgeDownloadLink, forgeVersionLink;
-    
+    private static URL    forgeDownloadLink, forgeVersionLink;
+
     public MineIDEConfig()
     {
         GsonReader gsonReader = new GsonReader();
         gsonReader.initReading(Utils.JSON_DIR + "mineIDEConfig.json");
         // MineIDE Info
-        appName = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("name").getAsString();
-        description = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("description").getAsString();
-        appVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app").getAsJsonObject().get("version").getAsString();
-        
+        MineIDEConfig.appName = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app")
+                .getAsJsonObject().get("name").getAsString();
+        MineIDEConfig.description = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app")
+                .getAsJsonObject().get("description").getAsString();
+        MineIDEConfig.appVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app")
+                .getAsJsonObject().get("version").getAsString();
+
         // Forge
-        forgeInstallCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeInstallCommad").getAsString();
-        forgeBuildCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeBuildCommand").getAsString();
-        forgeVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeVersion").getAsString();
-        mappingVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("mappingVersion").getAsString();
+        MineIDEConfig.forgeInstallCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject()
+                .get("forgeConfig").getAsJsonObject().get("forgeInstallCommad").getAsString();
+        MineIDEConfig.forgeBuildCommand = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject()
+                .get("forgeConfig").getAsJsonObject().get("forgeBuildCommand").getAsString();
+        MineIDEConfig.forgeVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig")
+                .getAsJsonObject().get("forgeVersion").getAsString();
+        MineIDEConfig.mappingVersion = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject()
+                .get("forgeConfig").getAsJsonObject().get("mappingVersion").getAsString();
         try
         {
-            forgeDownloadLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeDLUrl").getAsString());
-        }
-        catch(MalformedURLException e)
+            MineIDEConfig.forgeDownloadLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject()
+                    .get("forgeConfig").getAsJsonObject().get("forgeDLUrl").getAsString());
+        } catch (MalformedURLException e)
         {
             e.printStackTrace();
         }
         try
         {
-            forgeVersionLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("forgeConfig").getAsJsonObject().get("forgeVersionUrl").getAsString());
-        }
-        catch(MalformedURLException e)
+            MineIDEConfig.forgeVersionLink = new URL(gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject()
+                    .get("forgeConfig").getAsJsonObject().get("forgeVersionUrl").getAsString());
+        } catch (MalformedURLException e)
         {
             e.printStackTrace();
         }
     }
-    
+
     public String getAppName()
     {
-        return appName;
+        return MineIDEConfig.appName;
     }
-    
+
     public String getAppVersion()
     {
-        return appVersion;
+        return MineIDEConfig.appVersion;
     }
-    
+
     public String getForgeVersion()
     {
-        return forgeVersion;
+        return MineIDEConfig.forgeVersion;
     }
-    
+
     public static String getMappingVersion()
     {
-        return mappingVersion;
+        return MineIDEConfig.mappingVersion;
     }
-    
+
     public static String getDescription()
     {
-        return description;
+        return MineIDEConfig.description;
     }
-    
+
     public static URL getForgeDownloadLink()
     {
-        return forgeDownloadLink;
+        return MineIDEConfig.forgeDownloadLink;
     }
-    
+
     public static URL getForgeVersionLink()
     {
-        return forgeVersionLink;
+        return MineIDEConfig.forgeVersionLink;
     }
-    
+
     public static String getForgeInstallCommand()
     {
-        return forgeInstallCommand;
+        return MineIDEConfig.forgeInstallCommand;
     }
-    
+
     public static String getForgeBuildCommand()
     {
-        return forgeBuildCommand;
+        return MineIDEConfig.forgeBuildCommand;
     }
 }

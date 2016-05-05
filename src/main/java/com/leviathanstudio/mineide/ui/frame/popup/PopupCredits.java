@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class PopupCredits extends Gui
 {
-    
+
     public static void init()
     {
         Stage stage = new Stage();
@@ -24,20 +24,20 @@ public class PopupCredits extends Gui
         stage.initOwner(MineIDE.primaryStage);
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle("Credits");
-        
+
         StackPane creditsVbox = new StackPane();
-        
+
         WebView browser = new WebView();
         WebEngine webEngine = browser.getEngine();
         HtmlReader htmlReader = new HtmlReader();
         htmlReader.initReading(Utils.HTML_DIR + "credits.html");
         webEngine.loadContent(htmlReader.getOutputContent());
-        
+
         creditsVbox.getChildren().add(browser);
-        
-        Scene scene = new Scene(creditsVbox, width / 1.5, height / 1.5);
+
+        Scene scene = new Scene(creditsVbox, Gui.width / 1.5, Gui.height / 1.5);
         scene.setFill(Color.OLDLACE);
-        
+
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

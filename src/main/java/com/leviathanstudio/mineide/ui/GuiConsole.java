@@ -6,6 +6,6 @@ public class GuiConsole
 {
     public static void init(Scene scene)
     {
-        
+
     }
 }

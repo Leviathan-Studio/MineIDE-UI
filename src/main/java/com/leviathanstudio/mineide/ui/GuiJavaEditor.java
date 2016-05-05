@@ -10,37 +10,37 @@ import javafx.scene.layout.VBox;
 
 public class GuiJavaEditor
 {
-    private static CodeEditor editor;
+    private static CodeEditor   editor;
     public static TabManagement tabBar;
-    
+
     public static CodeEditor getEditor()
     {
-        return editor;
+        return GuiJavaEditor.editor;
     }
-    
+
     public static void init(Scene scene)
     {
-        editor = new CodeEditor("");
-        
+        GuiJavaEditor.editor = new CodeEditor("");
+
         final VBox layout = new VBox();
         layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 30;");
-        
+
         TabPane tabPane = new TabPane();
-        
-        tabBar = new TabManagement(tabPane);
-        
+
+        GuiJavaEditor.tabBar = new TabManagement(tabPane);
+
         BorderPane borderPane = new BorderPane();
-        
-        tabBar.addTab("Main.java", "main", new CodeEditor(""));
-        tabBar.addTab("Test.java", "test", new CodeEditor(""));
-        
+
+        GuiJavaEditor.tabBar.addTab("Main.java", "main", new CodeEditor(""));
+        GuiJavaEditor.tabBar.addTab("Test.java", "test", new CodeEditor(""));
+
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
-        
+
         borderPane.setCenter(tabPane);
-        
-        ((VBox)scene.getRoot()).getChildren().addAll(borderPane);
-        
+
+        ((VBox) scene.getRoot()).getChildren().addAll(borderPane);
+
         MineIDE.primaryStage.setScene(scene);
         MineIDE.primaryStage.show();
     }

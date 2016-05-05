@@ -8,7 +8,7 @@ import java.net.URLConnection;
 public class UrlReader
 {
     private String outputContent;
-    
+
     public void initReading(String urlName)
     {
         URL url;
@@ -16,26 +16,23 @@ public class UrlReader
         {
             url = new URL(urlName);
             URLConnection conn = url.openConnection();
-            
+
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            
+
             String inputLine;
-            while((inputLine = br.readLine()) != null)
-            {
+            while ((inputLine = br.readLine()) != null)
                 this.setOutputContent(inputLine);
-            }
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-    
+
     public String getOutputContent()
     {
-        return outputContent;
+        return this.outputContent;
     }
-    
+
     public void setOutputContent(String outputContent)
     {
         this.outputContent = outputContent;

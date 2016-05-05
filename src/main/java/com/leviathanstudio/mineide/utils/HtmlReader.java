@@ -9,7 +9,7 @@ import com.leviathanstudio.mineide.main.MineIDE;
 public class HtmlReader
 {
     private String outputContent;
-    
+
     public void initReading(String filePath)
     {
         StringBuilder contentBuilder = new StringBuilder();
@@ -17,25 +17,22 @@ public class HtmlReader
         {
             BufferedReader in = new BufferedReader(new FileReader(MineIDE.class.getResource(filePath).getFile()));
             String str;
-            while((str = in.readLine()) != null)
-            {
+            while ((str = in.readLine()) != null)
                 contentBuilder.append(str);
-            }
             in.close();
-        }
-        catch(IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
-        
+
         this.setOutputContent(contentBuilder.toString());
     }
-    
+
     public String getOutputContent()
     {
-        return outputContent;
+        return this.outputContent;
     }
-    
+
     public void setOutputContent(String outputContent)
     {
         this.outputContent = outputContent;

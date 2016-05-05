@@ -39,12 +39,12 @@ public class PopupCreateProject extends Gui
 
     public static int getAuthorIndex()
     {
-        return test;
+        return PopupCreateProject.test;
     }
 
     public static void setAuthorIndex(int testint)
     {
-        test = testint;
+        PopupCreateProject.test = testint;
     }
 
     public static void init()

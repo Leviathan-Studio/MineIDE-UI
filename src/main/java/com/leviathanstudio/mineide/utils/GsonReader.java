@@ -9,16 +9,16 @@ import com.google.gson.JsonParser;
 public class GsonReader
 {
     private JsonObject jsonObject;
-    
+
     public JsonObject getJsonObject()
     {
-        return jsonObject;
+        return this.jsonObject;
     }
-    
+
     public void initReading(String filePath)
     {
         JsonParser parser = new JsonParser();
         InputStream in = this.getClass().getResourceAsStream(filePath);
-        jsonObject = parser.parse(new InputStreamReader(in)).getAsJsonObject();
+        this.jsonObject = parser.parse(new InputStreamReader(in)).getAsJsonObject();
     }
 }
