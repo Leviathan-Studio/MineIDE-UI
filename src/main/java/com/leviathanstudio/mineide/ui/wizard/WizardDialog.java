@@ -70,9 +70,9 @@ public class WizardDialog
 
         // Content
         this.content = new VBox();
-        this.region.setMinSize(500, 400);
-        this.region.setPrefWidth(500);
-        this.region.setMaxWidth(500);
+        this.region.setMinSize(700, 400);
+        this.region.setPrefWidth(700);
+        this.region.setMaxWidth(700);
 
         // Header
         this.header = new StackPane();

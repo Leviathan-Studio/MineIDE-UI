@@ -19,7 +19,12 @@ public class PopupCreateProject
                         .addBoolean("test2", false,
                                 "je suis un prompt")
                         .addEnum("Enum", 0, "Prompt", new IconLabel(GlyphsBuilder.create(MaterialDesignIconView.class)
-                                .glyph(MaterialDesignIcon.ALERT_OCTAGON).size("2em").build(), "Java 1.8"))
+                                .glyph(MaterialDesignIcon.ALERT_OCTAGON).size("2em").build(), "Java 1.8"),
+                                new IconLabel(
+                                        GlyphsBuilder.create(MaterialDesignIconView.class)
+                                                .glyph(MaterialDesignIcon.ALERT_OCTAGON).size("2em").build(),
+                                        "Java 1.7"))
+                        .addBigString("Description", "", "The description of your mod")
                         .build());
         wizard.addStep(new WizardStepBuilder("Second step").addNumber("Age", 1, "Write your age").build());
         wizard.setOnWizardCompleted(e ->

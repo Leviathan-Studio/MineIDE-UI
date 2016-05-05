@@ -2,6 +2,7 @@ package com.leviathanstudio.mineide.ui.wizard;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -167,6 +168,35 @@ public class WizardStepBuilder
         GridPane.setHalignment(jfxCombo, HPos.LEFT);
         step.add(label, 0, step.getData().size() - 1);
         step.add(jfxCombo, 1, step.getData().size() - 1);
+        return this;
+    }
+
+    /**
+     * Add a large String to a wizard step. A TextArea will be used to represent
+     * it.
+     * 
+     * @param fieldName
+     * @param defaultValue
+     *            the default String the textfield will contains.
+     * @param prompt
+     *            the text to show on the textfield prompt String.
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public WizardStepBuilder addBigString(String fieldName, String defaultValue, String prompt)
+    {
+        JFXTextArea text = new JFXTextArea();
+        text.setPromptText(prompt);
+        text.setText(defaultValue);
+        step.getData().put(fieldName, new SimpleStringProperty());
+        step.getData().get(fieldName).bind(text.textProperty());
+        text.setMaxWidth(400);
+
+        Label label = new Label(fieldName);
+        GridPane.setHalignment(label, HPos.RIGHT);
+        GridPane.setHalignment(text, HPos.LEFT);
+        step.add(label, 0, step.getData().size() - 1);
+        step.add(text, 1, step.getData().size() - 1);
         return this;
     }
 
