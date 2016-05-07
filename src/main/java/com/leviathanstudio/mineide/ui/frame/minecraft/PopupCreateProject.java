@@ -15,6 +15,7 @@ public class PopupCreateProject
 {
     public static void init()
     {
+        // TODO: Redo the real wizard
         WizardDialog wizard = new WizardDialog("Project Creation", Gui.root);
         GlyphIcon<?> alert = GlyphsBuilder.create(MaterialDesignIconView.class).glyph(MaterialDesignIcon.ALERT_OCTAGON)
                 .size("2em").build();

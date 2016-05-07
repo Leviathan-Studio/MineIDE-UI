@@ -39,6 +39,7 @@ public class WizardDialog
     private JFXButton        nextButton;
     private JFXButton        cancelButton;
     private JFXButton        previousButton;
+    private Label               titleLabel;
     private List<WizardStep> steps;
     private final WizardStepper stepper;
     private final JFXDialog  dialog;
@@ -77,7 +78,7 @@ public class WizardDialog
 
         // Header
         this.header = new StackPane();
-        Label titleLabel = new Label(this.title);
+        titleLabel = new Label(this.title);
         titleLabel.setPadding(new Insets(24, 24, 20, 24));
         titleLabel.setFont(new Font("Arial", 16));
         this.header.setAlignment(Pos.CENTER_LEFT);
@@ -146,6 +147,7 @@ public class WizardDialog
         if (this.content.getChildren().contains(this.steps.get(currentStep)))
             this.content.getChildren().remove(this.steps.get(currentStep));
         this.currentStep = newStep;
+        this.titleLabel.setText(title + " - " + this.steps.get(currentStep).getStepName());
         this.content.getChildren().add(this.steps.get(currentStep));
         if (this.steps.size() == (this.currentStep + 1))
         {
