@@ -27,6 +27,10 @@ menu.edit.item.newSpecificClass=New Specific Class...
 menu.options=Options
 menu.options.item.preferences=Preferences
 
+menu.run=Run
+menu.run.item.runClient=Run Client
+menu.run.item.runServer=Run Server
+
 menu.help=Help
 menu.help.item.about=About
 

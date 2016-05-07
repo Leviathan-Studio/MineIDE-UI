@@ -27,6 +27,10 @@ menu.edit.item.newSpecificClass=Nouvelle classe spécifique...
 menu.options=Options
 menu.options.item.preferences=Préférences
 
+menu.run=Lancer
+menu.run.item.runClient=Lancer le Client
+menu.run.item.runServer=Lancer le  Server
+
 menu.help=Aide
 menu.help.item.about=A propos
 

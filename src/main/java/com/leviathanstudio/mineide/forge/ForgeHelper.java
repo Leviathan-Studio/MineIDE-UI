@@ -12,15 +12,15 @@ public class ForgeHelper
 {
     @SuppressWarnings("unused")
     private static boolean finishedSetup;
-
+    
     public static void finishedSetup()
     {
         String content = "Download & Installation complete";
-
+        
         File file = new File(Utils.FORGE_DIR + "/installation.txt");
         try
         {
-            if (file.exists())
+            if(file.exists())
             {
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
@@ -28,39 +28,44 @@ public class ForgeHelper
                 bw.close();
                 setFinishedSetup(true);
             }
-        } catch (IOException e)
+        }
+        catch(IOException e)
         {
             e.printStackTrace();
         }
     }
-
+    
     public static void startInstallation() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C",
-                "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeInstallCommand());
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeInstallCommand());
         processBuilder.start();
     }
-
+    
+    public static void runCommand(String type) throws IOException
+    {
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + "gradlew run" + type);
+        processBuilder.start();
+    }
+    
     public static void changeMapping() throws IOException
     {
         Utils.replaceMappingSelected();
     }
-
+    
     public static void compileToJar() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C",
-                "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeBuildCommand());
+        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C", "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeBuildCommand());
         processBuilder.start();
     }
-
+    
     public static boolean isFinishedSetup()
     {
-        if (new File(Utils.FORGE_DIR + "/installation.txt").exists())
+        if(new File(Utils.FORGE_DIR + "/installation.txt").exists())
             return ForgeHelper.finishedSetup = true;
         else
             return ForgeHelper.finishedSetup = false;
     }
-
+    
     public static void setFinishedSetup(boolean finished)
     {
         ForgeHelper.finishedSetup = finished;
