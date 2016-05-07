@@ -23,6 +23,7 @@ import javafx.scene.layout.GridPane;
 public class WizardStep extends GridPane
 {
     private String                stepName;
+    @SuppressWarnings("rawtypes")
     private Map<String, Property> data;
     private List<JFXTextField>    toValidate;
 
@@ -62,5 +63,15 @@ public class WizardStep extends GridPane
                 rtn = false;
         }
         return rtn;
+    }
+
+    public String getStepName()
+    {
+        return stepName;
+    }
+
+    public void setStepName(String stepName)
+    {
+        this.stepName = stepName;
     }
 }

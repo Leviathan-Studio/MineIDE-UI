@@ -1,5 +1,6 @@
 package com.leviathanstudio.mineide.ui.wizard;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -197,9 +198,14 @@ public class WizardDialog
         this.isCancellable = isCancellable;
     }
 
-    public void addStep(WizardStep step)
+    public void addStep(WizardStep... step)
     {
-        this.steps.add(step);
+        this.steps.addAll(Arrays.asList(step));
+    }
+
+    public void addStep(List<WizardStep> step)
+    {
+        this.steps.addAll(step);
     }
 
     public JFXDialog getDialog()

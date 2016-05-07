@@ -5,32 +5,34 @@ import com.leviathanstudio.mineide.ui.controls.IconLabel;
 import com.leviathanstudio.mineide.ui.wizard.WizardDialog;
 import com.leviathanstudio.mineide.ui.wizard.WizardStepBuilder;
 
+import de.jensd.fx.glyphs.GlyphIcon;
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import javafx.scene.control.Toggle;
 
 public class PopupCreateProject
 {
     public static void init()
     {
         WizardDialog wizard = new WizardDialog("Project Creation", Gui.root);
+        GlyphIcon<?> alert = GlyphsBuilder.create(MaterialDesignIconView.class).glyph(MaterialDesignIcon.ALERT_OCTAGON)
+                .size("2em").build();
         wizard.addStep(
-                new WizardStepBuilder("First").addString("test", "default value", "je suis un prompt")
-                        .addBoolean("test2", false,
-                                "je suis un prompt")
-                        .addEnum("Enum", 0, "Prompt", new IconLabel(GlyphsBuilder.create(MaterialDesignIconView.class)
-                                .glyph(MaterialDesignIcon.ALERT_OCTAGON).size("2em").build(), "Java 1.8"),
-                                new IconLabel(
-                                        GlyphsBuilder.create(MaterialDesignIconView.class)
-                                                .glyph(MaterialDesignIcon.ALERT_OCTAGON).size("2em").build(),
-                                        "Java 1.7"))
+                new WizardStepBuilder().addStep("First").addString("test", "default value", "je suis un prompt")
+                        .addBoolean("test2", false, "je suis un prompt")
+                        .addEnum("Enum", 0, "Prompt", new IconLabel(alert, "Java 1.8"),
+                                new IconLabel(alert, "Java 1.7"))
                         .addBigString("Description", "", "The description of your mod")
-                        .build());
-        wizard.addStep(new WizardStepBuilder("Second step").addNumber("Age", 1, "Write your age").build());
+                        .addToggleGroup("Toggle", new String[] { "Oui", "Non", "Nosé" },
+                                new String[] { "Lala", "Lal", "Lele" }, 0)
+                        .addStep("Second step").addNumber("Age", 1, "Write your age").build());
         wizard.setOnWizardCompleted(e ->
         {
             System.out.println("Test: " + e.getSteps().get(0).getData().get("test").getValue() + " | "
                     + e.getSteps().get(0).getData().get("Enum").getValue());
+            System.out.println(
+                    "Hey : " + ((Toggle) e.getSteps().get(0).getData().get("Toggle").getValue()).getUserData());
         });
         wizard.showWizard();
     }

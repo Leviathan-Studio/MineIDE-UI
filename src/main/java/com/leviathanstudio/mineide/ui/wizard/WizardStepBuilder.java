@@ -1,7 +1,11 @@
 package com.leviathanstudio.mineide.ui.wizard;
 
+import java.util.ArrayList;
+
+import com.google.common.collect.Lists;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
@@ -11,21 +15,34 @@ import com.leviathanstudio.mineide.ui.controls.IconLabel;
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class WizardStepBuilder
 {
-    private WizardStep step;
+    private ArrayList<WizardStep> steps;
+    private WizardStep            current;
 
-    public WizardStepBuilder(String stepName)
+    public WizardStepBuilder()
     {
-        step = new WizardStep(stepName);
+        steps = Lists.newArrayList();
+    }
+
+    public WizardStepBuilder addStep(String stepName)
+    {
+        current = new WizardStep(stepName);
+        steps.add(current);
+        return this;
     }
 
     /**
@@ -54,15 +71,15 @@ public class WizardStepBuilder
                 text.validate();
         });
         text.setText(defaultValue);
-        step.getData().put(fieldName, new SimpleStringProperty());
-        step.getData().get(fieldName).bind(text.textProperty());
-        step.addToValidate(text);
+        current.getData().put(fieldName, new SimpleStringProperty());
+        current.getData().get(fieldName).bind(text.textProperty());
+        current.addToValidate(text);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        step.add(label, 0, step.getData().size() - 1);
-        step.add(text, 1, step.getData().size() - 1);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(text, 1, current.getData().size() - 1);
         return this;
     }
 
@@ -93,15 +110,15 @@ public class WizardStepBuilder
                 text.validate();
         });
         text.setText(defaultValue.toString());
-        step.getData().put(fieldName, new SimpleStringProperty());
-        step.getData().get(fieldName).bind(text.textProperty());
-        step.addToValidate(text);
+        current.getData().put(fieldName, new SimpleStringProperty());
+        current.getData().get(fieldName).bind(text.textProperty());
+        current.addToValidate(text);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        step.add(label, 0, step.getData().size() - 1);
-        step.add(text, 1, step.getData().size() - 1);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(text, 1, current.getData().size() - 1);
         return this;
     }
 
@@ -122,14 +139,14 @@ public class WizardStepBuilder
         box.setTooltip(new Tooltip(prompt));
         box.setSelected(defaultValue);
 
-        step.getData().put(fieldName, new SimpleBooleanProperty());
-        step.getData().get(fieldName).bind(box.selectedProperty());
+        current.getData().put(fieldName, new SimpleBooleanProperty());
+        current.getData().get(fieldName).bind(box.selectedProperty());
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(box, HPos.LEFT);
-        step.add(label, 0, step.getData().size() - 1);
-        step.add(box, 1, step.getData().size() - 1);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(box, 1, current.getData().size() - 1);
         return this;
     }
 
@@ -160,14 +177,14 @@ public class WizardStepBuilder
         else
             jfxCombo.setValue(options[defaultValue]);
 
-        step.getData().put(fieldName, new SimpleObjectProperty<IconLabel>());
-        step.getData().get(fieldName).bind(jfxCombo.valueProperty());
+        current.getData().put(fieldName, new SimpleObjectProperty<IconLabel>());
+        current.getData().get(fieldName).bind(jfxCombo.valueProperty());
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(jfxCombo, HPos.LEFT);
-        step.add(label, 0, step.getData().size() - 1);
-        step.add(jfxCombo, 1, step.getData().size() - 1);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(jfxCombo, 1, current.getData().size() - 1);
         return this;
     }
 
@@ -188,20 +205,64 @@ public class WizardStepBuilder
         JFXTextArea text = new JFXTextArea();
         text.setPromptText(prompt);
         text.setText(defaultValue);
-        step.getData().put(fieldName, new SimpleStringProperty());
-        step.getData().get(fieldName).bind(text.textProperty());
+        current.getData().put(fieldName, new SimpleStringProperty());
+        current.getData().get(fieldName).bind(text.textProperty());
         text.setMaxWidth(400);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        step.add(label, 0, step.getData().size() - 1);
-        step.add(text, 1, step.getData().size() - 1);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(text, 1, current.getData().size() - 1);
         return this;
     }
 
-    public WizardStep build()
+    /**
+     * Add an enumeration of options to a wizard step. Multiple RadioButtons
+     * will be used (horizontally-aligned).
+     * 
+     * @param fieldName
+     * @param options
+     *            list of choices.
+     * @param prompt
+     *            the text to show on the buttons tooltip.
+     * @param defaultValue
+     *            the default value to be selected.
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public WizardStepBuilder addToggleGroup(String fieldName, String[] options, String[] prompt, int defaultValue)
     {
-        return step;
+        final ToggleGroup group = new ToggleGroup();
+
+        HBox box = new HBox();
+        
+        for(int i = 0; i < options.length; i++)
+        {
+            JFXRadioButton radio = new JFXRadioButton(options[i]);
+            radio.setPadding(new Insets(10));
+            radio.setToggleGroup(group);
+            radio.setTooltip(new Tooltip(prompt[i]));
+            radio.setUserData(options[i]);
+            if (i == defaultValue)
+                radio.setSelected(true);
+            
+            box.getChildren().add(radio);
+            i++;
+        }
+
+        current.getData().put(fieldName, new ReadOnlyObjectWrapper<Toggle>());
+        current.getData().get(fieldName).bind(group.selectedToggleProperty());
+        Label label = new Label(fieldName);
+        GridPane.setHalignment(label, HPos.RIGHT);
+        GridPane.setHalignment(box, HPos.LEFT);
+        current.add(label, 0, current.getData().size() - 1);
+        current.add(box, 1, current.getData().size() - 1);
+        return this;
+    }
+
+    public ArrayList<WizardStep> build()
+    {
+        return steps;
     }
 }
