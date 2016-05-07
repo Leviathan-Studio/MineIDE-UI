@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.utils.Utils;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,17 +25,17 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ScreenshotsGallery extends Application
+public class ScreenshotsGallery
 {
-    
     Stage stage;
     static ImageView imageView = null;
     
-    @Override
-    public void start(Stage primaryStage) throws Exception
+    public ScreenshotsGallery() throws Exception
     {
-        primaryStage = new Stage(StageStyle.DECORATED);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        stage = MineIDE.primaryStage;
+        
+        stage = new Stage(StageStyle.DECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         ScrollPane root = new ScrollPane();
         TilePane tile = new TilePane();
         root.setStyle("-fx-padding: 2.5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; " + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "CornflowerBlue, " + "derive(MediumSeaGreen, 50%)" + ");");
@@ -60,11 +60,11 @@ public class ScreenshotsGallery extends Application
         root.setFitToWidth(true);
         root.setContent(tile);
         
-        primaryStage.setTitle("Minecraft Screenshots Gallery");
-        primaryStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
-        primaryStage.toFront();
-        primaryStage.setWidth(854);
-        primaryStage.setHeight(480);
+        stage.setTitle("Minecraft Screenshots Gallery");
+        stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        stage.toFront();
+        stage.setWidth(854);
+        stage.setHeight(480);
         Scene scene = new Scene(root);
         
         scene.setOnKeyPressed(new EventHandler<KeyEvent>()
@@ -79,8 +79,8 @@ public class ScreenshotsGallery extends Application
             }
         });
         
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.show();
     }
     
     private ImageView createImageView(final File imageFile)
@@ -138,10 +138,5 @@ public class ScreenshotsGallery extends Application
             ex.printStackTrace();
         }
         return imageView;
-    }
-    
-    public static void main(String[] args)
-    {
-        launch(args);
     }
 }

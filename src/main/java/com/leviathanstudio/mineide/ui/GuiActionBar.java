@@ -10,6 +10,7 @@ import com.leviathanstudio.mineide.ui.component.SpecificClasses;
 import com.leviathanstudio.mineide.ui.controls.MenuItemIcon;
 import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
 import com.leviathanstudio.mineide.ui.frame.minecraft.PopupCreateProject;
+import com.leviathanstudio.mineide.ui.frame.minecraft.ScreenshotsGallery;
 import com.leviathanstudio.mineide.ui.frame.popup.PopupCredits;
 
 import javafx.application.Platform;
@@ -29,7 +30,7 @@ public class GuiActionBar
         MenuBar menuBar = new MenuBar();
         SpecificClasses.initSubClasses();
         
-        menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createOptionMenu(), createRunMenu(), createHelpMenu());
+        menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createOptionMenu(), createMinecraftMenu(), createRunMenu(), createHelpMenu());
         ((VBox)scene.getRoot()).getChildren().addAll(menuBar);
     }
     
@@ -158,6 +159,25 @@ public class GuiActionBar
     }
     
     private static Menu createRunMenu()
+    {
+        Menu menuRun = new Menu(Translation.LANG.getTranslation("menu.minecraft"));
+        
+        MenuItem menuRunClient = new MenuItemIcon("menu.minecraft.item.screenshots", "", (ActionEvent t) -> {
+            try
+            {
+                new ScreenshotsGallery();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        });
+        
+        menuRun.getItems().addAll(menuRunClient);
+        return menuRun;
+    }
+    
+    private static Menu createMinecraftMenu()
     {
         Menu menuRun = new Menu(Translation.LANG.getTranslation("menu.run"));
         

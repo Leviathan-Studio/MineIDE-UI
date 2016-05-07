@@ -27,6 +27,9 @@ menu.edit.item.newSpecificClass=Nouvelle classe spécifique...
 menu.options=Options
 menu.options.item.preferences=Préférences
 
+menu.minecraft=Minecraft
+menu.minecraft.item.screenshots=Captures d'écran
+
 menu.run=Lancer
 menu.run.item.runClient=Lancer le Client
 menu.run.item.runServer=Lancer le  Server
