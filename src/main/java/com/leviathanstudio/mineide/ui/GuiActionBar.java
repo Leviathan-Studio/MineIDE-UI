@@ -55,7 +55,7 @@ public class GuiActionBar
         MenuItem save = new MenuItemIcon("menu.file.item.save", "", "Ctrl+S", (ActionEvent t) ->
         {
         });
-        MenuItem saveAll = new MenuItemIcon("menu.file.item.save", "", "Ctrl+Shift+S", (ActionEvent t) ->
+        MenuItem saveAll = new MenuItemIcon("menu.file.item.saveAll", "", "Ctrl+Shift+S", (ActionEvent t) ->
         {
         });
 
