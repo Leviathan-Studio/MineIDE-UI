@@ -2,6 +2,7 @@ package com.leviathanstudio.mineide.ui;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.main.MineIDE;
+import com.leviathanstudio.mineide.ui.controls.ContextMenuTabPane;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -25,7 +26,7 @@ public class GuiJavaEditor
         final VBox layout = new VBox();
         layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 30;");
 
-        TabPane tabPane = new TabPane();
+        TabPane tabPane = new ContextMenuTabPane();
 
         GuiJavaEditor.tabBar = new TabManagement(tabPane);
 
