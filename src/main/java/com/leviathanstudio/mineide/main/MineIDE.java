@@ -98,13 +98,13 @@ public class MineIDE extends Application
 
                 for (int i = 0; i < availablePhaseTask.size(); i++)
                 {
-                    Thread.sleep(400);
+                    Thread.sleep(100);
                     this.updateProgress(i + 1, availablePhaseTask.size());
                     String nextTask = availablePhaseTask.get(i);
                     finishedPhaseTask.add(nextTask);
                     this.updateMessage(nextTask);
                 }
-                Thread.sleep(400);
+                Thread.sleep(100);
 
                 return finishedPhaseTask;
             }
@@ -118,15 +118,15 @@ public class MineIDE extends Application
 
                 for (int i = 0; i < availableItemTask.size(); i++)
                 {
-                    Thread.sleep(400);
+                    Thread.sleep(100);
                     this.updateProgress(i + 1, availableItemTask.size());
                     String nextTask = availableItemTask.get(i);
                     finishedItemTask.add(nextTask);
                     this.updateMessage(nextTask);
                 }
-                Thread.sleep(400);
+                Thread.sleep(100);
                 this.updateMessage("Launching MineIDE");
-                Thread.sleep(1000);
+                Thread.sleep(500);
 
                 return finishedItemTask;
             }
