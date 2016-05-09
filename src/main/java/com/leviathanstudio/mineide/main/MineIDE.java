@@ -198,7 +198,6 @@ public class MineIDE extends Application
     @Override
     public void stop()
     {
-        GuiJavaEditor.tabBar.closeAll();
         Platform.exit();
     }
     

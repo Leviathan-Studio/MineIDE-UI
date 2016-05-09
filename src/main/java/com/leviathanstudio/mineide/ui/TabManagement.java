@@ -97,9 +97,9 @@ public class TabManagement
             }
             if (pane.getTabs().size() > 0)
             {
+                TabManagement.tabPanes.remove(i);
                 if (pane instanceof CloseableTabPane)
                     ((CloseableTabPane) pane).hide();
-                TabManagement.tabPanes.remove(i);
             }
             else
                 i++;
