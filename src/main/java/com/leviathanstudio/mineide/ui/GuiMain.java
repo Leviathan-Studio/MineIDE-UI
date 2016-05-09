@@ -11,7 +11,7 @@ import javafx.stage.WindowEvent;
 
 public class GuiMain extends Gui
 {
-    public static void init(Stage stage)
+    public void init(Stage stage)
     {
         stage.setOnCloseRequest((WindowEvent e)-> {
             GuiJavaEditor.tabBar.closeAll();

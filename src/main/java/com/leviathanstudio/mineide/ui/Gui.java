@@ -12,7 +12,7 @@ public class Gui
                                         height = 480;
     public static MineIDEConfig mineIdeInfo = new MineIDEConfig();
 
-    public static void init(Stage stage)
+    public void init(Stage stage)
     {
     }
 

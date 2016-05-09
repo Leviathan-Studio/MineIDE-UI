@@ -1,44 +1,28 @@
 package com.leviathanstudio.mineide.main;
 
-import com.jfoenix.controls.JFXProgressBar;
-import com.leviathanstudio.mineide.ui.GuiJavaEditor;
+import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.GuiMain;
+import com.leviathanstudio.mineide.ui.GuiSplash;
 import com.leviathanstudio.mineide.utils.Utils;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 
 /**
  * Example of displaying a splash page for a standalone JavaFX application
  */
 public class MineIDE extends Application
 {
-    private Pane             splashLayout;
-    private JFXProgressBar   loadProgressPhase, loadProgressItem;
-    private Label            progressTextPhase, progressTextItem;
+
     public static Stage      primaryStage;
-    private static final int SPLASH_WIDTH  = 704;
-    private static final int SPLASH_HEIGHT = 294;
+    
 
     public static MineIDE instance;
     
@@ -51,27 +35,7 @@ public class MineIDE extends Application
     public void init()
     {
         instance = this;
-        ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
-
-        this.loadProgressPhase = new JFXProgressBar();
-        this.loadProgressPhase.setPrefWidth(MineIDE.SPLASH_WIDTH);
-        this.loadProgressItem = new JFXProgressBar();
-        this.loadProgressItem.setPrefWidth(MineIDE.SPLASH_WIDTH);
-
-        this.progressTextPhase = new Label();
-        this.progressTextItem = new Label();
-
-        this.splashLayout = new VBox();
-        this.splashLayout.getChildren().addAll(splash, this.loadProgressPhase, this.progressTextPhase,
-                this.loadProgressItem, this.progressTextItem);
-
-        this.progressTextPhase.setAlignment(Pos.CENTER);
-        this.progressTextItem.setAlignment(Pos.CENTER);
-
-        this.splashLayout.setStyle("-fx-padding: 5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; "
-                + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "MediumSeaGreen, "
-                + "derive(MediumSeaGreen, 50%)" + ");");
-        this.splashLayout.setEffect(new DropShadow());
+        
     }
 
     @Override
@@ -132,7 +96,9 @@ public class MineIDE extends Application
             }
         };
 
-        this.showSplash(initStage, loadingPhaseTask, loadingItemPhaseTask,
+        GuiSplash splash = new GuiSplash();
+        splash.init(initStage);
+        splash.showSplash(initStage, loadingPhaseTask, loadingItemPhaseTask,
                 () -> this.showMainStage(loadingPhaseTask.valueProperty()));
         new Thread(loadingPhaseTask).start();
         new Thread(loadingItemPhaseTask).start();
@@ -141,54 +107,11 @@ public class MineIDE extends Application
     private void showMainStage(ReadOnlyObjectProperty<ObservableList<String>> friends)
     {
         MineIDE.primaryStage = new Stage(StageStyle.DECORATED);
-        GuiMain.init(MineIDE.primaryStage);
+        Gui main = new GuiMain();
+        main.init(MineIDE.primaryStage);
         MineIDE.primaryStage.setMaximized(true);
         MineIDE.primaryStage.show();
-    }
-
-    private void showSplash(final Stage initStage, Task<?> phaseTask, Task<?> itemTask,
-            InitCompletionHandler initCompletionHandler)
-    {
-        this.progressTextPhase.textProperty().bind(phaseTask.messageProperty());
-        this.progressTextItem.textProperty().bind(itemTask.messageProperty());
-
-        this.loadProgressPhase.progressProperty().bind(phaseTask.progressProperty());
-        phaseTask.stateProperty().addListener((observableValue, oldState, newState) ->
-        {
-            if (newState == Worker.State.SUCCEEDED)
-            {
-                this.loadProgressPhase.progressProperty().unbind();
-                this.loadProgressPhase.setProgress(1);
-            } // todo add code to gracefully handle other task states.
-        });
-
-        this.loadProgressItem.progressProperty().bind(itemTask.progressProperty());
-        itemTask.stateProperty().addListener((observableValue, oldState, newState) ->
-        {
-            if (newState == Worker.State.SUCCEEDED)
-            {
-                this.loadProgressItem.progressProperty().unbind();
-                this.loadProgressItem.setProgress(1);
-                initStage.toFront();
-                FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), this.splashLayout);
-                fadeSplash.setFromValue(1.0);
-                fadeSplash.setToValue(0.0);
-                fadeSplash.setOnFinished(actionEvent -> initStage.hide());
-                fadeSplash.play();
-
-                initCompletionHandler.complete();
-            } // todo add code to gracefully handle other task states.
-        });
-
-        Scene splashScene = new Scene(this.splashLayout, Color.TRANSPARENT);
-        final Rectangle2D bounds = Screen.getPrimary().getBounds();
-        initStage.setScene(splashScene);
-        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - MineIDE.SPLASH_WIDTH / 2);
-        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - MineIDE.SPLASH_HEIGHT / 2);
-        initStage.initStyle(StageStyle.TRANSPARENT);
-        initStage.setAlwaysOnTop(true);
-        initStage.show();
-    }
+    }  
 
     public interface InitCompletionHandler
     {
@@ -200,6 +123,5 @@ public class MineIDE extends Application
     {
         Platform.exit();
     }
-    
     
 }
