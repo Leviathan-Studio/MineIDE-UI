@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.forge.ForgeHelper;
 import com.leviathanstudio.mineide.forge.ForgeWorkspace;
+import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.main.Translation;
 import com.leviathanstudio.mineide.ui.component.SpecificClasses;
 import com.leviathanstudio.mineide.ui.controls.MenuItemIcon;
@@ -53,12 +54,11 @@ public class GuiActionBar
             GuiJavaEditor.tabBar.closeCurrentTab();
         });
         MenuItem closeAll = new MenuItemIcon("menu.file.item.closeAll", "", "Ctrl+Shift+W", (ActionEvent t) -> {
-            // TODO Close all Tab in all windows
             GuiJavaEditor.tabBar.closeAll();
         });
         
         MenuItem exit = new MenuItemIcon("menu.file.item.exit", "", "Ctrl+Q", (ActionEvent t) -> {
-            Platform.exit();
+            MineIDE.instance.stop();
             
         });
         

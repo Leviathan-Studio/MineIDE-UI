@@ -1,6 +1,7 @@
 package com.leviathanstudio.mineide.main;
 
 import com.jfoenix.controls.JFXProgressBar;
+import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 import com.leviathanstudio.mineide.ui.GuiMain;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -39,6 +40,8 @@ public class MineIDE extends Application
     private static final int SPLASH_WIDTH  = 704;
     private static final int SPLASH_HEIGHT = 294;
 
+    public static MineIDE instance;
+    
     public static void main(String[] args) throws Exception
     {
         launch(args);
@@ -47,6 +50,7 @@ public class MineIDE extends Application
     @Override
     public void init()
     {
+        instance = this;
         ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
 
         this.loadProgressPhase = new JFXProgressBar();
@@ -194,6 +198,9 @@ public class MineIDE extends Application
     @Override
     public void stop()
     {
+        GuiJavaEditor.tabBar.closeAll();
         Platform.exit();
     }
+    
+    
 }
