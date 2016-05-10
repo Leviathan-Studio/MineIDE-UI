@@ -33,19 +33,26 @@ public class ForgeHelper
             e.printStackTrace();
         }
     }
+    
+    public static ProcessBuilder runGradle(String command) throws IOException
+    {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        
+        processBuilder.command("cmd", "/C",
+                "cd " + Utils.FORGE_DIR + " & " + command);
+        
+        processBuilder.start();
+        return processBuilder;
+    }
 
     public static void startInstallation() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C",
-                "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeInstallCommand());
-        processBuilder.start();
+        runGradle(MineIDEConfig.getForgeInstallCommand());
     }
 
-    public static void runCommand(String type) throws IOException
+    public static ProcessBuilder runCommand(String type) throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C",
-                "cd " + Utils.FORGE_DIR + " & " + "gradlew run" + type);
-        processBuilder.start();
+        return runGradle("gradlew run " + type);
     }
 
     public static void changeMapping() throws IOException
@@ -55,9 +62,7 @@ public class ForgeHelper
 
     public static void compileToJar() throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder().command("cmd", "/C",
-                "cd " + Utils.FORGE_DIR + " & " + MineIDEConfig.getForgeBuildCommand());
-        processBuilder.start();
+        runGradle(MineIDEConfig.getForgeBuildCommand());
     }
 
     public static boolean isFinishedSetup()
