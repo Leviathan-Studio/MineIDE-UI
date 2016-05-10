@@ -10,17 +10,36 @@ import com.leviathanstudio.mineide.utils.Utils;
 
 public class ForgeHelper
 {
-    @SuppressWarnings("unused")
-    private static boolean finishedSetup;
-    
-    public static void finishedSetup()
+    private static volatile ForgeHelper instance = null;
+
+    public static final ForgeHelper getInstance()
+    {
+        if (ForgeHelper.instance == null)
+        {
+            synchronized (ForgeHelper.class)
+            {
+                if (ForgeHelper.instance == null)
+                    ForgeHelper.instance = new ForgeHelper();
+            }
+        }
+        return ForgeHelper.instance;
+    }
+
+    private boolean finishedSetup;
+
+    private ForgeHelper()
+    {
+
+    }
+
+    public void finishedSetup()
     {
         String content = "Download & Installation complete";
-        
+
         File file = new File(Utils.FORGE_DIR + "/installation.txt");
         try
         {
-            if(file.exists())
+            if (file.exists())
             {
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
@@ -28,53 +47,49 @@ public class ForgeHelper
                 bw.close();
                 setFinishedSetup(true);
             }
-        }
-        catch(IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
     }
-    
-    public static ProcessBuilder runGradle(String command) throws IOException
+
+    public ProcessBuilder runGradle(String command) throws IOException
     {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        
+
         processBuilder.command("cmd", "/C", "cd " + Utils.FORGE_DIR + " && " + command);
         processBuilder.inheritIO();
         processBuilder.start();
         return processBuilder;
     }
-    
-    public static void startInstallation() throws IOException
+
+    public void startInstallation() throws IOException
     {
         runGradle(MineIDEConfig.getForgeInstallCommand());
     }
-    
-    public static ProcessBuilder runCommand(String type) throws IOException
+
+    public ProcessBuilder runCommand(String type) throws IOException
     {
         return runGradle("gradlew run" + type);
     }
-    
-    public static void changeMapping() throws IOException
+
+    public void changeMapping() throws IOException
     {
         Utils.replaceMappingSelected();
     }
-    
-    public static void compileToJar() throws IOException
+
+    public void compileToJar() throws IOException
     {
         runGradle(MineIDEConfig.getForgeBuildCommand());
     }
-    
-    public static boolean isFinishedSetup()
+
+    public boolean isFinishedSetup()
     {
-        if(new File(Utils.FORGE_DIR + "/installation.txt").exists())
-            return ForgeHelper.finishedSetup = true;
-        else
-            return ForgeHelper.finishedSetup = false;
+        return this.finishedSetup = new File(Utils.FORGE_DIR + "/installation.txt").exists();
     }
-    
-    public static void setFinishedSetup(boolean finished)
+
+    public void setFinishedSetup(boolean finished)
     {
-        ForgeHelper.finishedSetup = finished;
+        this.finishedSetup = finished;
     }
 }

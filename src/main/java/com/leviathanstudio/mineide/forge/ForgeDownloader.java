@@ -6,9 +6,29 @@ import com.leviathanstudio.mineide.utils.ZipHelper;
 
 class ForgeDownloader
 {
-    static boolean downloadTerminated;
-    
-    public static void initDownload()
+    private static volatile ForgeDownloader instance = null;
+
+    public static final ForgeDownloader getInstance()
+    {
+        if (ForgeDownloader.instance == null)
+        {
+            synchronized (ForgeDownloader.class)
+            {
+                if (ForgeDownloader.instance == null)
+                    ForgeDownloader.instance = new ForgeDownloader();
+            }
+        }
+        return ForgeDownloader.instance;
+    }
+
+    private boolean downloadTerminated;
+
+    private ForgeDownloader()
+    {
+
+    }
+
+    public void initDownload()
     {
         try
         {
@@ -16,20 +36,19 @@ class ForgeDownloader
             ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
             ZipHelper.deleteTempFile();
             setDownloadTerminated(true);
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-    
-    public static boolean isDownloadTerminated()
+
+    public boolean isDownloadTerminated()
     {
-        return ForgeDownloader.downloadTerminated;
+        return this.downloadTerminated;
     }
-    
-    private static void setDownloadTerminated(boolean isTerminated)
+
+    private void setDownloadTerminated(boolean isTerminated)
     {
-        ForgeDownloader.downloadTerminated = isTerminated;
+        this.downloadTerminated = isTerminated;
     }
 }

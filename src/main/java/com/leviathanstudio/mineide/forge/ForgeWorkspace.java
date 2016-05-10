@@ -7,20 +7,40 @@ import com.leviathanstudio.mineide.utils.OSHelper;
 
 public class ForgeWorkspace
 {
-    public static void forceUpdate()
+    private static volatile ForgeWorkspace instance = null;
+
+    public static final ForgeWorkspace getInstance()
     {
-        if(!OSHelper.getWorkingDirectory().exists())
+        if (ForgeWorkspace.instance == null)
+        {
+            synchronized (ForgeHelper.class)
+            {
+                if (ForgeWorkspace.instance == null)
+                    ForgeWorkspace.instance = new ForgeWorkspace();
+            }
+        }
+        return ForgeWorkspace.instance;
+    }
+
+    private ForgeWorkspace()
+    {
+
+    }
+
+    public void forceUpdate()
+    {
+        if (!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
-        
+
         setupForge();
     }
-    
-    public static void installWorkspace()
+
+    public void installWorkspace()
     {
-        if(!OSHelper.getWorkingDirectory().exists())
+        if (!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
-        
-        if(!ForgeHelper.isFinishedSetup())
+
+        if (!ForgeHelper.getInstance().isFinishedSetup())
             setupForge();
         else
         {
@@ -28,33 +48,31 @@ public class ForgeWorkspace
             PopupForgeInstallation.showPopup();
         }
     }
-    
-    private static void setupForge()
+
+    private void setupForge()
     {
         System.out.println("Downloading Forge...");
-        ForgeDownloader.initDownload();
-        
-        if(ForgeDownloader.isDownloadTerminated())
+        ForgeDownloader.getInstance().initDownload();
+
+        if (ForgeDownloader.getInstance().isDownloadTerminated())
         {
             System.out.println("Forge Downloaded");
-            
+
             try
             {
                 System.out.println("Change Mapping");
-                ForgeHelper.changeMapping();
+                ForgeHelper.getInstance().changeMapping();
                 System.out.println("Start Forge Installation");
-                ForgeHelper.startInstallation();
-                if(ForgeHelper.isFinishedSetup())
+                ForgeHelper.getInstance().startInstallation();
+                if (ForgeHelper.getInstance().isFinishedSetup())
                 {
-                    ForgeHelper.finishedSetup();
+                    ForgeHelper.getInstance().finishedSetup();
                     System.out.println("Forge Setup Finished");
                 }
-            }
-            catch(IOException e)
+            } catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
-        
     }
 }
