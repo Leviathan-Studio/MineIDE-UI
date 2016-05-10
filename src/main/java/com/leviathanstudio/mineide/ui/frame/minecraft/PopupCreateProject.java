@@ -27,13 +27,15 @@ public class PopupCreateProject
                         .addBigString("Description", "", "The description of your mod")
                         .addToggleGroup("Toggle", new String[] { "Oui", "Non", "Nosé" },
                                 new String[] { "Lala", "Lal", "Lele" }, 0)
-                        .addStep("Second step").addNumber("Age", 1, "Write your age").build());
+                        .addStep("Second step").addNumber("Age", 1, "Write your age")
+                        .addFileChooser("File", "FileLabel", System.getProperty("user.home")).build());
         wizard.setOnWizardCompleted(e ->
         {
             System.out.println("Test: " + e.getSteps().get(0).getData().get("test").getValue() + " | "
                     + e.getSteps().get(0).getData().get("Enum").getValue());
             System.out.println(
                     "Hey : " + ((Toggle) e.getSteps().get(0).getData().get("Toggle").getValue()).getUserData());
+            System.out.println("File : " + e.getSteps().get(1).getData().get("File").getValue());
         });
         wizard.showWizard();
     }

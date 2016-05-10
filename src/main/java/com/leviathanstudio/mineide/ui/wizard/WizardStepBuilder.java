@@ -1,8 +1,10 @@
 package com.leviathanstudio.mineide.ui.wizard;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
@@ -10,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.controls.IconLabel;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;
@@ -18,7 +21,11 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.SetChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -27,7 +34,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 
+/**
+ * A simplified builder to add predefined elements to multiple wizard steps.
+ * 
+ * @author Ourten
+ *
+ */
 public class WizardStepBuilder
 {
     private ArrayList<WizardStep> steps;
@@ -167,7 +181,7 @@ public class WizardStepBuilder
     @SuppressWarnings("unchecked")
     public WizardStepBuilder addEnum(String fieldName, int defaultValue, String prompt, IconLabel... options)
     {
-        JFXComboBox<IconLabel> jfxCombo = new JFXComboBox<IconLabel>();
+        JFXComboBox<IconLabel> jfxCombo = new JFXComboBox<>();
 
         jfxCombo.getItems().addAll(options);
         jfxCombo.setPromptText(prompt);
@@ -236,8 +250,8 @@ public class WizardStepBuilder
         final ToggleGroup group = new ToggleGroup();
 
         HBox box = new HBox();
-        
-        for(int i = 0; i < options.length; i++)
+
+        for (int i = 0; i < options.length; i++)
         {
             JFXRadioButton radio = new JFXRadioButton(options[i]);
             radio.setPadding(new Insets(10));
@@ -246,7 +260,7 @@ public class WizardStepBuilder
             radio.setUserData(options[i]);
             if (i == defaultValue)
                 radio.setSelected(true);
-            
+
             box.getChildren().add(radio);
             i++;
         }
@@ -257,6 +271,81 @@ public class WizardStepBuilder
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(box, HPos.LEFT);
         current.add(label, 0, current.getData().size() - 1);
+        current.add(box, 1, current.getData().size() - 1);
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public WizardStepBuilder addFileChooser(String fieldName, String fileChooseLabel, String startDir,
+            FileChooser.ExtensionFilter... filters)
+    {
+        HBox box = new HBox();
+        JFXButton button = new JFXButton(fileChooseLabel);
+        button.setStyle("-fx-text-fill: BLACK;-fx-font-size: 18px;-fx-opacity: 0.7;");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(fileChooseLabel);
+        fileChooser.setInitialDirectory(new File(startDir));
+        fileChooser.getExtensionFilters().addAll(filters);
+        current.getData().put(fieldName, new SimpleObjectProperty<File>());
+
+        button.setOnAction(e -> current.getData().get(fieldName).setValue(fileChooser.showOpenDialog(Gui.mainStage)));
+
+        Label label = new Label(fieldName);
+        GridPane.setHalignment(label, HPos.RIGHT);
+        GridPane.setHalignment(button, HPos.LEFT);
+        current.add(label, 0, current.getData().size() - 1);
+
+        JFXTextField text = new JFXTextField();
+        text.setEditable(false);
+        current.getData().get(fieldName).addListener(new ChangeListener<File>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue)
+            {
+                text.setText(newValue.getAbsolutePath());
+            }
+        });
+
+        box.getChildren().addAll(text, button);
+        current.add(box, 1, current.getData().size() - 1);
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public WizardStepBuilder addFileChoosers(String fieldName, String fileChooseLabel, String startDir,
+            FileChooser.ExtensionFilter... filters)
+    {
+        HBox box = new HBox();
+        JFXButton button = new JFXButton(fileChooseLabel);
+        button.setStyle("-fx-text-fill: BLACK;-fx-font-size: 18px;-fx-opacity: 0.7;");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(fileChooseLabel);
+        fileChooser.setInitialDirectory(new File(startDir));
+        fileChooser.getExtensionFilters().addAll(filters);
+        current.getData().put(fieldName, new SimpleSetProperty<File>());
+
+        button.setOnAction(
+                e -> current.getData().get(fieldName).setValue(fileChooser.showOpenMultipleDialog(Gui.mainStage)));
+
+        Label label = new Label(fieldName);
+        GridPane.setHalignment(label, HPos.RIGHT);
+        GridPane.setHalignment(button, HPos.LEFT);
+        current.add(label, 0, current.getData().size() - 1);
+
+        JFXTextField text = new JFXTextField();
+        text.setEditable(false);
+        ((SimpleSetProperty<File>) current.getData().get(fieldName)).addListener(new SetChangeListener<File>()
+        {
+            @Override
+            public void onChanged(SetChangeListener.Change<? extends File> change)
+            {
+                text.setText("");
+                change.getSet().forEach(file -> text.appendText(file.getAbsolutePath() + ", "));
+                text.setText(text.getText().substring(0, text.getText().length() - 2));
+            }
+        });
+
+        box.getChildren().addAll(text, button);
         current.add(box, 1, current.getData().size() - 1);
         return this;
     }

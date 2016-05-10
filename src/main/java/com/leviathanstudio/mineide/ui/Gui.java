@@ -17,9 +17,11 @@ public class Gui
     public static int width = 854, height = 480;
     public static MineIDEConfig mineIdeInfo = new MineIDEConfig();
     public static StackPane     root;
+    public static Stage         mainStage;
     
     public static void init(Stage stage)
     {
+        mainStage = stage;
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle(mineIdeInfo.getAppName() + " v" + mineIdeInfo.getAppVersion() + " " + "Forge " + mineIdeInfo.getForgeVersion());
         root = new StackPane();
