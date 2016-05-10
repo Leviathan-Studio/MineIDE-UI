@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 
 public class ContextMenuTabPane extends TabPane
 {
