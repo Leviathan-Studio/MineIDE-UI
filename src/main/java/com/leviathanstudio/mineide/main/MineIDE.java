@@ -20,46 +20,43 @@ import javafx.stage.StageStyle;
  */
 public class MineIDE extends Application
 {
-
-    public static Stage   primaryStage;
-
+    
+    public static Stage primaryStage;
+    
     public static MineIDE instance;
-
+    
     public static void main(String[] args) throws Exception
     {
         launch(args);
     }
-
+    
     @Override
     public void init()
     {
         MineIDE.instance = this;
-
+        
     }
-
+    
     @Override
     public void start(final Stage initStage) throws Exception
     {
         initStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
-
+        
         // init translation
         Translation.init();
-
-        ObservableList<String> finishedPhaseTask = FXCollections.<String> observableArrayList();
-        ObservableList<String> availablePhaseTask = FXCollections.observableArrayList("Pre-Initialization",
-                "Initialization", "Post Initializtion", "Ending Initilization");
-        ObservableList<String> finishedItemTask = FXCollections.<String> observableArrayList();
-        ObservableList<String> availableItemTask = FXCollections.observableArrayList("Installing MineIDE",
-                "Downloading Forge", "Installing Forge", "Building Workspace", "Initialize Java IDE", "Building UI",
-                "Set Java Home");
-
+        
+        ObservableList<String> finishedPhaseTask = FXCollections.<String>observableArrayList();
+        ObservableList<String> availablePhaseTask = FXCollections.observableArrayList("Pre-Initialization", "Initialization", "Post Initializtion", "Ending Initilization");
+        ObservableList<String> finishedItemTask = FXCollections.<String>observableArrayList();
+        ObservableList<String> availableItemTask = FXCollections.observableArrayList("Installing MineIDE", "Downloading Forge", "Installing Forge", "Building Workspace", "Initialize Java IDE", "Building UI", "Set Java Home");
+        
         final Task<ObservableList<String>> loadingPhaseTask = new Task<ObservableList<String>>()
         {
             @Override
             protected ObservableList<String> call() throws InterruptedException
             {
-
-                for (int i = 0; i < availablePhaseTask.size(); i++)
+                
+                for(int i = 0; i < availablePhaseTask.size(); i++)
                 {
                     Thread.sleep(100);
                     this.updateProgress(i + 1, availablePhaseTask.size());
@@ -68,18 +65,18 @@ public class MineIDE extends Application
                     this.updateMessage(nextTask);
                 }
                 Thread.sleep(100);
-
+                
                 return finishedPhaseTask;
             }
         };
-
+        
         final Task<ObservableList<String>> loadingItemPhaseTask = new Task<ObservableList<String>>()
         {
             @Override
             protected ObservableList<String> call() throws InterruptedException
             {
-
-                for (int i = 0; i < availableItemTask.size(); i++)
+                
+                for(int i = 0; i < availableItemTask.size(); i++)
                 {
                     Thread.sleep(100);
                     this.updateProgress(i + 1, availableItemTask.size());
@@ -90,19 +87,18 @@ public class MineIDE extends Application
                 Thread.sleep(100);
                 this.updateMessage("Launching MineIDE");
                 Thread.sleep(500);
-
+                
                 return finishedItemTask;
             }
         };
-
+        
         GuiSplash splash = new GuiSplash();
         splash.init(initStage);
-        splash.showSplash(initStage, loadingPhaseTask, loadingItemPhaseTask,
-                () -> this.showMainStage(loadingPhaseTask.valueProperty()));
+        splash.showSplash(initStage, loadingPhaseTask, loadingItemPhaseTask, () -> this.showMainStage(loadingPhaseTask.valueProperty()));
         new Thread(loadingPhaseTask).start();
         new Thread(loadingItemPhaseTask).start();
     }
-
+    
     private void showMainStage(ReadOnlyObjectProperty<ObservableList<String>> friends)
     {
         MineIDE.primaryStage = new Stage(StageStyle.DECORATED);
@@ -111,16 +107,16 @@ public class MineIDE extends Application
         MineIDE.primaryStage.setMaximized(true);
         MineIDE.primaryStage.show();
     }
-
+    
     public interface InitCompletionHandler
     {
         void complete();
     }
-
+    
     @Override
     public void stop()
     {
         Platform.exit();
     }
-
+    
 }

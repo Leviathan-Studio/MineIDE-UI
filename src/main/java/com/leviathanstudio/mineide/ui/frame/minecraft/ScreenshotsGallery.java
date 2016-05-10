@@ -27,63 +27,61 @@ import javafx.stage.StageStyle;
 
 public class ScreenshotsGallery
 {
-    Stage            stage;
+    Stage stage;
     static ImageView imageView = null;
-
+    
     public ScreenshotsGallery() throws Exception
     {
         this.stage = MineIDE.primaryStage;
-
+        
         this.stage = new Stage(StageStyle.DECORATED);
         this.stage.initStyle(StageStyle.TRANSPARENT);
         ScrollPane root = new ScrollPane();
         TilePane tile = new TilePane();
-        root.setStyle("-fx-padding: 2.5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; "
-                + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "CornflowerBlue, "
-                + "derive(MediumSeaGreen, 50%)" + ");");
+        root.setStyle("-fx-padding: 2.5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; " + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "CornflowerBlue, " + "derive(MediumSeaGreen, 50%)" + ");");
         root.setEffect(new DropShadow());
         tile.setPadding(new Insets(15, 15, 15, 15));
         tile.setHgap(15);
-
+        
         String path = Utils.FORGE_DIR + "/run/screenshots/";
-
+        
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-
-        for (final File file : listOfFiles)
+        
+        for(final File file : listOfFiles)
         {
             ImageView imageView;
             imageView = this.createImageView(file);
             tile.getChildren().addAll(imageView);
         }
-
+        
         root.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
         root.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical
                                                                   // scroll bar
         root.setFitToWidth(true);
         root.setContent(tile);
-
+        
         this.stage.setTitle("Minecraft Screenshots Gallery");
         this.stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         this.stage.toFront();
         this.stage.setWidth(854);
         this.stage.setHeight(480);
         Scene scene = new Scene(root);
-
+        
         scene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
             @Override
             public void handle(KeyEvent keyEvent)
             {
-                if (keyEvent.getEventType() == KeyEvent.KEY_PRESSED && keyEvent.getCode() == KeyCode.ESCAPE)
+                if(keyEvent.getEventType() == KeyEvent.KEY_PRESSED && keyEvent.getCode() == KeyCode.ESCAPE)
                     Platform.exit();
             }
         });
-
+        
         this.stage.setScene(scene);
         this.stage.show();
     }
-
+    
     private ImageView createImageView(final File imageFile)
     {
         try
@@ -93,13 +91,13 @@ public class ScreenshotsGallery
             ScreenshotsGallery.imageView.setFitWidth(150);
             ScreenshotsGallery.imageView.setOnMouseClicked(new EventHandler<MouseEvent>()
             {
-
+                
                 @Override
                 public void handle(MouseEvent mouseEvent)
                 {
-
-                    if (mouseEvent.getButton().equals(MouseButton.PRIMARY))
-                        if (mouseEvent.getClickCount() == 1)
+                    
+                    if(mouseEvent.getButton().equals(MouseButton.PRIMARY))
+                        if(mouseEvent.getClickCount() == 1)
                             try
                             {
                                 BorderPane borderPane = new BorderPane();
@@ -120,13 +118,15 @@ public class ScreenshotsGallery
                                 Scene scene = new Scene(borderPane, Color.BLACK);
                                 newStage.setScene(scene);
                                 newStage.show();
-                            } catch (FileNotFoundException e)
+                            }
+                            catch(FileNotFoundException e)
                             {
                                 e.printStackTrace();
                             }
                 }
             });
-        } catch (FileNotFoundException ex)
+        }
+        catch(FileNotFoundException ex)
         {
             ex.printStackTrace();
         }

@@ -7,7 +7,7 @@ import com.leviathanstudio.mineide.utils.ZipHelper;
 class ForgeDownloader
 {
     static boolean downloadTerminated;
-
+    
     public static void initDownload()
     {
         try
@@ -16,17 +16,18 @@ class ForgeDownloader
             ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
             ZipHelper.deleteTempFile();
             setDownloadTerminated(true);
-        } catch (Exception e)
+        }
+        catch(Exception e)
         {
             e.printStackTrace();
         }
     }
-
+    
     public static boolean isDownloadTerminated()
     {
         return ForgeDownloader.downloadTerminated;
     }
-
+    
     private static void setDownloadTerminated(boolean isTerminated)
     {
         ForgeDownloader.downloadTerminated = isTerminated;

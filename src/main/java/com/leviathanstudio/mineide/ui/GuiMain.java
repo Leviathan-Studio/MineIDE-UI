@@ -14,23 +14,21 @@ public class GuiMain extends Gui
     @Override
     public void init(Stage stage)
     {
-        stage.setOnCloseRequest((WindowEvent e) ->
-        {
+        stage.setOnCloseRequest((WindowEvent e) -> {
             GuiJavaEditor.tabBar.closeAll();
-
+            
         });
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
-        stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
-                + Gui.mineIdeInfo.getForgeVersion());
+        stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge " + Gui.mineIdeInfo.getForgeVersion());
         VBox root = new VBox();
         root.setId("mainFrame");
         Scene scene = new Scene(root, Gui.width, Gui.height);
         scene.getStylesheets().add(MineIDE.class.getResource(Utils.CSS_DIR + "style.css").toString());
-
+        
         GuiActionBar.init(scene);
         GuiJavaEditor.init(scene);
         // GuiConsole.init(scene);
-
+        
         stage.setScene(scene);
         stage.show();
     }

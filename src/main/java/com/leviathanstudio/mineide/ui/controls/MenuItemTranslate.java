@@ -14,13 +14,13 @@ public class MenuItemTranslate extends MenuItem
         this(text, event);
         this.setAccelerator(KeyCombination.keyCombination(shortKey));
     }
-
+    
     public MenuItemTranslate(String text, EventHandler<ActionEvent> event)
     {
         this(text);
         this.setOnAction(event);
     }
-
+    
     public MenuItemTranslate(String text)
     {
         super(Translation.LANG.getTranslation(text));

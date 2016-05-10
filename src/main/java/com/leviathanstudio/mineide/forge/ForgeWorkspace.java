@@ -9,18 +9,18 @@ public class ForgeWorkspace
 {
     public static void forceUpdate()
     {
-        if (!OSHelper.getWorkingDirectory().exists())
+        if(!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
-
+        
         setupForge();
     }
-
+    
     public static void installWorkspace()
     {
-        if (!OSHelper.getWorkingDirectory().exists())
+        if(!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
-
-        if (!ForgeHelper.isFinishedSetup())
+        
+        if(!ForgeHelper.isFinishedSetup())
             setupForge();
         else
         {
@@ -28,32 +28,33 @@ public class ForgeWorkspace
             PopupForgeInstallation.showPopup();
         }
     }
-
+    
     private static void setupForge()
     {
         System.out.println("Downloading Forge...");
         ForgeDownloader.initDownload();
-
-        if (ForgeDownloader.isDownloadTerminated())
+        
+        if(ForgeDownloader.isDownloadTerminated())
         {
             System.out.println("Forge Downloaded");
-
+            
             try
             {
                 System.out.println("Change Mapping");
                 ForgeHelper.changeMapping();
                 System.out.println("Start Forge Installation");
                 ForgeHelper.startInstallation();
-                if (ForgeHelper.isFinishedSetup())
+                if(ForgeHelper.isFinishedSetup())
                 {
                     ForgeHelper.finishedSetup();
                     System.out.println("Forge Setup Finished");
                 }
-            } catch (IOException e)
+            }
+            catch(IOException e)
             {
                 e.printStackTrace();
             }
         }
-
+        
     }
 }
