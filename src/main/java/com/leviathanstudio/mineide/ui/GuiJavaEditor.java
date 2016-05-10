@@ -3,6 +3,7 @@ package com.leviathanstudio.mineide.ui;
 import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.controls.ContextMenuTabPane;
+import com.leviathanstudio.mineide.ui.tab.TabConsole;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -34,6 +35,9 @@ public class GuiJavaEditor
 
         GuiJavaEditor.tabBar.addTab("Main.java", "main", new CodeEditor(""));
         GuiJavaEditor.tabBar.addTab("Test.java", "test", new CodeEditor(""));
+        GuiJavaEditor.tabBar.addTab("Console", "console", new TabConsole());
+
+        
 
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
