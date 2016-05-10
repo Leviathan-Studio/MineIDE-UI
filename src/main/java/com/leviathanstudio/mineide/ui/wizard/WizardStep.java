@@ -11,6 +11,8 @@ import javafx.beans.property.Property;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A WizardStep object represent a step of one wizard. It contains informations
@@ -22,7 +24,11 @@ import javafx.scene.layout.GridPane;
  */
 public class WizardStep extends GridPane
 {
+    @Getter
+    @Setter
     private String                stepName;
+    @Getter
+    @Setter
     @SuppressWarnings("rawtypes")
     private Map<String, Property> data;
     private List<JFXTextField>    toValidate;
@@ -36,16 +42,6 @@ public class WizardStep extends GridPane
         this.setVgap(10);
         this.setPadding(new Insets(20, 24, 24, 24));
         this.setAlignment(Pos.CENTER);
-    }
-
-    public Map<String, Property> getData()
-    {
-        return data;
-    }
-
-    public void setData(Map<String, Property> data)
-    {
-        this.data = data;
     }
 
     public void addToValidate(JFXTextField field)
@@ -63,15 +59,5 @@ public class WizardStep extends GridPane
                 rtn = false;
         }
         return rtn;
-    }
-
-    public String getStepName()
-    {
-        return stepName;
-    }
-
-    public void setStepName(String stepName)
-    {
-        this.stepName = stepName;
     }
 }

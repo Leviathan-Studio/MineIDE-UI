@@ -20,6 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A WizardDialog represent a wizard collecting various user input into multiple
@@ -30,20 +32,28 @@ import javafx.scene.text.Font;
  */
 public class WizardDialog
 {
-    private String           title;
-    private boolean          isCancellable;
-    private int              currentStep;
-    private StackPane        header;
-    private BorderPane       footer;
-    private VBox             content;
-    private JFXButton        nextButton;
-    private JFXButton        cancelButton;
-    private JFXButton        previousButton;
+    private String              title;
+    @Getter
+    @Setter
+    private boolean             isCancellable;
+    @Getter
+    @Setter
+    private int                 currentStep;
+    private StackPane           header;
+    private BorderPane          footer;
+    private VBox                content;
+    private JFXButton           nextButton;
+    private JFXButton           cancelButton;
+    private JFXButton           previousButton;
     private Label               titleLabel;
-    private List<WizardStep> steps;
+    @Getter
+    @Setter
+    private List<WizardStep>    steps;
     private final WizardStepper stepper;
-    private final JFXDialog  dialog;
-    private final BorderPane region;
+    @Getter
+    private final JFXDialog     dialog;
+    @Getter
+    private final BorderPane    region;
 
     /**
      * Wizard dialog constructor
@@ -185,21 +195,6 @@ public class WizardDialog
         dialog.close();
     }
 
-    public boolean isCancellable()
-    {
-        return isCancellable;
-    }
-
-    /**
-     * 
-     * @param isCancellable
-     *            : choose if the wizard can be cancelled, by default yes.
-     */
-    public void setCancellable(boolean isCancellable)
-    {
-        this.isCancellable = isCancellable;
-    }
-
     public void addStep(WizardStep... step)
     {
         this.steps.addAll(Arrays.asList(step));
@@ -208,36 +203,6 @@ public class WizardDialog
     public void addStep(List<WizardStep> step)
     {
         this.steps.addAll(step);
-    }
-
-    public JFXDialog getDialog()
-    {
-        return dialog;
-    }
-
-    public BorderPane getRegion()
-    {
-        return region;
-    }
-
-    public List<WizardStep> getSteps()
-    {
-        return steps;
-    }
-
-    public void setSteps(List<WizardStep> steps)
-    {
-        this.steps = steps;
-    }
-
-    public int getCurrentStep()
-    {
-        return currentStep;
-    }
-
-    public void setCurrentStep(int currentStep)
-    {
-        this.currentStep = currentStep;
     }
 
     // EVENTS
