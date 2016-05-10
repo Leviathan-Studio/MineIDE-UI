@@ -1,7 +1,6 @@
 package com.leviathanstudio.mineide.ui;
 
 import com.jfoenix.controls.JFXProgressBar;
-import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.main.MineIDE.InitCompletionHandler;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -28,10 +27,11 @@ public class GuiSplash extends Gui
     private Pane             splashLayout;
     private JFXProgressBar   loadProgressPhase, loadProgressItem;
     private Label            progressTextPhase, progressTextItem;
-    
+
     private static final int SPLASH_WIDTH  = 704;
     private static final int SPLASH_HEIGHT = 294;
-    
+
+    @Override
     public void init(Stage stage)
     {
         ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
@@ -56,7 +56,7 @@ public class GuiSplash extends Gui
                 + "derive(MediumSeaGreen, 50%)" + ");");
         this.splashLayout.setEffect(new DropShadow());
     }
-    
+
     public void showSplash(final Stage initStage, Task<?> phaseTask, Task<?> itemTask,
             InitCompletionHandler initCompletionHandler)
     {
@@ -94,8 +94,8 @@ public class GuiSplash extends Gui
         Scene splashScene = new Scene(this.splashLayout, Color.TRANSPARENT);
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);
-        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
-        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
+        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - GuiSplash.SPLASH_WIDTH / 2);
+        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - GuiSplash.SPLASH_HEIGHT / 2);
         initStage.initStyle(StageStyle.TRANSPARENT);
         initStage.setAlwaysOnTop(true);
         initStage.show();

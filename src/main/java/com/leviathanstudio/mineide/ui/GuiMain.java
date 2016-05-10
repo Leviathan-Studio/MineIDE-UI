@@ -11,9 +11,11 @@ import javafx.stage.WindowEvent;
 
 public class GuiMain extends Gui
 {
+    @Override
     public void init(Stage stage)
     {
-        stage.setOnCloseRequest((WindowEvent e)-> {
+        stage.setOnCloseRequest((WindowEvent e) ->
+        {
             GuiJavaEditor.tabBar.closeAll();
 
         });
@@ -27,7 +29,7 @@ public class GuiMain extends Gui
 
         GuiActionBar.init(scene);
         GuiJavaEditor.init(scene);
-        //GuiConsole.init(scene);
+        // GuiConsole.init(scene);
 
         stage.setScene(scene);
         stage.show();

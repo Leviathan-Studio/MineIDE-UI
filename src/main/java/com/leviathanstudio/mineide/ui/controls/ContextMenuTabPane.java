@@ -15,13 +15,13 @@ public class ContextMenuTabPane extends TabPane
     public ContextMenuTabPane(Tab... tabs)
     {
         super(tabs);
-        init();
+        this.init();
     }
 
     public ContextMenuTabPane()
     {
         super();
-        init();
+        this.init();
     }
 
     private void init()

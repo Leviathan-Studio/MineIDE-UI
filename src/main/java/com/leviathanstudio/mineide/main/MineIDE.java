@@ -21,11 +21,10 @@ import javafx.stage.StageStyle;
 public class MineIDE extends Application
 {
 
-    public static Stage      primaryStage;
-    
+    public static Stage   primaryStage;
 
     public static MineIDE instance;
-    
+
     public static void main(String[] args) throws Exception
     {
         launch(args);
@@ -34,8 +33,8 @@ public class MineIDE extends Application
     @Override
     public void init()
     {
-        instance = this;
-        
+        MineIDE.instance = this;
+
     }
 
     @Override
@@ -111,7 +110,7 @@ public class MineIDE extends Application
         main.init(MineIDE.primaryStage);
         MineIDE.primaryStage.setMaximized(true);
         MineIDE.primaryStage.show();
-    }  
+    }
 
     public interface InitCompletionHandler
     {
@@ -123,5 +122,5 @@ public class MineIDE extends Application
     {
         Platform.exit();
     }
-    
+
 }

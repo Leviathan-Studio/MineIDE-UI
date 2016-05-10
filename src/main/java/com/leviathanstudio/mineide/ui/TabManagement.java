@@ -28,7 +28,7 @@ public class TabManagement
     public TabManagement(TabPane tabPane)
     {
         this.tabPane = tabPane;
-        tabPanes.add(tabPane);
+        TabManagement.tabPanes.add(tabPane);
     }
 
     public void addTab(String name, String id, Node content)
