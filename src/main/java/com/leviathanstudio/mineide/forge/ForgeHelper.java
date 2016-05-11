@@ -58,6 +58,8 @@ public class ForgeHelper
         ProcessBuilder processBuilder = new ProcessBuilder();
 
         processBuilder.command("cmd", "/C", "cd " + Utils.FORGE_DIR + " && " + command);
+        processBuilder.directory(Utils.FORGE_DIR);     
+        
         processBuilder.inheritIO();
         processBuilder.start();
         return processBuilder;
