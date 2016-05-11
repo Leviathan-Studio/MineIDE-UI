@@ -9,6 +9,8 @@ import de.jensd.fx.glyphs.GlyphIcon;
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Toggle;
 
 public class PopupCreateProject
@@ -28,7 +30,8 @@ public class PopupCreateProject
                         .addToggleGroup("Toggle", new String[] { "Oui", "Non", "Nosé" },
                                 new String[] { "Lala", "Lal", "Lele" }, 0)
                         .addStep("Second step").addNumber("Age", 1, "Write your age")
-                        .addFileChooser("File", "FileLabel", System.getProperty("user.home")).build());
+                        .addFileChooser("File", "FileLabel", System.getProperty("user.home"))
+                        .addStringList("Authors", "Authors of your mod").build());
         wizard.setOnWizardCompleted(e ->
         {
             System.out.println("Test: " + e.getSteps().get(0).getData().get("test").getValue() + " | "
@@ -36,6 +39,8 @@ public class PopupCreateProject
             System.out.println(
                     "Hey : " + ((Toggle) e.getSteps().get(0).getData().get("Toggle").getValue()).getUserData());
             System.out.println("File : " + e.getSteps().get(1).getData().get("File").getValue());
+            ((SimpleListProperty<SimpleStringProperty>) e.getSteps().get(1).getData().get("Authors")).get()
+                    .forEach(value -> System.out.println("Author : " + value.getValue()));
         });
         wizard.showWizard();
     }

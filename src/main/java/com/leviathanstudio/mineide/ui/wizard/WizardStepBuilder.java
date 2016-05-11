@@ -14,26 +14,33 @@ import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.controls.IconLabel;
+import com.leviathanstudio.mineide.utils.Utils;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.SetChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 /**
@@ -347,6 +354,55 @@ public class WizardStepBuilder
 
         box.getChildren().addAll(text, button);
         current.add(box, 1, current.getData().size() - 1);
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public WizardStepBuilder addStringList(String fieldName, String promptText, String... defaultValues)
+    {
+        ScrollPane pane = new ScrollPane();
+        VBox box = new VBox();
+        VBox innerBox = new VBox();
+        JFXButton createButton = new JFXButton();
+        createButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/addIcon.png")));
+
+        pane.setContent(box);
+        current.getData().put(fieldName, new SimpleListProperty<SimpleStringProperty>());
+        ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName))
+                .setValue(FXCollections.observableArrayList());
+        for (String value : defaultValues)
+        {
+            HBox box2 = new HBox();
+            JFXTextField textField = new JFXTextField(value);
+            textField.setPromptText(promptText);
+            JFXButton deleteButton = new JFXButton();
+
+            deleteButton.setOnAction(e -> innerBox.getChildren().remove(box2));
+            box2.getChildren().addAll(textField, deleteButton);
+            innerBox.getChildren().add(box2);
+        }
+        createButton.setOnAction(e ->
+        {
+            HBox box2 = new HBox();
+            JFXTextField textField = new JFXTextField();
+            textField.setPromptText(promptText);
+
+            SimpleStringProperty textProperty = new SimpleStringProperty();
+            textProperty.bind(textField.textProperty());
+            ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName)).add(textProperty);
+            JFXButton deleteButton = new JFXButton();
+            deleteButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/trashBinIcon.png")));
+            deleteButton.setOnAction(e2 ->
+            {
+                ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName)).remove(textProperty);
+                innerBox.getChildren().remove(box2);
+            });
+            box2.getChildren().addAll(textField, deleteButton);
+            innerBox.getChildren().add(box2);
+        });
+        box.getChildren().add(innerBox);
+        box.getChildren().add(createButton);
+        current.add(pane, 1, current.getData().size() - 1);
         return this;
     }
 
