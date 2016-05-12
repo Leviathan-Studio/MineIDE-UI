@@ -25,14 +25,14 @@ import javafx.scene.layout.VBox;
 
 public class GuiActionBar
 {
-    public static void init(Scene scene)
+    public static void init(Scene scene, VBox box)
     {
         MenuBar menuBar = new MenuBar();
         SpecificClasses.initSubClasses();
 
         menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createOptionMenu(),
                 createMinecraftMenu(), createRunMenu(), createHelpMenu());
-        ((VBox) scene.getRoot()).getChildren().addAll(menuBar);
+        box.getChildren().add(menuBar);
     }
 
     private static Menu createFileMenu()
