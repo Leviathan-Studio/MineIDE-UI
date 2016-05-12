@@ -1,17 +1,19 @@
 package com.leviathanstudio.mineide.ui.frame.minecraft;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.logging.log4j.core.util.IOUtils;
+
+import com.google.gson.stream.JsonWriter;
 import com.leviathanstudio.mineide.ui.Gui;
-import com.leviathanstudio.mineide.ui.controls.IconLabel;
 import com.leviathanstudio.mineide.ui.wizard.WizardDialog;
 import com.leviathanstudio.mineide.ui.wizard.WizardStepBuilder;
+import com.leviathanstudio.mineide.utils.Utils;
 
-import de.jensd.fx.glyphs.GlyphIcon;
-import de.jensd.fx.glyphs.GlyphsBuilder;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Toggle;
 
 public class PopupCreateProject
 {
@@ -19,28 +21,46 @@ public class PopupCreateProject
     {
         // TODO: Redo the real wizard
         WizardDialog wizard = new WizardDialog("Project Creation", Gui.root);
-        GlyphIcon<?> alert = GlyphsBuilder.create(MaterialDesignIconView.class).glyph(MaterialDesignIcon.ALERT_OCTAGON)
-                .size("2em").build();
-        wizard.addStep(
-                new WizardStepBuilder().addStep("First").addString("test", "default value", "je suis un prompt")
-                        .addBoolean("test2", false, "je suis un prompt")
-                        .addEnum("Enum", 0, "Prompt", new IconLabel(alert, "Java 1.8"),
-                                new IconLabel(alert, "Java 1.7"))
-                        .addBigString("Description", "", "The description of your mod")
-                        .addToggleGroup("Toggle", new String[] { "Oui", "Non", "Nosé" },
-                                new String[] { "Lala", "Lal", "Lele" }, 0)
-                        .addStep("Second step").addNumber("Age", 1, "Write your age")
-                        .addFileChooser("File", "FileLabel", System.getProperty("user.home"))
-                        .addStringList("Authors", "Authors of your mod").build());
-        wizard.setOnWizardCompleted(e ->
+        wizard.addStep(new WizardStepBuilder().addStep("mcmod.info").addString("Name", "", "Your mod name")
+                .addString("Version", "0.0.1", "The initial version of your mod")
+                .addStringList("Authors", "Author Name").addBigString("Description", "", "The description of your mod")
+                .build());
+        wizard.setOnWizardCompleted(event ->
         {
-            System.out.println("Test: " + e.getSteps().get(0).getData().get("test").getValue() + " | "
-                    + e.getSteps().get(0).getData().get("Enum").getValue());
-            System.out.println(
-                    "Hey : " + ((Toggle) e.getSteps().get(0).getData().get("Toggle").getValue()).getUserData());
-            System.out.println("File : " + e.getSteps().get(1).getData().get("File").getValue());
-            ((SimpleListProperty<SimpleStringProperty>) e.getSteps().get(1).getData().get("Authors")).get()
-                    .forEach(value -> System.out.println("Author : " + value.getValue()));
+            JsonWriter writer;
+            try
+            {
+                Utils.FORGE_DIR.mkdirs();
+                writer = new JsonWriter(new FileWriter(Utils.FORGE_DIR + "/info_mod.json"));
+                writer.beginObject();
+                writer.name("modName").value((String) wizard.getSteps().get(0).getData().get("Name").getValue());
+                writer.name("modModID").value(((String) wizard.getSteps().get(0).getData().get("Name").getValue())
+                        .toLowerCase().replace(" ", "_").replace("-", "_"));
+                writer.name("modVersion").value((String) wizard.getSteps().get(0).getData().get("Version").getValue());
+                writer.name("authors");
+                writer.beginArray();
+                ((SimpleListProperty<SimpleStringProperty>) wizard.getSteps().get(0).getData().get("Authors")).get()
+                        .forEach(author ->
+                        {
+                            try
+                            {
+                                writer.value(author.getValue());
+                            } catch (IOException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        });
+                writer.endArray();
+                writer.name("modDescription")
+                        .value((String) wizard.getSteps().get(0).getData().get("Description").getValue());
+                writer.endObject();
+                writer.close();
+                System.out.println(IOUtils.toString(new FileReader(Utils.FORGE_DIR + "/info_mod.json")));
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         });
         wizard.showWizard();
     }

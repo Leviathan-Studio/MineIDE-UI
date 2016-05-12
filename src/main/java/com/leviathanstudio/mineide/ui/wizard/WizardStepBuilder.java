@@ -402,6 +402,10 @@ public class WizardStepBuilder
         });
         box.getChildren().add(innerBox);
         box.getChildren().add(createButton);
+        Label label = new Label(fieldName);
+        GridPane.setHalignment(label, HPos.RIGHT);
+        GridPane.setHalignment(pane, HPos.LEFT);
+        current.add(label, 0, current.getData().size() - 1);
         current.add(pane, 1, current.getData().size() - 1);
         return this;
     }
