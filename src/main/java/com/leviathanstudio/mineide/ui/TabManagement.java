@@ -29,7 +29,7 @@ public class TabManagement
     
     public void addTab(String name, String id, Node content)
     {
-        Tab tab = this.createTabWithContextMenu(name, id);
+        Tab tab = this.createTabWithContextMenu(name, id, "/mineIDE/img/addIcon.png");
         HBox hbox = new HBox();
         
         hbox.getChildren().add(content);
@@ -38,9 +38,9 @@ public class TabManagement
         this.tabPane.getTabs().add(tab);
     }
     
-    private Tab createTabWithContextMenu(String title, String id, MenuItem... items)
+    private Tab createTabWithContextMenu(String title, String id, String iconPath)
     {
-        Tab tab = new DraggableTab(title, "/mineIDE/img/addIcon.png");
+        Tab tab = new DraggableTab(title, iconPath);
         tab.setId(id);
         
         ContextMenu contextMenu = new ContextMenu(new MenuItem());
