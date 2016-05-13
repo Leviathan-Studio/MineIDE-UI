@@ -66,7 +66,7 @@ public class GuiActionBar
         });
         MenuItem closeAll = new MenuItemIcon("menu.file.item.closeAll", "", "Ctrl+Shift+W", (ActionEvent t) ->
         {
-            GuiJavaEditor.tabBar.closeAll();
+            TabHelper.closeAll();
         });
 
         MenuItem exit = new MenuItemIcon("menu.file.item.exit", "", "Ctrl+Q", (ActionEvent t) ->

@@ -19,8 +19,7 @@ public class GuiMain extends Gui
     {
         stage.setOnCloseRequest((WindowEvent e) ->
         {
-            GuiJavaEditor.tabBar.closeAll();
-
+            TabHelper.closeAll();
         });
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
