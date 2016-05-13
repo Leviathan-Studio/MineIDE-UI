@@ -34,16 +34,10 @@ public class MenuItemIcon extends MenuItem
         if(iconPath.isEmpty())
             iconPath = "/mineIDE/img/empty.png";
         
-        // container for the icon and the text
-        HBox hBox = new HBox();
-        
         this.icon = new ImageView(DraggableTab.class.getResource(iconPath).toString());
         this.icon.setFitWidth(this.ICON_SIZE);
-        this.icon.setFitHeight(this.ICON_SIZE);
-        this.getText();
+        this.icon.setFitHeight(this.ICON_SIZE);        
         
-        hBox.getChildren().addAll(this.icon);
-        
-        this.setGraphic(hBox);
+        this.setGraphic(icon);
     }
 }
