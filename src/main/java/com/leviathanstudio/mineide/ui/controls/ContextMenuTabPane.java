@@ -1,12 +1,13 @@
 package com.leviathanstudio.mineide.ui.controls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.leviathanstudio.mineide.ui.TabHelper;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 public class ContextMenuTabPane extends TabPane
 {
@@ -36,15 +37,7 @@ public class ContextMenuTabPane extends TabPane
             {
                 Tab tab = this.getTabs().get(index);
                 
-                // list<MenuItem> get
-                List<MenuItem> subItem = TabHelper.getContextMenu(tab, index);
-                // set MenuItem in contextMenu
-                contextMenu.getItems().clear();
-                for(int i = 0; i < subItem.size(); i++)
-                    contextMenu.getItems().add(subItem.get(i));
-                
-                // set behavior
-                TabHelper.setSubItemBehavior(contextMenu, tab);
+                TabHelper.prepareContextMenu(contextMenu, tab, index);
             }
         });
     }
