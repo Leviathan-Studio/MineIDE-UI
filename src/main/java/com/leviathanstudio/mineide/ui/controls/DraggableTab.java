@@ -79,8 +79,8 @@ public class DraggableTab extends Tab
         
         hBox.setOnMouseDragged((MouseEvent t) -> {
             // the moving tab
-            this.dragStage.setWidth(this.nameLabel.getWidth() + 10);
-            this.dragStage.setHeight(this.nameLabel.getHeight() + 23);
+            this.dragStage.setWidth(hBox.getWidth() + 10);
+            this.dragStage.setHeight(hBox.getHeight() + 10);
             this.dragStage.setX(t.getScreenX());
             this.dragStage.setY(t.getScreenY());
             this.dragStage.show();
