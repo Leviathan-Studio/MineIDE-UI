@@ -24,8 +24,10 @@ menu.edit.item.paste=Coller
 menu.edit.item.newClass=Nouvelle classe...
 menu.edit.item.newSpecificClass=Nouvelle classe spécifique...
 
-menu.options=Options
-menu.options.item.preferences=Préférences
+menu.window=Fenêtre
+menu.window.item.preferences=Préférences
+menu.window.item.hide_toolbar=Cacher bar d'outils
+menu.window.item.show_toolbar=Montrer bar d'outils
 
 menu.minecraft=Minecraft
 menu.minecraft.item.screenshots=Captures d'écran

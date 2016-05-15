@@ -30,8 +30,8 @@ public class GuiActionBar
         MenuBar menuBar = new MenuBar();
         SpecificClasses.initSubClasses();
 
-        menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createOptionMenu(),
-                createMinecraftMenu(), createRunMenu(), createHelpMenu());
+        menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createMinecraftMenu(),
+                createRunMenu(), createWindowMenu(), createHelpMenu());
         box.getChildren().add(menuBar);
     }
 
@@ -190,16 +190,19 @@ public class GuiActionBar
         return menuForge;
     }
 
-    private static Menu createOptionMenu()
+    private static Menu createWindowMenu()
     {
-        Menu menuOption = new Menu(Translation.LANG.getTranslation("menu.options"));
+        Menu menuWindow = new Menu(Translation.LANG.getTranslation("menu.window"));
 
-        MenuItem menuPreferences = new MenuItemIcon("menu.options.item.preferences", "", (ActionEvent t) ->
+        MenuItem menuToogleToolbar = new MenuItemIcon("menu.window.item.hide_toolbar", "", (ActionEvent t) ->
+        {
+        });
+        MenuItem menuPreferences = new MenuItemIcon("menu.window.item.preferences", "", (ActionEvent t) ->
         {
         });
 
-        menuOption.getItems().addAll(menuPreferences);
-        return menuOption;
+        menuWindow.getItems().addAll(menuToogleToolbar, new SeparatorMenuItem(), menuPreferences);
+        return menuWindow;
     }
 
     private static Menu createRunMenu()

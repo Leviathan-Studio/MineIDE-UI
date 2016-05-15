@@ -24,8 +24,10 @@ menu.edit.item.paste=Paste
 menu.edit.item.newClass=New Class...
 menu.edit.item.newSpecificClass=New Specific Class...
 
-menu.options=Options
-menu.options.item.preferences=Preferences
+menu.window=Windows
+menu.window.item.hide_toolbar=Hide Toolbar
+menu.window.item.show_toolbar=Show Toolbar
+menu.window.item.preferences=Preferences
 
 menu.minecraft=Minecraft
 menu.minecraft.item.screenshots=Screenshots
