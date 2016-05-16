@@ -13,6 +13,7 @@ import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
 import com.leviathanstudio.mineide.ui.frame.minecraft.PopupCreateProject;
 import com.leviathanstudio.mineide.ui.frame.minecraft.ScreenshotsGallery;
 import com.leviathanstudio.mineide.ui.frame.popup.PopupCredits;
+import com.leviathanstudio.mineide.ui.tab.TabHelper;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

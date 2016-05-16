@@ -4,6 +4,7 @@ import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.controls.ContextMenuTabPane;
 import com.leviathanstudio.mineide.ui.tab.TabConsole;
+import com.leviathanstudio.mineide.ui.tab.TabManagement;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;

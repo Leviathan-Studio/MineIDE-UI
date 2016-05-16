@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui;
+package com.leviathanstudio.mineide.ui.tab;
 
 import java.util.ArrayList;
 import java.util.List;

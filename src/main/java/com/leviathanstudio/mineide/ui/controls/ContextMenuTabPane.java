@@ -1,6 +1,6 @@
 package com.leviathanstudio.mineide.ui.controls;
 
-import com.leviathanstudio.mineide.ui.TabHelper;
+import com.leviathanstudio.mineide.ui.tab.TabHelper;
 
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;

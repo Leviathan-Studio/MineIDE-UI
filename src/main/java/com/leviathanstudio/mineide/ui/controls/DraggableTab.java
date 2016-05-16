@@ -1,7 +1,7 @@
 package com.leviathanstudio.mineide.ui.controls;
 
 import com.leviathanstudio.mineide.ui.Gui;
-import com.leviathanstudio.mineide.ui.TabManagement;
+import com.leviathanstudio.mineide.ui.tab.TabManagement;
 import com.leviathanstudio.mineide.utils.Utils;
 
 import javafx.collections.ListChangeListener;

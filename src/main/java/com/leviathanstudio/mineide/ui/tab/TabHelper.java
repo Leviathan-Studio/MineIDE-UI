@@ -1,9 +1,10 @@
-package com.leviathanstudio.mineide.ui;
+package com.leviathanstudio.mineide.ui.tab;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
+import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
 import com.leviathanstudio.mineide.ui.controls.DraggableTab;
 import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
