@@ -77,4 +77,10 @@ alert.forge.reinstall.content.line1=If you want install or reinstall a forge ver
 alert.forge.reinstall.content.line2=Please, click on "Force Update Forge" in Forge tab or press the button "Force Update"
 
 button.cancel=Cancel
+button.next=Next
+button.back=Back
+button.finish=Finish
 button.forceUpdate=Force Update
+
+wizard.error.input_required=Input Required
+wizard.error.not_number=Only numbers allowed

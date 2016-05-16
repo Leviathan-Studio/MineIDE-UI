@@ -77,4 +77,10 @@ alert.forge.reinstall.content.line1=Si vous voulez installer ou ré-installer un
 alert.forge.reinstall.content.line2=Cliquez sur "Forcer la mise à jour de Forge" dans l'onglet Forge ou pressez le boutton "Forcer la mise à jour"
 
 button.cancel=Annuler
+button.next=Suivant
+button.back=Précédent
+button.finish=Terminer
 button.forceUpdate=Forcer la mise à jour
+
+wizard.error.input_required=Entrée requise
+wizard.error.not_number=Seuls des nombres sont autorisés

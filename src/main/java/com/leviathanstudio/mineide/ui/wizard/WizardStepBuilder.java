@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
+import com.leviathanstudio.mineide.main.Translation;
 import com.leviathanstudio.mineide.ui.controls.IconLabel;
 import com.leviathanstudio.mineide.utils.Utils;
 
@@ -82,7 +83,7 @@ public class WizardStepBuilder
         JFXTextField text = new JFXTextField();
         text.setPromptText(prompt);
         RequiredFieldValidator validator = new RequiredFieldValidator();
-        validator.setMessage("Input Required");
+        validator.setMessage(Translation.LANG.getTranslation("wizard.error.input_required"));
         validator.setIcon(GlyphsBuilder.create(FontAwesomeIconView.class).glyph(FontAwesomeIcon.WARNING).size("1em")
                 .styleClass("error").build());
         text.getValidators().add(validator);
@@ -121,7 +122,7 @@ public class WizardStepBuilder
         JFXTextField text = new JFXTextField();
         text.setPromptText(prompt);
         NumberValidator numberValidator = new NumberValidator();
-        numberValidator.setMessage("Only numbers allowed");
+        numberValidator.setMessage(Translation.LANG.getTranslation("wizard.error.not_number"));
         numberValidator.setIcon(GlyphsBuilder.create(FontAwesomeIconView.class).glyph(FontAwesomeIcon.WARNING)
                 .size("1em").styleClass("error").build());
         text.getValidators().add(numberValidator);

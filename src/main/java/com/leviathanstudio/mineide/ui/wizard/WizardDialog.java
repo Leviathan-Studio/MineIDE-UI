@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
+import com.leviathanstudio.mineide.main.Translation;
 import com.leviathanstudio.mineide.ui.wizard.events.WizardEvent;
 
 import javafx.beans.property.ObjectProperty;
@@ -99,7 +100,7 @@ public class WizardDialog
         // Footer
         this.footer = new BorderPane();
 
-        cancelButton = new JFXButton("CANCEL");
+        cancelButton = new JFXButton(Translation.LANG.getTranslation("button.cancel"));
         cancelButton.setOnAction(e ->
         {
             onWizardCancelledProperty.get()
@@ -108,7 +109,7 @@ public class WizardDialog
         });
         cancelButton.setStyle("-fx-text-fill: BLACK;-fx-font-size: 18px;-fx-opacity: 0.7;");
 
-        nextButton = new JFXButton("NEXT");
+        nextButton = new JFXButton(Translation.LANG.getTranslation("button.next"));
         nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         nextButton.setOnAction(e ->
         {
@@ -131,7 +132,7 @@ public class WizardDialog
             }
         });
 
-        previousButton = new JFXButton("BACK");
+        previousButton = new JFXButton(Translation.LANG.getTranslation("button.back"));
         previousButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         previousButton.setOnAction(e ->
         {
@@ -161,13 +162,13 @@ public class WizardDialog
         this.content.getChildren().add(this.steps.get(currentStep));
         if (this.steps.size() == (this.currentStep + 1))
         {
-            this.nextButton.setText("FINISH");
+            this.nextButton.setText(Translation.LANG.getTranslation("button.finish"));
             this.nextButton.setStyle(
                     "-fx-button-type: RAISED;-fx-background-color: #1E88E5;-fx-text-fill: WHITE;-fx-font-size: 18px;");
         }
         else
         {
-            this.nextButton.setText("NEXT");
+            this.nextButton.setText(Translation.LANG.getTranslation("button.next"));
             this.nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         }
         if (this.currentStep == 0)
