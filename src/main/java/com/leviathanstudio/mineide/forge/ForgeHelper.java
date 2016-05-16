@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
+import com.leviathanstudio.mineide.utils.Command;
 import com.leviathanstudio.mineide.utils.Utils;
 
 public class ForgeHelper
@@ -55,14 +56,9 @@ public class ForgeHelper
 
     public ProcessBuilder runGradle(String command) throws IOException
     {
-        ProcessBuilder processBuilder = new ProcessBuilder();
-
-        processBuilder.command("cmd", "/C", "cd " + Utils.FORGE_DIR + " && " + command);
-        processBuilder.directory(Utils.FORGE_DIR);     
+        Command task = new Command("cd " + Utils.FORGE_DIR + " && " + command);
         
-        processBuilder.inheritIO();
-        processBuilder.start();
-        return processBuilder;
+        return task.execute(Utils.FORGE_DIR);
     }
 
     public void startInstallation() throws IOException
