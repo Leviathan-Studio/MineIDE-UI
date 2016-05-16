@@ -11,13 +11,11 @@ class ForgeDownloader
     public static final ForgeDownloader getInstance()
     {
         if (ForgeDownloader.instance == null)
-        {
             synchronized (ForgeDownloader.class)
             {
                 if (ForgeDownloader.instance == null)
                     ForgeDownloader.instance = new ForgeDownloader();
             }
-        }
         return ForgeDownloader.instance;
     }
 
@@ -35,7 +33,7 @@ class ForgeDownloader
             ZipHelper.buildDirectory(Utils.FORGE_DIR);
             ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
             ZipHelper.deleteTempFile();
-            setDownloadTerminated(true);
+            this.setDownloadTerminated(true);
         } catch (Exception e)
         {
             e.printStackTrace();

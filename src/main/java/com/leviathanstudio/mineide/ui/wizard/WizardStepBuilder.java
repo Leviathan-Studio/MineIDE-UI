@@ -46,7 +46,7 @@ import javafx.stage.FileChooser;
 
 /**
  * A simplified builder to add predefined elements to multiple wizard steps.
- * 
+ *
  * @author Ourten
  *
  */
@@ -57,19 +57,19 @@ public class WizardStepBuilder
 
     public WizardStepBuilder()
     {
-        steps = Lists.newArrayList();
+        this.steps = Lists.newArrayList();
     }
 
     public WizardStepBuilder addStep(String stepName)
     {
-        current = new WizardStep(stepName);
-        steps.add(current);
+        this.current = new WizardStep(stepName);
+        this.steps.add(this.current);
         return this;
     }
 
     /**
      * Add a simple String to a wizard step.
-     * 
+     *
      * @param fieldName
      * @param defaultValue
      *            the default String the textfield will contains.
@@ -93,22 +93,22 @@ public class WizardStepBuilder
                 text.validate();
         });
         text.setText(defaultValue);
-        current.getData().put(fieldName, new SimpleStringProperty());
-        current.getData().get(fieldName).bind(text.textProperty());
-        current.addToValidate(text);
+        this.current.getData().put(fieldName, new SimpleStringProperty());
+        this.current.getData().get(fieldName).bind(text.textProperty());
+        this.current.addToValidate(text);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(text, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(text, 1, this.current.getData().size() - 1);
         return this;
     }
 
     /**
      * Add a number only textfield to a wizard step. A {@link NumberValitor}
      * will be added to the textfield.
-     * 
+     *
      * @param fieldName
      * @param defaultValue
      *            the default number value of the textfield.
@@ -132,21 +132,21 @@ public class WizardStepBuilder
                 text.validate();
         });
         text.setText(defaultValue.toString());
-        current.getData().put(fieldName, new SimpleStringProperty());
-        current.getData().get(fieldName).bind(text.textProperty());
-        current.addToValidate(text);
+        this.current.getData().put(fieldName, new SimpleStringProperty());
+        this.current.getData().get(fieldName).bind(text.textProperty());
+        this.current.addToValidate(text);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(text, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(text, 1, this.current.getData().size() - 1);
         return this;
     }
 
     /**
      * Add a yes/no choice to a wizard step.
-     * 
+     *
      * @param fieldName
      * @param defaultValue
      *            of the choice.
@@ -161,20 +161,20 @@ public class WizardStepBuilder
         box.setTooltip(new Tooltip(prompt));
         box.setSelected(defaultValue);
 
-        current.getData().put(fieldName, new SimpleBooleanProperty());
-        current.getData().get(fieldName).bind(box.selectedProperty());
+        this.current.getData().put(fieldName, new SimpleBooleanProperty());
+        this.current.getData().get(fieldName).bind(box.selectedProperty());
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(box, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(box, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(box, 1, this.current.getData().size() - 1);
         return this;
     }
 
     /**
      * Add an enumeration of options to a wizard step.
-     * 
+     *
      * @param fieldName
      * @param defaultValue
      *            is the index of the value in your options array. Can be set <
@@ -199,21 +199,21 @@ public class WizardStepBuilder
         else
             jfxCombo.setValue(options[defaultValue]);
 
-        current.getData().put(fieldName, new SimpleObjectProperty<IconLabel>());
-        current.getData().get(fieldName).bind(jfxCombo.valueProperty());
+        this.current.getData().put(fieldName, new SimpleObjectProperty<IconLabel>());
+        this.current.getData().get(fieldName).bind(jfxCombo.valueProperty());
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(jfxCombo, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(jfxCombo, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(jfxCombo, 1, this.current.getData().size() - 1);
         return this;
     }
 
     /**
      * Add a large String to a wizard step. A TextArea will be used to represent
      * it.
-     * 
+     *
      * @param fieldName
      * @param defaultValue
      *            the default String the textfield will contains.
@@ -227,22 +227,22 @@ public class WizardStepBuilder
         JFXTextArea text = new JFXTextArea();
         text.setPromptText(prompt);
         text.setText(defaultValue);
-        current.getData().put(fieldName, new SimpleStringProperty());
-        current.getData().get(fieldName).bind(text.textProperty());
+        this.current.getData().put(fieldName, new SimpleStringProperty());
+        this.current.getData().get(fieldName).bind(text.textProperty());
         text.setMaxWidth(400);
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(text, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(text, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(text, 1, this.current.getData().size() - 1);
         return this;
     }
 
     /**
      * Add an enumeration of options to a wizard step. Multiple RadioButtons
      * will be used (horizontally-aligned).
-     * 
+     *
      * @param fieldName
      * @param options
      *            list of choices.
@@ -273,13 +273,13 @@ public class WizardStepBuilder
             i++;
         }
 
-        current.getData().put(fieldName, new ReadOnlyObjectWrapper<Toggle>());
-        current.getData().get(fieldName).bind(group.selectedToggleProperty());
+        this.current.getData().put(fieldName, new ReadOnlyObjectWrapper<Toggle>());
+        this.current.getData().get(fieldName).bind(group.selectedToggleProperty());
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(box, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(box, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(box, 1, this.current.getData().size() - 1);
         return this;
     }
 
@@ -294,19 +294,19 @@ public class WizardStepBuilder
         fileChooser.setTitle(fileChooseLabel);
         fileChooser.setInitialDirectory(new File(startDir));
         fileChooser.getExtensionFilters().addAll(filters);
-        current.getData().put(fieldName, new SimpleObjectProperty<File>());
+        this.current.getData().put(fieldName, new SimpleObjectProperty<File>());
 
         button.setOnAction(
-                e -> current.getData().get(fieldName).setValue(fileChooser.showOpenDialog(MineIDE.primaryStage)));
+                e -> this.current.getData().get(fieldName).setValue(fileChooser.showOpenDialog(MineIDE.primaryStage)));
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(button, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
 
         JFXTextField text = new JFXTextField();
         text.setEditable(false);
-        current.getData().get(fieldName).addListener(new ChangeListener<File>()
+        this.current.getData().get(fieldName).addListener(new ChangeListener<File>()
         {
             @Override
             public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue)
@@ -316,7 +316,7 @@ public class WizardStepBuilder
         });
 
         box.getChildren().addAll(text, button);
-        current.add(box, 1, current.getData().size() - 1);
+        this.current.add(box, 1, this.current.getData().size() - 1);
         return this;
     }
 
@@ -331,19 +331,19 @@ public class WizardStepBuilder
         fileChooser.setTitle(fileChooseLabel);
         fileChooser.setInitialDirectory(new File(startDir));
         fileChooser.getExtensionFilters().addAll(filters);
-        current.getData().put(fieldName, new SimpleSetProperty<File>());
+        this.current.getData().put(fieldName, new SimpleSetProperty<File>());
 
-        button.setOnAction(e -> current.getData().get(fieldName)
+        button.setOnAction(e -> this.current.getData().get(fieldName)
                 .setValue(fileChooser.showOpenMultipleDialog(MineIDE.primaryStage)));
 
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(button, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
 
         JFXTextField text = new JFXTextField();
         text.setEditable(false);
-        ((SimpleSetProperty<File>) current.getData().get(fieldName)).addListener(new SetChangeListener<File>()
+        ((SimpleSetProperty<File>) this.current.getData().get(fieldName)).addListener(new SetChangeListener<File>()
         {
             @Override
             public void onChanged(SetChangeListener.Change<? extends File> change)
@@ -355,7 +355,7 @@ public class WizardStepBuilder
         });
 
         box.getChildren().addAll(text, button);
-        current.add(box, 1, current.getData().size() - 1);
+        this.current.add(box, 1, this.current.getData().size() - 1);
         return this;
     }
 
@@ -369,8 +369,8 @@ public class WizardStepBuilder
         createButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/addIcon.png")));
 
         pane.setContent(box);
-        current.getData().put(fieldName, new SimpleListProperty<SimpleStringProperty>());
-        ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName))
+        this.current.getData().put(fieldName, new SimpleListProperty<SimpleStringProperty>());
+        ((SimpleListProperty<SimpleStringProperty>) this.current.getData().get(fieldName))
                 .setValue(FXCollections.observableArrayList());
         for (String value : defaultValues)
         {
@@ -391,12 +391,12 @@ public class WizardStepBuilder
 
             SimpleStringProperty textProperty = new SimpleStringProperty();
             textProperty.bind(textField.textProperty());
-            ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName)).add(textProperty);
+            ((SimpleListProperty<SimpleStringProperty>) this.current.getData().get(fieldName)).add(textProperty);
             JFXButton deleteButton = new JFXButton();
             deleteButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/trashBinIcon.png")));
             deleteButton.setOnAction(e2 ->
             {
-                ((SimpleListProperty<SimpleStringProperty>) current.getData().get(fieldName)).remove(textProperty);
+                ((SimpleListProperty<SimpleStringProperty>) this.current.getData().get(fieldName)).remove(textProperty);
                 innerBox.getChildren().remove(box2);
             });
             box2.getChildren().addAll(textField, deleteButton);
@@ -407,13 +407,13 @@ public class WizardStepBuilder
         Label label = new Label(fieldName);
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(pane, HPos.LEFT);
-        current.add(label, 0, current.getData().size() - 1);
-        current.add(pane, 1, current.getData().size() - 1);
+        this.current.add(label, 0, this.current.getData().size() - 1);
+        this.current.add(pane, 1, this.current.getData().size() - 1);
         return this;
     }
 
     public ArrayList<WizardStep> build()
     {
-        return steps;
+        return this.steps;
     }
 }

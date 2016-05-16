@@ -12,13 +12,11 @@ public class ForgeWorkspace
     public static final ForgeWorkspace getInstance()
     {
         if (ForgeWorkspace.instance == null)
-        {
             synchronized (ForgeHelper.class)
             {
                 if (ForgeWorkspace.instance == null)
                     ForgeWorkspace.instance = new ForgeWorkspace();
             }
-        }
         return ForgeWorkspace.instance;
     }
 
@@ -32,7 +30,7 @@ public class ForgeWorkspace
         if (!OSHelper.getWorkingDirectory().exists())
             OSHelper.getWorkingDirectory().mkdir();
 
-        setupForge();
+        this.setupForge();
     }
 
     public void installWorkspace()
@@ -41,7 +39,7 @@ public class ForgeWorkspace
             OSHelper.getWorkingDirectory().mkdir();
 
         if (!ForgeHelper.getInstance().isFinishedSetup())
-            setupForge();
+            this.setupForge();
         else
         {
             System.out.println("Already Forge Installed");

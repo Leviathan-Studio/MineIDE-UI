@@ -18,7 +18,7 @@ import lombok.Setter;
  * A WizardStep object represent a step of one wizard. It contains informations
  * about the requireds informations and store the data collected when the step
  * end.
- * 
+ *
  * @author Ourten
  *
  */
@@ -54,10 +54,8 @@ public class WizardStep extends GridPane
         boolean rtn = true;
 
         for (JFXTextField field : this.toValidate)
-        {
             if (!field.validate())
                 rtn = false;
-        }
         return rtn;
     }
 }

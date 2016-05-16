@@ -24,53 +24,59 @@ import javafx.util.Duration;
 
 public class GuiSplash extends Gui
 {
-    private Pane splashLayout;
-    private JFXProgressBar loadProgressPhase, loadProgressItem;
-    private Label progressTextPhase, progressTextItem;
-    
-    private static final int SPLASH_WIDTH = 704;
+    private Pane             splashLayout;
+    private JFXProgressBar   loadProgressPhase, loadProgressItem;
+    private Label            progressTextPhase, progressTextItem;
+
+    private static final int SPLASH_WIDTH  = 704;
     private static final int SPLASH_HEIGHT = 294;
-    
+
     @Override
     public void init(Stage stage)
     {
         ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
-        
+
         this.loadProgressPhase = new JFXProgressBar();
         this.loadProgressPhase.setPrefWidth(GuiSplash.SPLASH_WIDTH);
         this.loadProgressItem = new JFXProgressBar();
         this.loadProgressItem.setPrefWidth(GuiSplash.SPLASH_WIDTH);
-        
+
         this.progressTextPhase = new Label();
         this.progressTextItem = new Label();
-        
+
         this.splashLayout = new VBox();
-        this.splashLayout.getChildren().addAll(splash, this.loadProgressPhase, this.progressTextPhase, this.loadProgressItem, this.progressTextItem);
-        
+        this.splashLayout.getChildren().addAll(splash, this.loadProgressPhase, this.progressTextPhase,
+                this.loadProgressItem, this.progressTextItem);
+
         this.progressTextPhase.setAlignment(Pos.CENTER);
         this.progressTextItem.setAlignment(Pos.CENTER);
-        
-        this.splashLayout.setStyle("-fx-padding: 5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; " + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "MediumSeaGreen, " + "derive(MediumSeaGreen, 50%)" + ");");
+
+        this.splashLayout.setStyle("-fx-padding: 5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; "
+                + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "MediumSeaGreen, "
+                + "derive(MediumSeaGreen, 50%)" + ");");
         this.splashLayout.setEffect(new DropShadow());
     }
-    
-    public void showSplash(final Stage initStage, Task<?> phaseTask, Task<?> itemTask, InitCompletionHandler initCompletionHandler)
+
+    public void showSplash(final Stage initStage, Task<?> phaseTask, Task<?> itemTask,
+            InitCompletionHandler initCompletionHandler)
     {
         this.progressTextPhase.textProperty().bind(phaseTask.messageProperty());
         this.progressTextItem.textProperty().bind(itemTask.messageProperty());
-        
+
         this.loadProgressPhase.progressProperty().bind(phaseTask.progressProperty());
-        phaseTask.stateProperty().addListener((observableValue, oldState, newState) -> {
-            if(newState == Worker.State.SUCCEEDED)
+        phaseTask.stateProperty().addListener((observableValue, oldState, newState) ->
+        {
+            if (newState == Worker.State.SUCCEEDED)
             {
                 this.loadProgressPhase.progressProperty().unbind();
                 this.loadProgressPhase.setProgress(1);
             } // todo add code to gracefully handle other task states.
         });
-        
+
         this.loadProgressItem.progressProperty().bind(itemTask.progressProperty());
-        itemTask.stateProperty().addListener((observableValue, oldState, newState) -> {
-            if(newState == Worker.State.SUCCEEDED)
+        itemTask.stateProperty().addListener((observableValue, oldState, newState) ->
+        {
+            if (newState == Worker.State.SUCCEEDED)
             {
                 this.loadProgressItem.progressProperty().unbind();
                 this.loadProgressItem.setProgress(1);
@@ -80,11 +86,11 @@ public class GuiSplash extends Gui
                 fadeSplash.setToValue(0.0);
                 fadeSplash.setOnFinished(actionEvent -> initStage.hide());
                 fadeSplash.play();
-                
+
                 initCompletionHandler.complete();
             } // todo add code to gracefully handle other task states.
         });
-        
+
         Scene splashScene = new Scene(this.splashLayout, Color.TRANSPARENT);
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);

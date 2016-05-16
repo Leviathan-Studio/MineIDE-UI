@@ -10,13 +10,13 @@ import javafx.scene.layout.Pane;
 
 public class TabConsole extends Pane
 {
-    
+
     public TabConsole()
     {
         TextArea ta = new TextArea();
         ta.prefWidth(MineIDE.primaryStage.getWidth());
         ta.prefHeight(MineIDE.primaryStage.getHeight());
-        
+
         Console console = new Console(ta);
         PrintStream ps = new PrintStream(console, true);
         System.setOut(ps);

@@ -25,11 +25,11 @@ public class GuiMain extends Gui
         stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
         stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
                 + Gui.mineIdeInfo.getForgeVersion());
-        root = new StackPane();
-        root.setId("mainFrame");
+        GuiMain.root = new StackPane();
+        GuiMain.root.setId("mainFrame");
         VBox box = new VBox();
-        root.getChildren().add(box);
-        Scene scene = new Scene(root, Gui.width, Gui.height);
+        GuiMain.root.getChildren().add(box);
+        Scene scene = new Scene(GuiMain.root, Gui.width, Gui.height);
         scene.getStylesheets().add(MineIDE.class.getResource(Utils.CSS_DIR + "style.css").toString());
 
         GuiActionBar.init(scene, box);

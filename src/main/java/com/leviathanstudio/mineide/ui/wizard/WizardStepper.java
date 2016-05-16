@@ -26,17 +26,17 @@ public class WizardStepper extends StackPane
 
         this.root = new HBox();
         this.root.setAlignment(Pos.CENTER);
-        this.getChildren().add(root);
+        this.getChildren().add(this.root);
     }
 
     public void updateStepper()
     {
         this.root.getChildren().clear();
-        for (WizardStep step : dialog.getSteps())
+        for (WizardStep step : this.dialog.getSteps())
         {
             StackPane icon = new StackPane();
             Circle circle = null;
-            if (dialog.getCurrentStep() < dialog.getSteps().indexOf(step))
+            if (this.dialog.getCurrentStep() < this.dialog.getSteps().indexOf(step))
             {
                 circle = new Circle(12, Color.web("BLACK"));
                 circle.setStyle("-fx-opacity: 0.38;");
@@ -45,7 +45,7 @@ public class WizardStepper extends StackPane
                 circle = new Circle(12, Color.web("#2196F3"));
             icon.getChildren().add(circle);
 
-            if (dialog.getCurrentStep() > dialog.getSteps().indexOf(step))
+            if (this.dialog.getCurrentStep() > this.dialog.getSteps().indexOf(step))
             {
                 GlyphIcon check = GlyphsBuilder.create(MaterialDesignIconView.class).glyph(MaterialDesignIcon.CHECK)
                         .size("2em").build();
@@ -54,12 +54,12 @@ public class WizardStepper extends StackPane
             }
             else
             {
-                Label number = new Label(String.valueOf(dialog.getSteps().indexOf(step) + 1));
+                Label number = new Label(String.valueOf(this.dialog.getSteps().indexOf(step) + 1));
                 number.setStyle("-fx-font-family: Roboto;-fx-font-size: 14;-fx-text-fill: WHITE;");
                 icon.getChildren().add(number);
             }
             icon.setPadding(new Insets(8));
-            root.getChildren().add(icon);
+            this.root.getChildren().add(icon);
         }
     }
 }

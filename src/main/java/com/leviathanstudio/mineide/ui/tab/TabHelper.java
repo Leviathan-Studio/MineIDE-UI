@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.leviathanstudio.mineide.editor.CodeEditor;
-import com.leviathanstudio.mineide.ui.GuiJavaEditor;
 import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
 import com.leviathanstudio.mineide.ui.controls.DraggableTab;
 import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
@@ -15,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Pane;
 
 public class TabHelper
 {
@@ -39,7 +37,8 @@ public class TabHelper
         {
             int index = tab.getTabPane().getTabs().indexOf(tab);
 
-            // prepare the good context menu in function of the tab position, and the number of tabs
+            // prepare the good context menu in function of the tab position,
+            // and the number of tabs
             prepareContextMenu(contextMenu, tab, index);
         });
     }
@@ -157,6 +156,7 @@ public class TabHelper
 
     /**
      * Return the selected tab for a given tab pane
+     * 
      * @param tabpane
      * @return index of the selected tab
      */
@@ -170,6 +170,7 @@ public class TabHelper
 
     /**
      * Close all tab in a selected tab pane
+     * 
      * @param tabPane
      */
     public static void closeAllWindows(TabPane tabPane)
@@ -179,6 +180,7 @@ public class TabHelper
 
     /**
      * Close a specific tab
+     * 
      * @param tab
      */
     public static void closeTab(Tab tab)

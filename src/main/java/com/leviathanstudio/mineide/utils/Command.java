@@ -11,24 +11,24 @@ public class Command
     public Command(String... command)
     {
         for (String task : command)
-            addCommand(task);
+            this.addCommand(task);
     }
 
     public Command addCommand(String command)
     {
-        commands.add(command);
+        this.commands.add(command);
         return this;
     }
 
     public Command addSuccessCommand(String command)
     {
-        addCommand(" && " + command);
+        this.addCommand(" && " + command);
         return this;
     }
 
     public Command addFailledCommand(String command)
     {
-        addCommand(" || " + command);
+        this.addCommand(" || " + command);
         return this;
     }
 
@@ -36,7 +36,7 @@ public class Command
     {
         String res = "";
 
-        for (String command : commands)
+        for (String command : this.commands)
             res += command;
 
         res.substring(4);
@@ -50,13 +50,13 @@ public class Command
         switch (OSHelper.getPlatform())
         {
             case WINDOWS:
-                processBuilder.command("cmd", "/C", build());
+                processBuilder.command("cmd", "/C", this.build());
                 break;
             case LINUX:
-                processBuilder.command("sh", "/bin/sh", build());
+                processBuilder.command("sh", "/bin/sh", this.build());
                 break;
             case MACOS:
-                processBuilder.command("sh", "/bin/sh", build());
+                processBuilder.command("sh", "/bin/sh", this.build());
                 break;
             default:
                 break;

@@ -14,33 +14,31 @@ public class ContextMenuTabPane extends TabPane
         super(tabs);
         this.init();
     }
-    
+
     public ContextMenuTabPane()
     {
         super();
         this.init();
     }
-    
+
     private void init()
     {
-        
+
         ContextMenu contextMenu = new ContextMenu(new MenuItem());
         this.setContextMenu(contextMenu);
-        
+
         // Call just before the menu show, use to set the good item in
-        contextMenu.setOnShowing((WindowEvent) -> {
-            
+        contextMenu.setOnShowing((WindowEvent) ->
+        {
+
             int index = TabHelper.getSelectedTab(this);
-            if(index != -1)
+            if (index != -1)
             {
                 Tab tab = this.getTabs().get(index);
-                
+
                 TabHelper.prepareContextMenu(contextMenu, tab, index);
             }
         });
     }
-    
-    
-    
-    
+
 }

@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class GuiJavaEditor
 {
-    private static CodeEditor   editor;
+    private static CodeEditor editor;
 
     public static CodeEditor getEditor()
     {
@@ -34,7 +34,7 @@ public class GuiJavaEditor
         BorderPane borderPane = new BorderPane();
 
         TabManagement.instance.addTab("Main.java", "main", new CodeEditor(""));
-        TabManagement.instance.addTab("Test.java", "test", new CodeEditor(""));
+        TabManagement.instance.addTab("Test.java", "test", null);
         TabManagement.instance.addTab("Console", "console", new TabConsole());
 
         borderPane.prefHeightProperty().bind(scene.heightProperty());

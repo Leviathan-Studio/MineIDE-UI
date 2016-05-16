@@ -35,7 +35,7 @@ public class GuiActionBar
         menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createMinecraftMenu(),
                 createRunMenu(), createWindowMenu(), createHelpMenu());
         box.getChildren().add(menuBar);
-        
+
     }
 
     private static Menu createFileMenu()
@@ -49,7 +49,7 @@ public class GuiActionBar
                 });
         MenuItem openProject = new MenuItemIcon("menu.file.item.openProject", "", "Ctrl+Alt+O", (ActionEvent t) ->
         {
-            
+
             TabManagement.instance.addTab("Test_" + (int) (Math.random() * 100) + ".java",
                     "Test_" + (int) (Math.random() * 100), new CodeEditor(""));
         });
@@ -236,7 +236,8 @@ public class GuiActionBar
         {
             try
             {
-                ForgeHelper.getInstance().runCommand("Client");
+                ProcessBuilder pb = ForgeHelper.getInstance().runCommand("Client");
+
                 System.out.println("Client Launched");
             } catch (Exception e)
             {

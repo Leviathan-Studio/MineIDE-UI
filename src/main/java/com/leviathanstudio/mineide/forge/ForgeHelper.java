@@ -16,13 +16,11 @@ public class ForgeHelper
     public static final ForgeHelper getInstance()
     {
         if (ForgeHelper.instance == null)
-        {
             synchronized (ForgeHelper.class)
             {
                 if (ForgeHelper.instance == null)
                     ForgeHelper.instance = new ForgeHelper();
             }
-        }
         return ForgeHelper.instance;
     }
 
@@ -46,7 +44,7 @@ public class ForgeHelper
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(content);
                 bw.close();
-                setFinishedSetup(true);
+                this.setFinishedSetup(true);
             }
         } catch (IOException e)
         {
@@ -57,18 +55,18 @@ public class ForgeHelper
     public ProcessBuilder runGradle(String command) throws IOException
     {
         Command task = new Command("cd " + Utils.FORGE_DIR + " && " + command);
-        
+
         return task.execute(Utils.FORGE_DIR);
     }
 
     public void startInstallation() throws IOException
     {
-        runGradle(MineIDEConfig.getForgeInstallCommand());
+        this.runGradle(MineIDEConfig.getForgeInstallCommand());
     }
 
     public ProcessBuilder runCommand(String type) throws IOException
     {
-        return runGradle("gradlew run" + type);
+        return this.runGradle("gradlew run" + type);
     }
 
     public void changeMapping() throws IOException
@@ -78,7 +76,7 @@ public class ForgeHelper
 
     public void compileToJar() throws IOException
     {
-        runGradle(MineIDEConfig.getForgeBuildCommand());
+        this.runGradle(MineIDEConfig.getForgeBuildCommand());
     }
 
     public boolean isFinishedSetup()
