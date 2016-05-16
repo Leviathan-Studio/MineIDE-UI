@@ -3,32 +3,22 @@ package com.leviathanstudio.mineide.ui.tab;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leviathanstudio.mineide.editor.CodeEditor;
-import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
-import com.leviathanstudio.mineide.ui.controls.DraggableTab;
-import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
-
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import lombok.Getter;
 
 public class TabManagement
 {
-    public static final List<TabPane> tabPanes = new ArrayList<>();
+    public static TabManagement instance; 
     
-    @Getter
-    private final TabPane tabPane;
-    
-    
-    
+    public final List<TabPane> tabPanes = new ArrayList<>();
+   
     public TabManagement(TabPane tabPane)
     {
-        this.tabPane = tabPane;
-        TabManagement.tabPanes.add(tabPane);
+        this.tabPanes.add(tabPane);
+        instance = this;
     }
     
     public void addTab(String name, String id, Node content)
@@ -39,12 +29,12 @@ public class TabManagement
         hbox.getChildren().add(content);
         hbox.setAlignment(Pos.CENTER);
         tab.setContent(hbox);
-        this.tabPane.getTabs().add(tab);
+        this.tabPanes.get(0).getTabs().add(tab);
     }
     
     public void closeCurrentTab()
     {
-        TabHelper.closeTab(this.tabPane.getSelectionModel().getSelectedItem());
+        TabHelper.closeTab(this.tabPanes.get(0).getSelectionModel().getSelectedItem());
     }
     
     

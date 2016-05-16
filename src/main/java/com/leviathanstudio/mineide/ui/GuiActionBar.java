@@ -14,6 +14,7 @@ import com.leviathanstudio.mineide.ui.frame.minecraft.PopupCreateProject;
 import com.leviathanstudio.mineide.ui.frame.minecraft.ScreenshotsGallery;
 import com.leviathanstudio.mineide.ui.frame.popup.PopupCredits;
 import com.leviathanstudio.mineide.ui.tab.TabHelper;
+import com.leviathanstudio.mineide.ui.tab.TabManagement;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,6 +35,7 @@ public class GuiActionBar
         menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createMinecraftMenu(),
                 createRunMenu(), createWindowMenu(), createHelpMenu());
         box.getChildren().add(menuBar);
+        
     }
 
     private static Menu createFileMenu()
@@ -47,7 +49,8 @@ public class GuiActionBar
                 });
         MenuItem openProject = new MenuItemIcon("menu.file.item.openProject", "", "Ctrl+Alt+O", (ActionEvent t) ->
         {
-            GuiJavaEditor.tabBar.addTab("Test_" + (int) (Math.random() * 100) + ".java",
+            
+            TabManagement.instance.addTab("Test_" + (int) (Math.random() * 100) + ".java",
                     "Test_" + (int) (Math.random() * 100), new CodeEditor(""));
         });
         MenuItem closeProject = new MenuItemIcon("menu.file.item.closeProject", "", "Ctrl+Alt+W", (ActionEvent t) ->
@@ -63,7 +66,7 @@ public class GuiActionBar
 
         MenuItem close = new MenuItemIcon("menu.file.item.close", "", "Ctrl+W", (ActionEvent t) ->
         {
-            GuiJavaEditor.tabBar.closeCurrentTab();
+            TabManagement.instance.closeCurrentTab();
         });
         MenuItem closeAll = new MenuItemIcon("menu.file.item.closeAll", "", "Ctrl+Shift+W", (ActionEvent t) ->
         {

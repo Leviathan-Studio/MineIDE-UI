@@ -85,7 +85,7 @@ public class DraggableTab extends Tab
             this.dragStage.setY(t.getScreenY());
             this.dragStage.show();
             Point2D screenPoint = new Point2D(t.getScreenX(), t.getScreenY());
-            TabManagement.tabPanes.add(this.getTabPane());
+            TabManagement.instance.tabPanes.add(this.getTabPane());
             InsertData data = this.getInsertData(screenPoint);
             // Not ready to insert into a tab pane, hide the marker
             if(data == null || data.getInsertPane().getTabs().isEmpty())
@@ -134,7 +134,7 @@ public class DraggableTab extends Tab
                 Point2D screenPoint = new Point2D(t.getScreenX(), t.getScreenY());
                 TabPane oldTabPane = this.getTabPane();
                 int oldIndex = oldTabPane.getTabs().indexOf(DraggableTab.this);
-                TabManagement.tabPanes.add(oldTabPane);
+                TabManagement.instance.tabPanes.add(oldTabPane);
                 InsertData insertData = this.getInsertData(screenPoint);
                 if(insertData != null)
                 {
@@ -154,7 +154,7 @@ public class DraggableTab extends Tab
                     return;
                 final Stage newStage = new Stage();
                 final CloseableTabPane pane = new CloseableTabPane(newStage);
-                TabManagement.tabPanes.add(pane);
+                TabManagement.instance.tabPanes.add(pane);
                 
                 // remove tab pane from tab management when hide
                 newStage.setOnHiding(new EventHandler<WindowEvent>()
@@ -162,7 +162,7 @@ public class DraggableTab extends Tab
                     @Override
                     public void handle(WindowEvent t)
                     {
-                        TabManagement.tabPanes.remove(pane);
+                        TabManagement.instance.tabPanes.remove(pane);
                     }
                 });
                 
@@ -226,7 +226,7 @@ public class DraggableTab extends Tab
     
     private InsertData getInsertData(Point2D screenPoint)
     {
-        for(TabPane tabPane : TabManagement.tabPanes)
+        for(TabPane tabPane : TabManagement.instance.tabPanes)
         {
             Rectangle2D tabAbsolute = this.getAbsoluteRect(tabPane);
             if(tabAbsolute.contains(screenPoint))

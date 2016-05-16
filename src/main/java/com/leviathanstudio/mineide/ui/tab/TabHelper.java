@@ -34,17 +34,14 @@ public class TabHelper
         ContextMenu contextMenu = new ContextMenu(new MenuItem());
         tab.setContextMenu(contextMenu);
 
-        Pane content = new Pane();
-
         // Call just before the menu show, use to set the good item in
         contextMenu.setOnShowing((WindowEvent) ->
         {
             int index = tab.getTabPane().getTabs().indexOf(tab);
 
+            // prepare the good context menu in function of the tab position, and the number of tabs
             prepareContextMenu(contextMenu, tab, index);
         });
-
-        tab.setContent(content);
     }
 
     public static void prepareContextMenu(ContextMenu contextMenu, Tab tab, int index)
@@ -69,7 +66,7 @@ public class TabHelper
                 switch (item.getId())
                 {
                     case "close":
-                        tab.getTabPane().getTabs().remove(tab);
+                        closeTab(tab);
                         break;
                     case "close_other":
                         int index = 0;
@@ -132,9 +129,9 @@ public class TabHelper
     public static void closeAll()
     {
         int i = 0;
-        while (i < TabManagement.tabPanes.size())
+        while (i < TabManagement.instance.tabPanes.size())
         {
-            TabPane pane = TabManagement.tabPanes.get(i);
+            TabPane pane = TabManagement.instance.tabPanes.get(i);
             int j = 0;
             while (j < pane.getTabs().size())
             {
@@ -149,16 +146,20 @@ public class TabHelper
             }
             if (pane.getTabs().size() > 0)
             {
-                TabManagement.tabPanes.remove(i);
+                TabManagement.instance.tabPanes.remove(i);
                 if (pane instanceof CloseableTabPane)
                     ((CloseableTabPane) pane).hide();
             }
             else
                 i++;
         }
-        GuiJavaEditor.tabBar.getTabPane().getTabs().clear();
     }
 
+    /**
+     * Return the selected tab for a given tab pane
+     * @param tabpane
+     * @return index of the selected tab
+     */
     public static int getSelectedTab(TabPane pane)
     {
         for (int i = 0; i < pane.getTabs().size(); i++)
@@ -167,11 +168,19 @@ public class TabHelper
         return -1;
     }
 
+    /**
+     * Close all tab in a selected tab pane
+     * @param tabPane
+     */
     public static void closeAllWindows(TabPane tabPane)
     {
         tabPane.getTabs().clear();
     }
 
+    /**
+     * Close a specific tab
+     * @param tab
+     */
     public static void closeTab(Tab tab)
     {
         if (tab != null)

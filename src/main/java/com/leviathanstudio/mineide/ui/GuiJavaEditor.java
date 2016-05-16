@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 public class GuiJavaEditor
 {
     private static CodeEditor   editor;
-    public static TabManagement tabBar;
 
     public static CodeEditor getEditor()
     {
@@ -30,13 +29,13 @@ public class GuiJavaEditor
 
         TabPane tabPane = new ContextMenuTabPane();
 
-        GuiJavaEditor.tabBar = new TabManagement(tabPane);
+        TabManagement.instance = new TabManagement(tabPane);
 
         BorderPane borderPane = new BorderPane();
 
-        GuiJavaEditor.tabBar.addTab("Main.java", "main", new CodeEditor(""));
-        GuiJavaEditor.tabBar.addTab("Test.java", "test", new CodeEditor(""));
-        GuiJavaEditor.tabBar.addTab("Console", "console", new TabConsole());
+        TabManagement.instance.addTab("Main.java", "main", new CodeEditor(""));
+        TabManagement.instance.addTab("Test.java", "test", new CodeEditor(""));
+        TabManagement.instance.addTab("Console", "console", new TabConsole());
 
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
