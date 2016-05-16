@@ -100,7 +100,7 @@ public class WizardDialog
         // Footer
         this.footer = new BorderPane();
 
-        cancelButton = new JFXButton(Translation.LANG.getTranslation("button.cancel"));
+        cancelButton = new JFXButton(Translation.LANG.getTranslation("button.cancel").toUpperCase());
         cancelButton.setOnAction(e ->
         {
             onWizardCancelledProperty.get()
@@ -109,7 +109,7 @@ public class WizardDialog
         });
         cancelButton.setStyle("-fx-text-fill: BLACK;-fx-font-size: 18px;-fx-opacity: 0.7;");
 
-        nextButton = new JFXButton(Translation.LANG.getTranslation("button.next"));
+        nextButton = new JFXButton(Translation.LANG.getTranslation("button.next").toUpperCase());
         nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         nextButton.setOnAction(e ->
         {
@@ -132,7 +132,7 @@ public class WizardDialog
             }
         });
 
-        previousButton = new JFXButton(Translation.LANG.getTranslation("button.back"));
+        previousButton = new JFXButton(Translation.LANG.getTranslation("button.back").toUpperCase());
         previousButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         previousButton.setOnAction(e ->
         {
@@ -162,13 +162,13 @@ public class WizardDialog
         this.content.getChildren().add(this.steps.get(currentStep));
         if (this.steps.size() == (this.currentStep + 1))
         {
-            this.nextButton.setText(Translation.LANG.getTranslation("button.finish"));
+            this.nextButton.setText(Translation.LANG.getTranslation("button.finish").toUpperCase());
             this.nextButton.setStyle(
                     "-fx-button-type: RAISED;-fx-background-color: #1E88E5;-fx-text-fill: WHITE;-fx-font-size: 18px;");
         }
         else
         {
-            this.nextButton.setText(Translation.LANG.getTranslation("button.next"));
+            this.nextButton.setText(Translation.LANG.getTranslation("button.next").toUpperCase());
             this.nextButton.setStyle("-fx-text-fill: #1E88E5;-fx-font-size: 18px;");
         }
         if (this.currentStep == 0)
