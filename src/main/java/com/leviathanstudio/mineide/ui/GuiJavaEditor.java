@@ -8,6 +8,7 @@ import com.leviathanstudio.mineide.ui.tab.TabManagement;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -33,7 +34,7 @@ public class GuiJavaEditor
 
         BorderPane borderPane = new BorderPane();
 
-        TabManagement.instance.addTab("Main.java", "main", new CodeEditor(""));
+        TabManagement.instance.addTab("Main.java", "main", new TextArea());
         TabManagement.instance.addTab("Test.java", "test", null);
         TabManagement.instance.addTab("Console", "console", new TabConsole());
 
