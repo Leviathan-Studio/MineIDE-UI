@@ -33,7 +33,7 @@ public class GuiActionBar
         SpecificClasses.initSubClasses();
 
         menuBar.getMenus().addAll(createFileMenu(), createEditMenu(), createForgeMenu(), createMinecraftMenu(),
-                createRunMenu(), createWindowMenu(), createHelpMenu());
+                createWindowMenu(), createHelpMenu());
         box.getChildren().add(menuBar);
 
     }
@@ -209,30 +209,11 @@ public class GuiActionBar
         return menuWindow;
     }
 
-    private static Menu createRunMenu()
+    private static Menu createMinecraftMenu()
     {
         Menu menuRun = new Menu(Translation.LANG.getTranslation("menu.minecraft"));
 
-        MenuItem menuRunClient = new MenuItemIcon("menu.minecraft.item.screenshots", "", (ActionEvent t) ->
-        {
-            try
-            {
-                new ScreenshotsGallery();
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        });
-
-        menuRun.getItems().addAll(menuRunClient);
-        return menuRun;
-    }
-
-    private static Menu createMinecraftMenu()
-    {
-        Menu menuRun = new Menu(Translation.LANG.getTranslation("menu.run"));
-
-        MenuItem menuRunClient = new MenuItemIcon("menu.run.item.runClient", "", "F10", (ActionEvent t) ->
+        MenuItem menuRunClient = new MenuItemIcon("menu.minecraft.item.runClient", "", "F10", (ActionEvent t) ->
         {
             try
             {
@@ -244,7 +225,7 @@ public class GuiActionBar
                 e.printStackTrace();
             }
         });
-        MenuItem menuRunServer = new MenuItemIcon("menu.run.item.runServer", "", "F11", (ActionEvent t) ->
+        MenuItem menuRunServer = new MenuItemIcon("menu.minecraft.item.runServer", "", "F11", (ActionEvent t) ->
         {
             try
             {
@@ -256,7 +237,18 @@ public class GuiActionBar
             }
         });
 
-        menuRun.getItems().addAll(menuRunClient, menuRunServer);
+        MenuItem menuScreenshotsGallery = new MenuItemIcon("menu.minecraft.item.screenshots", "", (ActionEvent t) ->
+        {
+            try
+            {
+                new ScreenshotsGallery();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        });
+
+        menuRun.getItems().addAll(menuRunClient, menuRunServer, new SeparatorMenuItem(), menuScreenshotsGallery);
         return menuRun;
     }
 

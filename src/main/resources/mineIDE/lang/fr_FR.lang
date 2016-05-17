@@ -30,11 +30,9 @@ menu.window.item.hide_toolbar=Cacher bar d'outils
 menu.window.item.show_toolbar=Montrer bar d'outils
 
 menu.minecraft=Minecraft
+menu.minecraft.item.runClient=Lancer le Client
+menu.minecraft.item.runServer=Lancer le  Server
 menu.minecraft.item.screenshots=Captures d'écran
-
-menu.run=Lancer
-menu.run.item.runClient=Lancer le Client
-menu.run.item.runServer=Lancer le  Server
 
 menu.help=Aide
 menu.help.item.about=A propos

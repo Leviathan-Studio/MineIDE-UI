@@ -30,11 +30,9 @@ menu.window.item.show_toolbar=Show Toolbar
 menu.window.item.preferences=Preferences
 
 menu.minecraft=Minecraft
+menu.minecraft.item.runClient=Run Client
+menu.minecraft.item.runServer=Run Server
 menu.minecraft.item.screenshots=Screenshots
-
-menu.run=Run
-menu.run.item.runClient=Run Client
-menu.run.item.runServer=Run Server
 
 menu.help=Help
 menu.help.item.about=About
