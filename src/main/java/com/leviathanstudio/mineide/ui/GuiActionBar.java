@@ -2,7 +2,6 @@ package com.leviathanstudio.mineide.ui;
 
 import java.io.IOException;
 
-import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.forge.ForgeHelper;
 import com.leviathanstudio.mineide.forge.ForgeWorkspace;
 import com.leviathanstudio.mineide.main.MineIDE;
@@ -51,7 +50,7 @@ public class GuiActionBar
         {
 
             TabManagement.instance.addTab("Test_" + (int) (Math.random() * 100) + ".java",
-                    "Test_" + (int) (Math.random() * 100), new CodeEditor(""));
+                    "Test_" + (int) (Math.random() * 100), null);
         });
         MenuItem closeProject = new MenuItemIcon("menu.file.item.closeProject", "", "Ctrl+Alt+W", (ActionEvent t) ->
         {

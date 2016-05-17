@@ -3,7 +3,6 @@ package com.leviathanstudio.mineide.ui.tab;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
 import com.leviathanstudio.mineide.ui.controls.DraggableTab;
 import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
@@ -14,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.Pane;
 
 public class TabHelper
 {
@@ -135,7 +135,7 @@ public class TabHelper
             while (j < pane.getTabs().size())
             {
                 Tab tab = pane.getTabs().get(j);
-                if (tab.getContent() instanceof CodeEditor)
+                if (tab.getContent() instanceof Pane)
                 {
                     tab.setClosable(true);
                     pane.getTabs().remove(j);

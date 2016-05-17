@@ -1,6 +1,5 @@
 package com.leviathanstudio.mineide.ui;
 
-import com.leviathanstudio.mineide.editor.CodeEditor;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.controls.ContextMenuTabPane;
 import com.leviathanstudio.mineide.ui.tab.TabConsole;
@@ -14,16 +13,9 @@ import javafx.scene.layout.VBox;
 
 public class GuiJavaEditor
 {
-    private static CodeEditor editor;
-
-    public static CodeEditor getEditor()
-    {
-        return GuiJavaEditor.editor;
-    }
 
     public static void init(Scene scene, VBox box)
     {
-        GuiJavaEditor.editor = new CodeEditor("");
 
         final VBox layout = new VBox();
         layout.setStyle("-fx-background-color: cornsilk; -fx-padding: 30;");
