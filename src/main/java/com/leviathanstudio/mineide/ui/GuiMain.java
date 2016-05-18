@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui;
 
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.tab.TabHelper;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -22,7 +22,7 @@ public class GuiMain extends Gui
         {
             TabHelper.closeAll();
         });
-        stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        stage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
         stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
                 + Gui.mineIdeInfo.getForgeVersion());
         GuiMain.root = new StackPane();
@@ -30,7 +30,7 @@ public class GuiMain extends Gui
         VBox box = new VBox();
         GuiMain.root.getChildren().add(box);
         Scene scene = new Scene(GuiMain.root, Gui.width, Gui.height);
-        scene.getStylesheets().add(MineIDE.class.getResource(Utils.CSS_DIR + "style.css").toString());
+        scene.getStylesheets().add(MineIDE.class.getResource(Util.CSS_DIR + "style.css").toString());
 
         GuiActionBar.init(scene, box);
         GuiJavaEditor.init(scene, box);

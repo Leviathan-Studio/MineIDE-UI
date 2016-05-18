@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import com.leviathanstudio.mineide.main.MineIDE;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -45,7 +45,7 @@ public class ScreenshotsGallery
         tile.setPadding(new Insets(15, 15, 15, 15));
         tile.setHgap(15);
 
-        String path = Utils.FORGE_DIR + "/run/screenshots/";
+        String path = Util.FORGE_DIR + "/run/screenshots/";
 
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
@@ -64,7 +64,7 @@ public class ScreenshotsGallery
         root.setContent(tile);
 
         this.stage.setTitle("Minecraft Screenshots Gallery");
-        this.stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        this.stage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
         this.stage.toFront();
         this.stage.setWidth(854);
         this.stage.setHeight(480);

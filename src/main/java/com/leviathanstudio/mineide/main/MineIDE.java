@@ -3,7 +3,7 @@ package com.leviathanstudio.mineide.main;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.GuiMain;
 import com.leviathanstudio.mineide.ui.GuiSplash;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -15,9 +15,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- * Example of displaying a splash page for a standalone JavaFX application
- */
 public class MineIDE extends Application
 {
 
@@ -34,13 +31,13 @@ public class MineIDE extends Application
     public void init()
     {
         MineIDE.instance = this;
-
+        Util.initDirectory();
     }
 
     @Override
     public void start(final Stage initStage) throws Exception
     {
-        initStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        initStage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
 
         // init translation
         Translation.init();

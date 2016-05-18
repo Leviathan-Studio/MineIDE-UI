@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.leviathanstudio.mineide.utils.GsonReader;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 public class MineIDEConfig
 {
@@ -18,7 +18,7 @@ public class MineIDEConfig
     public MineIDEConfig()
     {
         GsonReader gsonReader = new GsonReader();
-        gsonReader.initReading(Utils.JSON_DIR + "mineIDEConfig.json");
+        gsonReader.initReading(Util.JSON_DIR + "mineIDEConfig.json");
         // MineIDE Info
         MineIDEConfig.appName = gsonReader.getJsonObject().get("mineIdeInfo").getAsJsonObject().get("app")
                 .getAsJsonObject().get("name").getAsString();

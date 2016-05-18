@@ -16,7 +16,7 @@ public class TemplateReader
         try
         {
             FileReader inputFile = new FileReader(MineIDE.class
-                    .getResource(Utils.TEMPLATE_DIR + templateType + "/" + templateName + ".mide").getFile());
+                    .getResource(Util.TEMPLATE_DIR + templateType + "/" + templateName + ".mide").getFile());
             BufferedReader bufferedReader = new BufferedReader(inputFile);
 
             String str;

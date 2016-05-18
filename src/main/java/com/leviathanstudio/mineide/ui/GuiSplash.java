@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui;
 
 import com.jfoenix.controls.JFXProgressBar;
 import com.leviathanstudio.mineide.main.MineIDE.InitCompletionHandler;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
@@ -34,7 +34,7 @@ public class GuiSplash extends Gui
     @Override
     public void init(Stage stage)
     {
-        ImageView splash = new ImageView(new Image(Utils.IMG_DIR + "banner.png"));
+        ImageView splash = new ImageView(new Image(Util.IMG_DIR + "banner.png"));
 
         this.loadProgressPhase = new JFXProgressBar();
         this.loadProgressPhase.setPrefWidth(GuiSplash.SPLASH_WIDTH);

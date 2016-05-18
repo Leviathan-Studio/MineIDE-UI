@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui.controls;
 
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.tab.TabManagement;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
@@ -188,7 +188,7 @@ public class DraggableTab extends Tab
                 // Initialize the new windows
                 newStage.setTitle(Gui.mineIdeInfo.getAppName() + " v" + Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
                         + Gui.mineIdeInfo.getForgeVersion());
-                newStage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+                newStage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
                 newStage.setScene(new Scene(pane));
                 newStage.initStyle(StageStyle.UTILITY);
                 newStage.setX(t.getScreenX());

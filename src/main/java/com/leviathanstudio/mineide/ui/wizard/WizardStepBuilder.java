@@ -15,7 +15,7 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.main.Translation;
 import com.leviathanstudio.mineide.ui.controls.IconLabel;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -366,7 +366,7 @@ public class WizardStepBuilder
         VBox box = new VBox();
         VBox innerBox = new VBox();
         JFXButton createButton = new JFXButton();
-        createButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/addIcon.png")));
+        createButton.setGraphic(new ImageView(new Image(Util.IMG_DIR + "/addIcon.png")));
 
         pane.setContent(box);
         this.current.getData().put(fieldName, new SimpleListProperty<SimpleStringProperty>());
@@ -393,7 +393,7 @@ public class WizardStepBuilder
             textProperty.bind(textField.textProperty());
             ((SimpleListProperty<SimpleStringProperty>) this.current.getData().get(fieldName)).add(textProperty);
             JFXButton deleteButton = new JFXButton();
-            deleteButton.setGraphic(new ImageView(new Image(Utils.IMG_DIR + "/trashBinIcon.png")));
+            deleteButton.setGraphic(new ImageView(new Image(Util.IMG_DIR + "/trashBinIcon.png")));
             deleteButton.setOnAction(e2 ->
             {
                 ((SimpleListProperty<SimpleStringProperty>) this.current.getData().get(fieldName)).remove(textProperty);

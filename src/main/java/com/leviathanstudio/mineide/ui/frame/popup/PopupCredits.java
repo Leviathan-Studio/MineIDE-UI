@@ -3,7 +3,7 @@ package com.leviathanstudio.mineide.ui.frame.popup;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.utils.HtmlReader;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -22,7 +22,7 @@ public class PopupCredits extends Gui
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(MineIDE.primaryStage);
-        stage.getIcons().add(new Image(Utils.IMG_DIR + "icon.png"));
+        stage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
         stage.setTitle("Credits");
 
         StackPane creditsVbox = new StackPane();
@@ -30,7 +30,7 @@ public class PopupCredits extends Gui
         WebView browser = new WebView();
         WebEngine webEngine = browser.getEngine();
         HtmlReader htmlReader = new HtmlReader();
-        htmlReader.initReading(Utils.HTML_DIR + "credits.html");
+        htmlReader.initReading(Util.HTML_DIR + "credits.html");
         webEngine.loadContent(htmlReader.getOutputContent());
 
         creditsVbox.getChildren().add(browser);

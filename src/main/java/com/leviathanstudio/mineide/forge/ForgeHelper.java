@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
 import com.leviathanstudio.mineide.utils.Command;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 public class ForgeHelper
 {
@@ -35,7 +35,7 @@ public class ForgeHelper
     {
         String content = "Download & Installation complete";
 
-        File file = new File(Utils.FORGE_DIR + "/installation.txt");
+        File file = new File(Util.FORGE_DIR + "/installation.txt");
         try
         {
             if (file.exists())
@@ -54,9 +54,9 @@ public class ForgeHelper
 
     public ProcessBuilder runGradle(String command) throws IOException
     {
-        Command task = new Command("cd " + Utils.FORGE_DIR + " && " + command);
+        Command task = new Command("cd " + Util.FORGE_DIR + " && " + command);
 
-        return task.execute(Utils.FORGE_DIR);
+        return task.execute(Util.FORGE_DIR);
     }
 
     public void startInstallation() throws IOException
@@ -71,7 +71,7 @@ public class ForgeHelper
 
     public void changeMapping() throws IOException
     {
-        Utils.replaceMappingSelected();
+        Util.replaceMappingSelected();
     }
 
     public void compileToJar() throws IOException
@@ -81,7 +81,7 @@ public class ForgeHelper
 
     public boolean isFinishedSetup()
     {
-        return this.finishedSetup = new File(Utils.FORGE_DIR + "/installation.txt").exists();
+        return this.finishedSetup = new File(Util.FORGE_DIR + "/installation.txt").exists();
     }
 
     public void setFinishedSetup(boolean finished)

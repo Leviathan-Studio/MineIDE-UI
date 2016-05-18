@@ -8,7 +8,7 @@ import com.google.gson.stream.JsonWriter;
 import com.leviathanstudio.mineide.ui.GuiMain;
 import com.leviathanstudio.mineide.ui.wizard.WizardDialog;
 import com.leviathanstudio.mineide.ui.wizard.WizardStepBuilder;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 
 import org.apache.logging.log4j.core.util.IOUtils;
 
@@ -29,8 +29,8 @@ public class PopupCreateProject
             JsonWriter writer;
             try
             {
-                Utils.FORGE_DIR.mkdirs();
-                writer = new JsonWriter(new FileWriter(Utils.FORGE_DIR + "/info_mod.json"));
+                Util.FORGE_DIR.mkdirs();
+                writer = new JsonWriter(new FileWriter(Util.FORGE_DIR + "/info_mod.json"));
                 writer.beginObject();
                 writer.name("modName").value((String) wizard.getSteps().get(0).getData().get("Name").getValue());
                 writer.name("modModID").value(((String) wizard.getSteps().get(0).getData().get("Name").getValue())
@@ -54,7 +54,7 @@ public class PopupCreateProject
                         .value((String) wizard.getSteps().get(0).getData().get("Description").getValue());
                 writer.endObject();
                 writer.close();
-                System.out.println(IOUtils.toString(new FileReader(Utils.FORGE_DIR + "/info_mod.json")));
+                System.out.println(IOUtils.toString(new FileReader(Util.FORGE_DIR + "/info_mod.json")));
 
             } catch (IOException e)
             {

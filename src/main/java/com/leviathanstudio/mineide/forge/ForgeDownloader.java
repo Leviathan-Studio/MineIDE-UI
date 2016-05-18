@@ -1,7 +1,7 @@
 package com.leviathanstudio.mineide.forge;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
-import com.leviathanstudio.mineide.utils.Utils;
+import com.leviathanstudio.mineide.utils.Util;
 import com.leviathanstudio.mineide.utils.ZipHelper;
 
 class ForgeDownloader
@@ -30,8 +30,8 @@ class ForgeDownloader
     {
         try
         {
-            ZipHelper.buildDirectory(Utils.FORGE_DIR);
-            ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Utils.FORGE_DIR);
+            ZipHelper.buildDirectory(Util.FORGE_DIR);
+            ZipHelper.unpackArchive(MineIDEConfig.getForgeDownloadLink(), Util.FORGE_DIR);
             ZipHelper.deleteTempFile();
             this.setDownloadTerminated(true);
         } catch (Exception e)
