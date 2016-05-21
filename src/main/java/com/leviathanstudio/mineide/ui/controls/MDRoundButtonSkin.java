@@ -95,7 +95,7 @@ public class MDRoundButtonSkin extends ButtonSkin
                         this.getSkinnable().getBackground() != null
                                 ? this.getSkinnable().getBackground().getFills().get(0).getRadii() : this.defaultRadii,
                         Insets.EMPTY));
-        } , this.getSkinnable().backgroundProperty()));
+        }, this.getSkinnable().backgroundProperty()));
 
         button.ripplerFillProperty().addListener((o, oldVal, newVal) -> this.buttonRippler.setRipplerFill(newVal));
 
@@ -179,16 +179,23 @@ public class MDRoundButtonSkin extends ButtonSkin
 
         public ButtonClickTransition()
         {
-            super(MDRoundButtonSkin.this.buttonContainer, new Timeline(new KeyFrame(Duration.ZERO,
-                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).radiusProperty(),
-                            JFXDepthManager.getShadowAt(2).radiusProperty().get(), Interpolator.EASE_BOTH),
-                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).spreadProperty(),
-                            JFXDepthManager.getShadowAt(2).spreadProperty().get(), Interpolator.EASE_BOTH),
-                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetXProperty(),
-                            JFXDepthManager.getShadowAt(2).offsetXProperty().get(),
-                            Interpolator.EASE_BOTH),
-                    new KeyValue(((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetYProperty(),
-                            JFXDepthManager.getShadowAt(2).offsetYProperty().get(), Interpolator.EASE_BOTH)),
+            super(MDRoundButtonSkin.this.buttonContainer, new Timeline(
+                    new KeyFrame(
+                            Duration.ZERO,
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).radiusProperty(),
+                                    JFXDepthManager.getShadowAt(2).radiusProperty().get(), Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).spreadProperty(),
+                                    JFXDepthManager.getShadowAt(2).spreadProperty().get(), Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetXProperty(),
+                                    JFXDepthManager.getShadowAt(2).offsetXProperty().get(),
+                                    Interpolator.EASE_BOTH),
+                            new KeyValue(
+                                    ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).offsetYProperty(),
+                                    JFXDepthManager.getShadowAt(2).offsetYProperty().get(),
+                                    Interpolator.EASE_BOTH)),
                     new KeyFrame(Duration.millis(1000),
                             new KeyValue(
                                     ((DropShadow) MDRoundButtonSkin.this.buttonContainer.getEffect()).radiusProperty(),

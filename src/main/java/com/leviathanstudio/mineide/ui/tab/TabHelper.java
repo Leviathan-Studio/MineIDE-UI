@@ -105,7 +105,7 @@ public class TabHelper
         closeRight.setId("close_right");
         closeAll.setId("close_all");
 
-        ArrayList<MenuItem> item = new ArrayList<MenuItem>();
+        ArrayList<MenuItem> item = new ArrayList<>();
 
         item.add(close);
 
@@ -156,7 +156,7 @@ public class TabHelper
 
     /**
      * Return the selected tab for a given tab pane
-     * 
+     *
      * @param tabpane
      * @return index of the selected tab
      */
@@ -170,7 +170,7 @@ public class TabHelper
 
     /**
      * Close all tab in a selected tab pane
-     * 
+     *
      * @param tabPane
      */
     public static void closeAllWindows(TabPane tabPane)
@@ -180,7 +180,7 @@ public class TabHelper
 
     /**
      * Close a specific tab
-     * 
+     *
      * @param tab
      */
     public static void closeTab(Tab tab)

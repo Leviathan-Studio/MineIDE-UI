@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Command
 {
-    public ArrayList<String> commands = new ArrayList<String>();
+    public ArrayList<String> commands = new ArrayList<>();
 
     public Command(String... command)
     {

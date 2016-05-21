@@ -20,13 +20,13 @@ public class WizardEvent extends Event
         this.steps = steps;
     }
 
-    public static final EventType<WizardEvent> COMPLETED          = new EventType<WizardEvent>(Event.ANY,
+    public static final EventType<WizardEvent> COMPLETED          = new EventType<>(Event.ANY,
             "WIZARD_COMPLETED");
-    public static final EventType<WizardEvent> CANCELLED          = new EventType<WizardEvent>(Event.ANY,
+    public static final EventType<WizardEvent> CANCELLED          = new EventType<>(Event.ANY,
             "WIZARD_CANCELLED");
-    public static final EventType<WizardEvent> STEP_CHANGE_BEFORE = new EventType<WizardEvent>(Event.ANY,
+    public static final EventType<WizardEvent> STEP_CHANGE_BEFORE = new EventType<>(Event.ANY,
             "WIZARD_STEP_CHANGE_BEFORE");
-    public static final EventType<WizardEvent> STEP_CHANGE_AFTER  = new EventType<WizardEvent>(Event.ANY,
+    public static final EventType<WizardEvent> STEP_CHANGE_AFTER  = new EventType<>(Event.ANY,
             "WIZARD_STEP_CHANGE_AFTER");
 
     public int getCurrentStep()

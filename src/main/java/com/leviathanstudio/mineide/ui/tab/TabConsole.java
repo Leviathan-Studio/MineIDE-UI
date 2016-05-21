@@ -15,8 +15,7 @@ public class TabConsole extends TextArea
             Console console = new Console(this);
             System.setOut(console);
             System.setErr(console);
-        }
-        catch(FileNotFoundException e)
+        } catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }

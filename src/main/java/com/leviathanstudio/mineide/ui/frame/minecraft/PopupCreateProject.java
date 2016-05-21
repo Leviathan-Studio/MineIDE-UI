@@ -40,15 +40,15 @@ public class PopupCreateProject
                 writer.beginArray();
                 ((SimpleListProperty<SimpleStringProperty>) wizard.getSteps().get(0).getData().get("Authors")).get()
                         .forEach(author ->
-                {
-                    try
-                    {
-                        writer.value(author.getValue());
-                    } catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                });
+                        {
+                            try
+                            {
+                                writer.value(author.getValue());
+                            } catch (IOException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        });
                 writer.endArray();
                 writer.name("modDescription")
                         .value((String) wizard.getSteps().get(0).getData().get("Description").getValue());
