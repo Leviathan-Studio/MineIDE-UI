@@ -11,10 +11,12 @@ import javafx.scene.control.TextArea;
 public class Console extends PrintStream
 {
     private TextArea output;
+    private File     logFile;
 
     public Console(TextArea out) throws FileNotFoundException
     {
-        super(getLogName());
+        super(getLogFile());
+        this.logFile = getLogFile();
         this.output = out;
     }
 
@@ -43,13 +45,13 @@ public class Console extends PrintStream
         this.writeLog(logContent);
     }
 
-    public static File getLogName()
+    public static File getLogFile()
     {
         String res = "";
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
-        res += String.format("%1$04d%2$02d%3$02d%4$02d%5$02d%6$02d", date.getYear(), date.getMonth().getValue(),
+        res = String.format("%1$04d%2$02d%3$02d%4$02d%5$02d%6$02d", date.getYear(), date.getMonth().getValue(),
                 date.getDayOfMonth(), time.getHour(), time.getMinute(), time.getSecond());
 
         return new File(Util.LOG_DIR, res + ".log");
@@ -57,6 +59,6 @@ public class Console extends PrintStream
 
     private void writeLog(String logContent)
     {
-        Util.writeFile(getLogName(), logContent);
+        Util.writeFile(this.logFile, logContent);
     }
 }

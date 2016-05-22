@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 
 public class Gui
 {
-    public static int           width       = 854, height = 480;
+    public static int           width       = 854,
+                                        height = 480;
     public static MineIDEConfig mineIdeInfo = new MineIDEConfig();
 
     public void init(Stage stage)
