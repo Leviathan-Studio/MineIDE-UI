@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui;
 
 import com.jfoenix.controls.JFXProgressBar;
 import com.leviathanstudio.mineide.main.MineIDE.InitCompletionHandler;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;

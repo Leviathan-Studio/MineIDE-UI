@@ -3,7 +3,7 @@ package com.leviathanstudio.mineide.main;
 import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.GuiMain;
 import com.leviathanstudio.mineide.ui.GuiSplash;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.application.Application;
 import javafx.application.Platform;

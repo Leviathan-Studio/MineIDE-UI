@@ -2,7 +2,7 @@ package com.leviathanstudio.mineide.ui;
 
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.tab.TabHelper;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

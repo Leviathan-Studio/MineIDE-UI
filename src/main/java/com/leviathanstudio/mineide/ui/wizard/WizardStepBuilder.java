@@ -15,7 +15,7 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.main.Translation;
 import com.leviathanstudio.mineide.ui.controls.IconLabel;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;

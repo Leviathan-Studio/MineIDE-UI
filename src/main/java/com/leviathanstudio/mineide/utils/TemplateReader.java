@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.leviathanstudio.mineide.main.MineIDE;
+import com.leviathanstudio.mineide.util.Util;
 
 public class TemplateReader
 {

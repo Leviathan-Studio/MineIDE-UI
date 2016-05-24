@@ -6,6 +6,8 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.leviathanstudio.mineide.util.Util;
+
 import javafx.scene.control.TextArea;
 
 public class Console extends PrintStream

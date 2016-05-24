@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import com.leviathanstudio.mineide.main.MineIDE;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;

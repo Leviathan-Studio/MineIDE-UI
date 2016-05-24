@@ -3,8 +3,8 @@ package com.leviathanstudio.mineide.json;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.leviathanstudio.mineide.util.Util;
 import com.leviathanstudio.mineide.utils.GsonReader;
-import com.leviathanstudio.mineide.utils.Util;
 
 public class MineIDEConfig
 {

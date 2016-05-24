@@ -10,8 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
+import com.leviathanstudio.mineide.util.Util;
 import com.leviathanstudio.mineide.utils.Command;
-import com.leviathanstudio.mineide.utils.Util;
 
 public class ForgeHelper
 {

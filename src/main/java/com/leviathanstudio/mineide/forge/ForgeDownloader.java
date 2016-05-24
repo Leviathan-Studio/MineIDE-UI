@@ -1,7 +1,7 @@
 package com.leviathanstudio.mineide.forge;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
-import com.leviathanstudio.mineide.utils.Util;
+import com.leviathanstudio.mineide.util.Util;
 import com.leviathanstudio.mineide.utils.ZipHelper;
 
 class ForgeDownloader

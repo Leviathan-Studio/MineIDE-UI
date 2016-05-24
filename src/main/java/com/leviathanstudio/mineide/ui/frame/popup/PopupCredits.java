@@ -2,8 +2,8 @@ package com.leviathanstudio.mineide.ui.frame.popup;
 
 import com.leviathanstudio.mineide.main.MineIDE;
 import com.leviathanstudio.mineide.ui.Gui;
+import com.leviathanstudio.mineide.util.Util;
 import com.leviathanstudio.mineide.utils.HtmlReader;
-import com.leviathanstudio.mineide.utils.Util;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
