@@ -1,9 +1,13 @@
 package com.leviathanstudio.mineide.forge;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.leviathanstudio.mineide.json.MineIDEConfig;
 import com.leviathanstudio.mineide.utils.Command;
@@ -69,9 +73,35 @@ public class ForgeHelper
         return this.runGradle("gradlew run" + type);
     }
 
-    public void changeMapping() throws IOException
+    public void changeMapping()
     {
-        Util.replaceMappingSelected();
+        try
+        {
+            File inputFile = new File(Util.FORGE_DIR + "/build.gradle");
+            BufferedReader file = new BufferedReader(new FileReader(inputFile));
+            String line;
+            String input = "";
+
+            while ((line = file.readLine()) != null)
+                input += line + '\n';
+
+            file.close();
+
+            Pattern p = Pattern.compile("\\_(.*?)\\\"");
+            Matcher m = p.matcher(input);
+            while (m.find())
+                input = input.replace("mappings = \"snapshot_" + m.group(1) + "\"",
+                        "mappings = " + "\"" + MineIDEConfig.getMappingVersion() + "\"");
+
+            FileWriter fileOut = new FileWriter(inputFile);
+            fileOut.write(input);
+            fileOut.close();
+
+        } catch (IOException e)
+        {
+            System.out.println("Problem reading file.");
+            e.printStackTrace();
+        }
     }
 
     public void compileToJar() throws IOException
