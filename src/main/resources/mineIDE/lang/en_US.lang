@@ -71,8 +71,8 @@ specificClass.dim.nether=Nether
 specificClass.dim.end=End
 
 alert.forge.reinstall.header=Hey ! You have already installed Forge 
-alert.forge.reinstall.content.line1=If you want install or reinstall a forge version
-alert.forge.reinstall.content.line2=Please, click on "Force Update Forge" in Forge tab or press the button "Force Update"
+alert.forge.reinstall.content.line1=If you want to install or reinstall a forge version
+alert.forge.reinstall.content.line2=Please click on "Force Update Forge" in the Forge tab or press the "Force Update" button
 
 button.cancel=Cancel
 button.forceUpdate=Force Update
