@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.leviathanstudio.mineide.util.EnumOS;
+
 public class Command
 {
     public ArrayList<String> commands = new ArrayList<>();
@@ -47,7 +49,7 @@ public class Command
     {
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-        switch (OSHelper.getPlatform())
+        switch (EnumOS.getPlatform())
         {
             case WINDOWS:
                 processBuilder.command("cmd", "/C", this.build());

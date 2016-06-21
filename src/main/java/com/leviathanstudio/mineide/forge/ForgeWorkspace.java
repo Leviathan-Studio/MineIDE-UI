@@ -3,7 +3,7 @@ package com.leviathanstudio.mineide.forge;
 import java.io.IOException;
 
 import com.leviathanstudio.mineide.ui.frame.popup.PopupForgeInstallation;
-import com.leviathanstudio.mineide.utils.OSHelper;
+import com.leviathanstudio.mineide.util.EnumOS;
 
 public class ForgeWorkspace
 {
@@ -27,16 +27,16 @@ public class ForgeWorkspace
 
     public void forceUpdate()
     {
-        if (!OSHelper.getWorkingDirectory().exists())
-            OSHelper.getWorkingDirectory().mkdir();
+        if (!EnumOS.getWorkingDirectory().exists())
+            EnumOS.getWorkingDirectory().mkdir();
 
         this.setupForge();
     }
 
     public void installWorkspace()
     {
-        if (!OSHelper.getWorkingDirectory().exists())
-            OSHelper.getWorkingDirectory().mkdir();
+        if (!EnumOS.getWorkingDirectory().exists())
+            EnumOS.getWorkingDirectory().mkdir();
 
         if (!ForgeHelper.getInstance().isFinishedSetup())
             this.setupForge();
