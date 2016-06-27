@@ -25,4 +25,9 @@ public class Util
         if (!file.exists())
             file.mkdirs();
     }
+
+    public static String getResouce(String path)
+    {
+        return Util.class.getResource(path).toString();
+    }
 }

@@ -1,6 +1,7 @@
 package com.leviathanstudio.mineide.ui.control;
 
 import com.leviathanstudio.mineide.util.Translation;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class MenuItemIcon extends MenuItem
         if (iconPath.isEmpty())
             iconPath = "/mineIDE/img/empty.png";
 
-        this.icon = new ImageView(MenuItemIcon.class.getResource(iconPath).toString());
+        this.icon = new ImageView(Util.getResouce(iconPath));
         this.icon.setFitWidth(this.ICON_SIZE);
         this.icon.setFitHeight(this.ICON_SIZE);
 
