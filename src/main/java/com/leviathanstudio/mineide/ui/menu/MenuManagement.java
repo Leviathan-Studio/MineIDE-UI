@@ -27,14 +27,21 @@ public class MenuManagement
     {
         Menu newItem = new MenuTranslate(name);
 
-        // Ajout menus
+        // add menus
         for (MenuCategory mc : menuCats)
         {
-            if (newItem.getItems().size() != 0)
-                newItem.getItems().add(new SeparatorMenuItem());
-            newItem.getItems().addAll(mc.getItems());
+            // check if category is not empty
+            if (mc.getItems().size() > 0)
+            {
+                // add a separator
+                if (newItem.getItems().size() != 0)
+                    newItem.getItems().add(new SeparatorMenuItem());
+                // add all menu items
+                newItem.getItems().addAll(mc.getItems());
+            }
         }
 
         listMenu.add(newItem);
+        menu.getMenus().add(newItem);
     }
 }

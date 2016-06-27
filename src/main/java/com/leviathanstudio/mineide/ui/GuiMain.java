@@ -28,7 +28,8 @@ public class GuiMain extends Gui
         Scene scene = new Scene(GuiMain.root, Util.BASE_WIDTH, Util.BASE_HEIGHT);
         scene.getStylesheets().add(MineIDE.class.getResource(Util.CSS_DIR + "style.css").toString());
 
-        // c.init(scene, box);
+        new GuiActionBar().init(stage);
+
         // GuiJavaEditor.init(scene, box);
         // GuiConsole.init(scene);
 

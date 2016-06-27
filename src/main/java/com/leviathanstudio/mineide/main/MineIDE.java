@@ -25,17 +25,18 @@ public class MineIDE extends Application
         MineIDE.instance = this;
         // Util.initDirectory();
         Translation.init();
+        try
+        {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception
-    {
-        // TODO Auto-generated method stub
-        showMainStage();
-    }
-
-    private void showMainStage()
     {
         MineIDE.primaryStage = new Stage(StageStyle.DECORATED);
         Gui main = new GuiMain();

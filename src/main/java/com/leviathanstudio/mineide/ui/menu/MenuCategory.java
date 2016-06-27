@@ -19,15 +19,16 @@ public class MenuCategory
         items = Lists.newArrayList();
     }
 
-    public void add(MenuItem mi)
+    public MenuCategory add(MenuItem mi)
     {
         items.add(mi);
+        return this;
     }
 
-    public void add(String text)
+    public MenuCategory add(String text)
     {
         MenuItem mi = new MenuItemTranslate(text);
-        add(mi);
+        return add(mi);
     }
 
     public String getName()
