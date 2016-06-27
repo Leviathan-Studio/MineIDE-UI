@@ -13,7 +13,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 
 public class TabHelper
 {
@@ -135,7 +136,8 @@ public class TabHelper
             while (j < pane.getTabs().size())
             {
                 Tab tab = pane.getTabs().get(j);
-                if (tab.getContent() instanceof Pane)
+                if (((BorderPane) tab.getContent()).getCenter() != null
+                        && !(((BorderPane) tab.getContent()).getCenter() instanceof TextArea))
                 {
                     tab.setClosable(true);
                     pane.getTabs().remove(j);

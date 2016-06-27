@@ -20,6 +20,7 @@ public class Console extends PrintStream
         super(getLogFile());
         this.logFile = getLogFile();
         this.output = out;
+        this.output.setWrapText(true);
     }
 
     @Override

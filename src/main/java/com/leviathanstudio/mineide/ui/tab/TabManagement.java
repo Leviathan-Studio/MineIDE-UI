@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 
 public class TabManagement
 {
@@ -22,9 +23,11 @@ public class TabManagement
     public void addTab(String name, String id, Node content)
     {
         Tab tab = TabHelper.createTabWithContextMenu(name, id, "/mineIDE/img/addIcon.png");
+        BorderPane borderPane = new BorderPane();
+        tab.setContent(borderPane);
 
         if (content != null)
-            tab.setContent(content);
+            borderPane.setCenter(content);
         this.tabPanes.get(0).getTabs().add(tab);
     }
 
