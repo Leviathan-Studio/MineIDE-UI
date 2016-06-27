@@ -1,11 +1,13 @@
 package com.leviathanstudio.mineide.main;
 
-import com.leviathanstudio.mineide.ui.Gui;
 import com.leviathanstudio.mineide.ui.GuiMain;
+import com.leviathanstudio.mineide.ui.GuiScreen;
 import com.leviathanstudio.mineide.util.Translation;
+import com.leviathanstudio.mineide.util.Util;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,7 +16,7 @@ public class MineIDE extends Application
     public static MineIDE instance;
     public static Stage   primaryStage;
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         launch(args);
     }
@@ -39,10 +41,18 @@ public class MineIDE extends Application
     public void start(Stage primaryStage) throws Exception
     {
         MineIDE.primaryStage = new Stage(StageStyle.DECORATED);
-        Gui main = new GuiMain();
-        main.init(MineIDE.primaryStage);
-        MineIDE.primaryStage.setMaximized(true);
-        MineIDE.primaryStage.show();
+        MineIDE.primaryStage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
+        MineIDE.primaryStage.setTitle(Util.APP_NAME);
+
+        // stage.setTitle(Gui.mineIdeInfo.getAppName() + " v" +
+        // Gui.mineIdeInfo.getAppVersion() + " " + "Forge "
+        // + Gui.mineIdeInfo.getForgeVersion());
+        GuiScreen main = new GuiMain();
+        main.init();
+
+        // MineIDE.primaryStage.setMaximized(true);
+
+        main.show(MineIDE.primaryStage);
     }
 
     @Override

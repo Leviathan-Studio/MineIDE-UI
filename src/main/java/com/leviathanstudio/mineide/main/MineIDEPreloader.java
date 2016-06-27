@@ -27,6 +27,11 @@ public class MineIDEPreloader extends Preloader
     private JFXProgressBar loadProgressPhase, loadProgressItem;
     private Label          progressTextPhase, progressTextItem;
 
+    public static void main(String[] args)
+    {
+        launch(MineIDE.class, args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -60,6 +65,9 @@ public class MineIDEPreloader extends Preloader
         primaryStage.setScene(splashScene);
         primaryStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - Util.SPLASH_WIDTH / 2);
         primaryStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - Util.SPLASH_HEIGHT / 2);
+        primaryStage.getIcons().add(new Image(Util.IMG_DIR + "icon.png"));
+        primaryStage.setTitle(Util.APP_NAME);
+
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setAlwaysOnTop(true);
         primaryStage.show();
