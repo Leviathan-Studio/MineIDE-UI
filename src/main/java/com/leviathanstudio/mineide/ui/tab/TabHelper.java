@@ -3,9 +3,9 @@ package com.leviathanstudio.mineide.ui.tab;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
-import com.leviathanstudio.mineide.ui.controls.DraggableTab;
-import com.leviathanstudio.mineide.ui.controls.MenuItemTranslate;
+//import com.leviathanstudio.mineide.ui.controls.CloseableTabPane;
+//import com.leviathanstudio.mineide.ui.controls.DraggableTab;
+import com.leviathanstudio.mineide.ui.control.MenuItemTranslate;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.ContextMenu;
@@ -20,7 +20,7 @@ public class TabHelper
 {
     public static Tab createTabWithContextMenu(String title, String id, String iconPath)
     {
-        Tab tab = new DraggableTab(title, iconPath);
+        Tab tab = new Tab(title);// new DraggableTab(title, iconPath);
         tab.setId(id);
 
         addContextMenu(tab);
@@ -148,8 +148,8 @@ public class TabHelper
             if (pane.getTabs().size() > 0)
             {
                 TabManagement.instance.tabPanes.remove(i);
-                if (pane instanceof CloseableTabPane)
-                    ((CloseableTabPane) pane).hide();
+                // if (pane instanceof CloseableTabPane)
+                // ((CloseableTabPane) pane).hide();
             }
             else
                 i++;

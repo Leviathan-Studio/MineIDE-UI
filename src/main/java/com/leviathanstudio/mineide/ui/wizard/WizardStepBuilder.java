@@ -13,8 +13,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.leviathanstudio.mineide.main.MineIDE;
-import com.leviathanstudio.mineide.main.Translation;
-import com.leviathanstudio.mineide.ui.controls.IconLabel;
+import com.leviathanstudio.mineide.ui.control.IconLabel;
+import com.leviathanstudio.mineide.util.Translation;
 import com.leviathanstudio.mineide.util.Util;
 
 import de.jensd.fx.glyphs.GlyphsBuilder;

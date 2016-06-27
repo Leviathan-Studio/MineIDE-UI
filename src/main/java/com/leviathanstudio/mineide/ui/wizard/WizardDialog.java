@@ -7,8 +7,8 @@ import com.google.common.collect.Lists;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
-import com.leviathanstudio.mineide.main.Translation;
-import com.leviathanstudio.mineide.ui.wizard.events.WizardEvent;
+import com.leviathanstudio.mineide.ui.wizard.event.WizardEvent;
+import com.leviathanstudio.mineide.util.Translation;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

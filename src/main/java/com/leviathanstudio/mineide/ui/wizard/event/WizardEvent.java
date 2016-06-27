@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui.wizard.events;
+package com.leviathanstudio.mineide.ui.wizard.event;
 
 import java.util.List;
 

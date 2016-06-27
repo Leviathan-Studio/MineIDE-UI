@@ -1,4 +1,4 @@
-package com.leviathanstudio.mineide.ui.controls;
+package com.leviathanstudio.mineide.ui.control;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;

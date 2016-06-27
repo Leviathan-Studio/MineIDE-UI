@@ -1,8 +1,6 @@
-package com.leviathanstudio.mineide.main;
+package com.leviathanstudio.mineide.util;
 
 import java.util.Locale;
-
-import com.leviathanstudio.mineide.util.Util;
 
 import utybo.minkj.locale.MinkJ;
 

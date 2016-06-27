@@ -1,0 +1,12 @@
+language: java
+script: ./gradlew build
+deploy:
+  provider: releases
+  api_key:
+    secure: 
+  file_glob: true
+  file: "packages/superpowers-core-*.zip"
+  skip_cleanup: true
+  on:
+    repo: Leviathan-Studio/MineIDE-UI
+    tags: true
