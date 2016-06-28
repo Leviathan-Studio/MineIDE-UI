@@ -1,8 +1,7 @@
-package com.leviathanstudio.mineide.ui;
+package com.leviathanstudio.mineide.ui.menu;
 
+import com.leviathanstudio.mineide.ui.GuiPart;
 import com.leviathanstudio.mineide.ui.control.MenuItemIcon;
-import com.leviathanstudio.mineide.ui.menu.MenuCategory;
-import com.leviathanstudio.mineide.ui.menu.MenuManagement;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuBar;
@@ -19,9 +18,6 @@ public class GuiMenuBar extends GuiPart
     @Override
     public void init()
     {
-        // VBox box = new VBox();
-        // GuiMain.root.getChildren().add(box);
-
         MenuBar menuBar = new MenuBar();
         MenuManagement menuManagement = new MenuManagement(menuBar);
 

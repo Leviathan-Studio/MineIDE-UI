@@ -1,5 +1,8 @@
 package com.leviathanstudio.mineide.ui;
 
+import com.leviathanstudio.mineide.ui.menu.GuiMenuBar;
+import com.leviathanstudio.mineide.ui.tool.GuiToolBar;
+
 import javafx.scene.layout.StackPane;
 
 public class GuiMain extends GuiScreen
@@ -19,6 +22,7 @@ public class GuiMain extends GuiScreen
         // });
 
         this.addPart(new GuiMenuBar());
+        this.addPart(new GuiToolBar());
 
         // GuiJavaEditor.init(scene, box);
         // GuiConsole.init(scene);
