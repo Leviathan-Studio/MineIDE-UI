@@ -1,11 +1,8 @@
 package com.leviathanstudio.mineide.ui.tool;
 
 import com.leviathanstudio.mineide.ui.GuiPart;
-import com.leviathanstudio.mineide.ui.control.IconLabel;
-import com.leviathanstudio.mineide.util.Util;
 
 import javafx.scene.control.ToolBar;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class GuiToolBar extends GuiPart
@@ -20,11 +17,12 @@ public class GuiToolBar extends GuiPart
     @Override
     public void init()
     {
-        IconLabel il = new IconLabel(new ImageView(Util.getResouce("/mineIDE/img/addIcon.png")), "test");
-
         ToolBar toolBar = new ToolBar();
+        ToolManagement toolManagement = new ToolManagement(toolBar);
 
-        toolBar.getItems().add(il);
+        toolManagement.addButton("/mineIDE/img/addIcon.png");
+        toolManagement.addButton("/mineIDE/img/addIcon.png");
+
         this.addElement(toolBar);
     }
 

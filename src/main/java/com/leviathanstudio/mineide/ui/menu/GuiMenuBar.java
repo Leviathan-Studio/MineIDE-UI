@@ -30,7 +30,7 @@ public class GuiMenuBar extends GuiPart
         // Edit
         MenuCategory catEditUndo = new MenuCategory("undo");
         MenuCategory catEditCcp = new MenuCategory("ccp");
-        MenuCategory catEditSelect = new MenuCategory("undo");
+        MenuCategory catEditSelect = new MenuCategory("select");
 
         // Forge
         MenuCategory catForgeSetup = new MenuCategory("setup");

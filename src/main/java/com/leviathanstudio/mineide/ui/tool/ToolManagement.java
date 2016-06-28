@@ -3,29 +3,34 @@ package com.leviathanstudio.mineide.ui.tool;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.leviathanstudio.mineide.ui.control.MenuTranslate;
+import com.leviathanstudio.mineide.ui.control.IconButton;
 
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToolBar;
 
 public class ToolManagement
 {
     public static ToolManagement instance;
 
-    public final MenuBar         menu;
-    public List<Menu>            listMenu;
+    public final ToolBar         tooBar;
+    public List<Button>          listButton;
 
-    public ToolManagement(MenuBar menu)
+    public ToolManagement(ToolBar tooBar)
     {
-        this.menu = menu;
+        this.tooBar = tooBar;
         ToolManagement.instance = this;
-        listMenu = Lists.newArrayList();
+        listButton = Lists.newArrayList();
     }
 
-    public void addMenu(String name, ToolCategory... menuCats)
+    public void addButton(String icon)
     {
-        Menu newItem = new MenuTranslate(name);
+        IconButton ib = new IconButton(icon);
+        listButton.add(ib);
+        tooBar.getItems().add(ib);
+    }
+
+    public void addButton(String name, ToolCategory... menuCats)
+    {
 
         // add menus
         for (ToolCategory tc : menuCats)
@@ -34,14 +39,12 @@ public class ToolManagement
             if (tc.getItems().size() > 0)
             {
                 // add a separator
-                if (newItem.getItems().size() != 0)
-                    newItem.getItems().add(new SeparatorMenuItem());
+                // if (tooBar.getItems().size() != 0)
+                // tooBar.getItems().add(new SeparatorMenuItem());
                 // add all menu items
-                newItem.getItems().addAll(tc.getItems());
+                listButton.addAll(tc.getItems());
+                tooBar.getItems().addAll(tc.getItems());
             }
         }
-
-        listMenu.add(newItem);
-        menu.getMenus().add(newItem);
     }
 }
