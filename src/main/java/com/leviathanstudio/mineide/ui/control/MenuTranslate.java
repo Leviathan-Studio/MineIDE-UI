@@ -8,6 +8,6 @@ public class MenuTranslate extends Menu
 {
     public MenuTranslate(String text)
     {
-        super(Translation.LANG.getTranslation(text));
+        super(Translation.getTranslation(text));
     }
 }

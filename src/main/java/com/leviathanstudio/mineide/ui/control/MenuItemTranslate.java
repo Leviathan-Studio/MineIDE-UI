@@ -23,6 +23,6 @@ public class MenuItemTranslate extends MenuItem
 
     public MenuItemTranslate(String text)
     {
-        super(Translation.LANG.getTranslation(text));
+        super(Translation.getTranslation(text));
     }
 }

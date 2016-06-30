@@ -1,15 +1,13 @@
 package com.leviathanstudio.mineide.ui.control;
 
-import com.leviathanstudio.mineide.util.Translation;
 import com.leviathanstudio.mineide.util.Util;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 
-public class MenuItemIcon extends MenuItem
+public class MenuItemIcon extends MenuItemTranslate
 {
     private final int ICON_SIZE = 16;
 
@@ -29,7 +27,7 @@ public class MenuItemIcon extends MenuItem
 
     public MenuItemIcon(String text, String iconPath)
     {
-        super(Translation.LANG.getTranslation(text));
+        super(text);
 
         if (iconPath.isEmpty())
             iconPath = "/mineIDE/img/empty.png";

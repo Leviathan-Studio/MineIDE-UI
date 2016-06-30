@@ -1,6 +1,7 @@
 package com.leviathanstudio.mineide.util;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class Util
 {
@@ -29,5 +30,10 @@ public class Util
     public static String getResouce(String path)
     {
         return Util.class.getResource(path).toString();
+    }
+
+    public static InputStream getStream(String path)
+    {
+        return Util.class.getResourceAsStream(path);
     }
 }

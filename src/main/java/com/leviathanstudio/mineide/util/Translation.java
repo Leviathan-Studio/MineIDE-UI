@@ -1,8 +1,11 @@
 package com.leviathanstudio.mineide.util;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Locale;
 
 import utybo.minkj.locale.MinkJ;
+import utybo.minkj.locale.MinkJ.UnrespectedModelException;
 
 public class Translation
 {
@@ -12,13 +15,29 @@ public class Translation
     {
         try
         {
-            Translation.LANG.loadTranslationsFromFile(Locale.FRENCH,
-                    Translation.class.getResourceAsStream(Util.LANG_DIR + "fr_FR.lang"));
-            Translation.LANG.loadTranslationsFromFile(Locale.ENGLISH,
-                    Translation.class.getResourceAsStream(Util.LANG_DIR + "en_US.lang"));
+            loadTranslation(Locale.ENGLISH, "en_US");
+            loadTranslation(Locale.FRENCH, "fr_FR");
+
+            setLanguage(Locale.ENGLISH);
         } catch (Exception ex)
         {
             ex.printStackTrace();
         }
+    }
+
+    public static void setLanguage(Locale lang)
+    {
+        Translation.LANG.setSelectedLanguage(lang);
+    }
+
+    public static String getTranslation(String key)
+    {
+        return Translation.LANG.getTranslation(key);
+    }
+
+    private static void loadTranslation(Locale lang, String name)
+            throws UnrespectedModelException, NullPointerException, FileNotFoundException, IOException
+    {
+        Translation.LANG.loadTranslationsFromFile(lang, Util.getStream(Util.LANG_DIR + name + ".lang"));
     }
 }
