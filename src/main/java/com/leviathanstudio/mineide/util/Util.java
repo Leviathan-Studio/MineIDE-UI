@@ -10,7 +10,7 @@ public class Util
     public static final int    BASE_WIDTH    = 854;
     public static final int    BASE_HEIGHT   = 480;
     public static final int    SPLASH_WIDTH  = 704;
-    public static final int    SPLASH_HEIGHT = 294;
+    public static final int    SPLASH_HEIGHT = 250;
 
     public static final String IMG_DIR       = "/mineIDE/img/";
     public static final String CSS_DIR       = "/mineIDE/css/";
@@ -27,7 +27,7 @@ public class Util
             file.mkdirs();
     }
 
-    public static String getResouce(String path)
+    public static String getResource(String path)
     {
         return Util.class.getResource(path).toString();
     }

@@ -17,12 +17,11 @@ public class IconButton extends JFXButton
         this.setPrefSize(SIZE, SIZE);
         this.setFont(Font.font(SIZE / 4));
         this.setBorder(Border.EMPTY);
-
     }
 
     private static ImageView formatIcon(String path)
     {
-        ImageView iv = new ImageView(Util.getResouce(path));
+        ImageView iv = new ImageView(Util.getResource(path));
         iv.setFitWidth(SIZE);
         iv.setFitHeight(SIZE);
         return iv;

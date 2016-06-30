@@ -5,10 +5,8 @@ import com.leviathanstudio.mineide.util.Util;
 
 import javafx.application.Preloader;
 import javafx.application.Preloader.StateChangeNotification.Type;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,8 +22,7 @@ public class MineIDEPreloader extends Preloader
     private Stage          preloaderStage;
 
     private Pane           splashLayout;
-    private JFXProgressBar loadProgressPhase, loadProgressItem;
-    private Label          progressTextPhase, progressTextItem;
+    private JFXProgressBar loadProgressPhase;
 
     public static void main(String[] args)
     {
@@ -42,17 +39,9 @@ public class MineIDEPreloader extends Preloader
 
         this.loadProgressPhase = new JFXProgressBar();
         this.loadProgressPhase.setPrefWidth(Util.SPLASH_WIDTH);
-        this.loadProgressItem = new JFXProgressBar();
-        this.loadProgressItem.setPrefWidth(Util.SPLASH_WIDTH);
-
-        this.progressTextPhase = new Label();
-        this.progressTextItem = new Label();
 
         this.splashLayout = new VBox();
-        this.splashLayout.getChildren().addAll(splash, this.loadProgressPhase, this.loadProgressItem,
-                this.progressTextPhase, this.progressTextItem);
-        this.progressTextPhase.setAlignment(Pos.CENTER);
-        this.progressTextItem.setAlignment(Pos.CENTER);
+        this.splashLayout.getChildren().addAll(splash, this.loadProgressPhase);
 
         this.splashLayout.setStyle("-fx-padding: 5; " + "-fx-background-color: gainsboro; " + "-fx-border-width:2; "
                 + "-fx-border-color: " + "linear-gradient(" + "to bottom, " + "MediumSeaGreen, "

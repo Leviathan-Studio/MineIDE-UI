@@ -32,7 +32,7 @@ public class MenuItemIcon extends MenuItemTranslate
         if (iconPath.isEmpty())
             iconPath = "/mineIDE/img/empty.png";
 
-        this.icon = new ImageView(Util.getResouce(iconPath));
+        this.icon = new ImageView(Util.getResource(iconPath));
         this.icon.setFitWidth(this.ICON_SIZE);
         this.icon.setFitHeight(this.ICON_SIZE);
 
