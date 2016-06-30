@@ -34,6 +34,7 @@ public class GuiMenuBar extends GuiPart
 
         // Forge
         MenuCategory catForgeSetup = new MenuCategory("setup");
+        MenuCategory catForgeGeneration = new MenuCategory("generation");
 
         // Minecraft
         MenuCategory catMinecraftLaunch = new MenuCategory("launch");
@@ -108,7 +109,11 @@ public class GuiMenuBar extends GuiPart
         catForgeSetup.add(new MenuItemIcon("menu.forge.item.forceUpdate", "", "Ctrl+Alt+U", (ActionEvent t) ->
         {
         }));
-        catForgeSetup.add(new MenuItemIcon("menu.forge.item.build", "", "Ctrl+Alt+B", (ActionEvent t) ->
+
+        catForgeGeneration.add(new MenuItemIcon("menu.forge.item.build", "", "Ctrl+Alt+B", (ActionEvent t) ->
+        {
+        }));
+        catForgeGeneration.add(new MenuItemIcon("menu.forge.item.build_assets", "", "Ctrl+Alt+A", (ActionEvent t) ->
         {
         }));
 
@@ -141,7 +146,7 @@ public class GuiMenuBar extends GuiPart
         // Menus
         menuManagement.addMenu("menu.file", catFileProject, catFileSave, catFileClose, catFileExit);
         menuManagement.addMenu("menu.edit", catEditUndo, catEditCcp, catEditSelect);
-        menuManagement.addMenu("menu.forge", catForgeSetup);
+        menuManagement.addMenu("menu.forge", catForgeSetup, catForgeGeneration);
         menuManagement.addMenu("menu.minecraft", catMinecraftLaunch, catMinecraftOther);
         menuManagement.addMenu("menu.window", catWindowShow, catWindowPreferences);
         menuManagement.addMenu("menu.help", catHelpAbout);

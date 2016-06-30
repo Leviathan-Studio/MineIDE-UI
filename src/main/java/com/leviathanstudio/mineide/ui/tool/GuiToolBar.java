@@ -21,7 +21,7 @@ public class GuiToolBar extends GuiPart
         ToolManagement toolManagement = new ToolManagement(toolBar);
 
         toolManagement.addButton("/mineIDE/img/addIcon.png");
-        toolManagement.addButton("/mineIDE/img/addIcon.png");
+        toolManagement.addButton("/mineIDE/img/color.png");
 
         this.addElement(toolBar);
     }

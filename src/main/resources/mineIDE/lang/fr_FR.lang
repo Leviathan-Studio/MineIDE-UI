@@ -14,6 +14,7 @@ menu.forge=Forge
 menu.forge.item.install=Installer Forge
 menu.forge.item.forceUpdate=Forcer la mise à jour de Forge
 menu.forge.item.build=Générer le mod
+menu.forge.item.build_assets=Générer les ressources
 
 menu.edit=Edition
 menu.edit.item.undo=Annuler
