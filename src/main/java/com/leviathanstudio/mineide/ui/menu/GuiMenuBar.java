@@ -2,17 +2,20 @@ package com.leviathanstudio.mineide.ui.menu;
 
 import com.leviathanstudio.mineide.ui.GuiPart;
 import com.leviathanstudio.mineide.ui.control.MenuItemIcon;
+import com.leviathanstudio.mineide.ui.popup.project.PopupCreateProject;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class GuiMenuBar extends GuiPart
 {
 
-    public GuiMenuBar()
+    public GuiMenuBar(Pane parent)
     {
-        super(new VBox());
+        super(new VBox(), parent);
     }
 
     @Override
@@ -51,6 +54,8 @@ public class GuiMenuBar extends GuiPart
         catFileProject.add(new MenuItemIcon("menu.file.item.newProject", "/mineIDE/img/addIcon.png", "Ctrl+Alt+P",
                 (ActionEvent t) ->
                 {
+                    PopupCreateProject.init((StackPane) parent);
+
                 }));
         catFileProject.add(new MenuItemIcon("menu.file.item.openProject", "", "Ctrl+Alt+O", (ActionEvent t) ->
         {

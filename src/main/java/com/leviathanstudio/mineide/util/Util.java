@@ -20,6 +20,7 @@ public class Util
     public static final String TEMPLATE_DIR  = "/minecraft/template/";
 
     public static final File   ROOT          = OSHelper.getWorkingDirectory();
+    public static final File   PROJECT_DIR   = new File(ROOT, "projects");
 
     public static void checkDir(File file)
     {

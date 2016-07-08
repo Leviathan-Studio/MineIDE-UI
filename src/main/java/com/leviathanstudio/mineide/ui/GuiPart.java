@@ -6,10 +6,12 @@ import javafx.scene.layout.Pane;
 public abstract class GuiPart extends Gui
 {
     public Pane root;
+    public Pane parent;
 
-    public GuiPart(Pane root)
+    public GuiPart(Pane root, Pane parent)
     {
         this.root = root;
+        this.parent = parent;
     }
 
     public void addElement(Node n)

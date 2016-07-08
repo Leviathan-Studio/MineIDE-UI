@@ -7,10 +7,13 @@ import javafx.scene.layout.StackPane;
 
 public class GuiMain extends GuiScreen
 {
+    public static GuiMain INSTANCE;
+
     public GuiMain()
     {
         super(new StackPane());
         this.root.setId("mainFrame");
+        INSTANCE = this;
     }
 
     @Override
@@ -21,8 +24,8 @@ public class GuiMain extends GuiScreen
         // TabHelper.closeAll();
         // });
 
-        this.addPart(new GuiMenuBar());
-        this.addPart(new GuiToolBar());
+        this.addPart(new GuiMenuBar(this.root));
+        this.addPart(new GuiToolBar(this.root));
 
         // GuiJavaEditor.init(scene, box);
         // GuiConsole.init(scene);

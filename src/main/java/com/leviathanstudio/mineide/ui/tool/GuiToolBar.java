@@ -3,14 +3,15 @@ package com.leviathanstudio.mineide.ui.tool;
 import com.leviathanstudio.mineide.ui.GuiPart;
 
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class GuiToolBar extends GuiPart
 {
 
-    public GuiToolBar()
+    public GuiToolBar(Pane parent)
     {
-        super(new VBox());
+        super(new VBox(), parent);
         this.root.setTranslateY(25);
     }
 
